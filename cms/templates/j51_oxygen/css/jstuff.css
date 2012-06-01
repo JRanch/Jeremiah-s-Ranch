@@ -1,0 +1,330 @@
+/* Read More */
+.readon, .readmore a {
+line-height: 30px;
+margin:3px 0;
+padding: 3px 10px;
+vertical-align:middle;
+}
+a.readon:link, a.readon:visited, .readmore a:link, .readmore a:visited  {text-decoration:none;}
+a.readon:hover, .readmore a:hover {text-decoration:underline;}
+
+/* Pagination */
+ul.pagination{list-style-type:none;margin:0;padding:0;text-align:center;}
+ul.pagination li, li.pagenav-prev, li.pagenav-next {background: url(../images/read.png); display:inline;margin:2px !important;padding:2px 8px !important; text-align:center; border:1px solid; border-color: #CCCCCC #BBBBBB #BBBBBB #CCCCCC; -moz-border-radius:0px 0px 5px 5px; -webkit-radius: 5px; border-radius:5px; line-height:24px !important;}
+ul.pagination li a{padding:2px; margin:0;padding:0;}
+ 
+ /* PDF & Print Buttons */
+.actions{margin:0; padding:0;}
+.actions li{list-style:none; background-image:none; display:inline; float:right; border:0; padding: 0px !important; margin: 0px 10px 0px 0px; margin-top: -16px;} 
+
+/* Login Form */
+#form-login, #form-login-username label, #form-login, #form-login-password label {display:block;}
+fieldset {border:0px;}
+
+/* START STYLING AND LAYOUT FOR (MENU ITEM -- CATEGORY BLOG) */
+/*leading article styling*/
+.items-leading{margin: 0px 0px 0px 0px;}
+.items-leading h2{font-size: 22px; font-style: normal; width:99%;}
+.items-leading h2 a, .items-leading h2 a:hover, .items-leading h2 a:active, .items-leading h2 a:link{text-decoration:none;}
+
+/*styling for each row which contains columns*/
+.items-row h2, .cols-2 h2, .row-0 h2 {font-size: 22px; font-style: normal; padding: 0px 4px 4px 0px; width:99%; }
+.items-row a, .cols-2 a, .row-0 h2 a, .items-row a:hover, .cols-2 a:hover, .row-0 h2 a:hover, .items-row a:active, .cols-2 a:active, .row-0 h2 a:active, .items-row a:link, .cols-2 a:link, .row-0 h2 a:link{text-decoration:none;}
+
+/*Category Blog Layout*/
+.items-row{overflow:hidden; margin-bottom:5px !important;}
+.column-1, .column-2, .column-3, .column-4{padding:0;}
+
+/* 1 column layout */
+.cols-1{display: block; float: none !important; margin: 0 !important;}
+
+/* 2 column layout */
+.cols-2 .column-1{width:49%; float:left;}
+.cols-2 .column-2{width:49%;float:right;}
+
+/* 3 column layout */
+.cols-3 .column-1{float:left; width:31.5%; padding:0px;}
+.cols-3 .column-2{float:left; width:31.5%; padding:0px; margin-left:2.2%;}
+.cols-3 .column-3{float:left; width:31.5%; padding:0px; margin-left:2.2%;}
+
+/* 4 column layout */
+.cols-4 .column-1{width:23%;float:left;}
+.cols-4 .column-2{width:23%; margin-left:2.2%; float:left;}
+.cols-4 .column-3{width:23%; margin-left:2.2%; float:left;}
+.cols-4 .column-4{width:23%; margin-left:2.2%; float:left;}
+
+.blog-more{padding:10px 5px;}
+.item-separator {height:10px;}
+
+/* START STYLING FOR (MENU ITEM -- MORE ARTICLES) CLASS .ITEMS-MORE) */
+.items-more{padding-top:10px; list-style-image:none;}
+.items-more h3{font-weight:normal; margin:0; padding:5px 5px 5px 5px; font-size:1.4em;}
+.items-more ol{line-height:1.3em; list-style-type:none; margin:0; padding:0px 0px 0px 2px;}
+.items-more ol li{padding:2px;}
+.items-more ol li a{display:inline; margin:0; font-weight:normal; padding:5px 5px 5px 15px; }
+.items-more ol li a:hover, .items-more ol li a:active, .items-more ol li a:focus{font-weight:normal; padding:5px 5px 5px 15px;}
+
+/* Category Table Styling */
+table.category th a img{padding:2px 10px;}
+.filter-search{float:left;}
+.filter-search .inputbox{width:6em;}
+legend.element-invisible{position:absolute; margin-left:-3000px; margin-top:-3000px; height:0px;}
+.cat-items {margin-top:20px;}
+td.list-title, td.createdby, td.list-hits{border:none;}
+
+/* Start Tables Styling */
+table{border:none;}
+table.category .createdby, table.category .list-hits, table.category .cat-list-row0, table.category .cat-list-row1 {color:#777;}
+table.weblinks, table.category {font-size:1em; margin:10px 10px 20px 0px; width:99%;}
+table.weblinks td{ border-collapse:collapse;}
+table.weblinks td, table.category td{padding:7px;}
+table.weblinks th, table.category th{padding:7px; text-align:left;}
+td.list-title a {text-decoration: none;}
+td.num{vertical-align:top; text-align:left;}
+td.hits{vertical-align:top; text-align:center;}
+td p{margin:0; line-height:1.3em;}
+.filter{margin:10px 0px;}
+.display-limit,.filter{text-align:right; margin-right:7px;}
+tr.even, .cat-list-row0{background-color:#F4F4F4; border-top: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD;}/*-- USE THIS TO STYLE EVERY SECOND ROW IN THE CATEGORY TABLE --*/
+tr.odd, .cat-list-row1{}/*-- USE THIS TO STYLE EVERY SECOND ROW IN THE CATEGORY TABLE --*/
+table.weblinks th, table.newsfeeds th, table.category th, table.jlist-table th{border-bottom: 1px solid #DDDDDD; font-size:16px;}
+table.weblinks th a, table.newsfeeds th a, table.category th a, table.jlist-table th a, table.weblinks th, table.newsfeeds th, table.category th, table.jlist-table th {}
+table.category th a img {border:solid 0px ;}
+
+/* for opera */
+tr, td{border:none;}
+#main table.moduletable td, #main table.moduletable tr {border:0;}
+fieldset.filters {border:solid 0px #ddd;}
+
+/* START STYLING FOR(MENU ITEM TYPE -- LIST ALL CATEGORIES) */
+.categories-listalphabet ul{padding:0; margin:20px 10px 10px 0; list-style-type:none; list-style-position:inside;}
+.categories-listalphabet ul li{display :inline; padding:5px; border-right:solid 1px #ddd;}
+.categories-list ul{list-style-type:none; list-style-image:none; margin:0; padding:0;}
+.categories-list ul ul{margin:15px; padding:0;}
+.cat-children{padding-left:5px;}
+.cat-children ul dl dt, .cat-children ul dl dd, dl.article-count dt, dl.article-count dd{display:inline;}
+.cat-children ul{list-style-type:none; list-style-image:none; margin:0; padding:0;}
+.cat-children ul{margin:10px 10px 10px 10px;}
+.cat-children ul ul{margin:20px;}
+.cat-children ul li{margin:10px 0 10px 0;}
+
+.categories-module, .category-module{margin: 10px 0 10px 0; padding: 0 0 0 20px;}/*layout for list of categories in Article Categories Module and Article Category in Article Category Module*/
+
+.cat-children ul dl dt, .cat-children ul dl dd, dl.article-count dt, dl.article-count dd {margin: 0px 2px; display: inline;}
+
+/* START STYLING FOR (MENU ITEM -- LIST ALL CONTACT CATEGORIES, LIST CONTACTS IN A CATEGORY, SINGLE CONTACT, FEATURED CONTACT) */
+/* Start Styling for Contact - Slider */
+.contact {padding:15px;}
+#contact-slider{margin-top: 10px;}
+#contact-slider .pane-toggler-down, #contact-slider .pane-toggler{ margin-bottom:1px; margin-top:0px; padding:5px; background-color:#eee; border:solid 1px #ccc;}
+#contact-slider a, #contact-slider h3{text-decoration:none; font-size:14px; border:none;}
+#contact-slider .contact-form, #contact-slider .contact-image, #contact-slider .contact-miscinfo{margin:10px 0px;}
+#contact-slider .pane-slider{padding: 0px 10px; border:solid 1px #ccc; clear: both;}
+
+.contact-category .item-title a {}
+.contact-category h2 {padding:10px 0 0 10px !important;}
+
+/* Forms */
+.inputbox, .registration input, .login input, .contact-form input, #jform_contact_message {
+  border:solid 1px #CCCCCC;
+  margin-top: 4px;
+  margin-bottom:4px;
+  padding: 4px 11px;
+  background:#fff;
+  font-size:-.9em;
+  -moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 1px rgba(0, 0, 0, 0.1) inset;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;}
+
+/* Single Contact Form H3 header */
+.contact h3{ margin-bottom:20px; margin-top:20px; padding:5px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #ccc;}
+
+/* Mod Languages */
+.mod-languages ul li {}
+
+/* Mod Stats  */
+.stats-module dl {margin:10px 0 10px 0}
+.stats-module dt {float:left; margin:0 10px 0 0; font-weight: bold;}
+.stats-module dt,   .stats-module dd {padding:2px 0 2px 0 }
+
+/* Search Results */
+form#searchForm {
+    margin-top: 20px;
+}
+form#searchForm fieldset.word {
+    margin-left: 16px;
+}
+form#searchForm fieldset.word label, form#searchForm fieldset.word button {
+    margin: 0 12px 0 0;
+}
+.searchintro {
+    font-size: 12px;
+    margin: 10px;
+    text-transform: uppercase;
+}
+.search-results {
+    margin: 0 0 20px;
+    padding: 0 5px 24px;
+}
+.search-results small {
+    font-size: 11px;
+}
+.search .form-limit {
+    float: right;
+    margin: 0 10px;
+}
+.search .form-limit label {
+    float: left;
+    line-height: 30px;
+    padding-right: 10px;
+}
+fieldset.word {
+    padding: 8px 0;
+}
+fieldset.phrases, fieldset.only {
+    border-top: 1px solid #EEEEEE;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+fieldset.phrases legend, fieldset.only legend {
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 8px;
+    text-transform: uppercase;
+}
+.phrases-box {
+    float: left;
+}
+.ordering-box {
+    float: left;
+    margin: -5px 0 0 20px;
+}
+.ordering-box select {
+    margin-top: 0 !important;
+}
+.ordering-box label {
+    float: left;
+    margin-right: 5px;
+}
+#searchForm p.counter {
+    font: bold 11px Arial,Helvetica,sans-serif;
+    margin: 32px 12px 0;
+    text-transform: uppercase;
+}
+.search-results dt.result-title {
+    display: block;
+    font-size: 140%;
+    font-weight: normal;
+    margin: 0;
+    padding: 3px 0 10px 0;
+    text-transform: none;
+    width: 100%;
+}
+.search-results dt.result-title:first-child {
+    border-top: 1px solid #EEEEEE;
+    clear: both;
+    margin: 12px 0 0;
+    padding: 30px 0 10px 0;
+}
+.search-results dd.result-category {
+    color: #888888;
+    float: left;
+    font-size: 13px;
+    font-style: italic;
+    margin: -4px 10px 0 0;
+}
+.search-results dd.result-created {
+    border-bottom: 1px solid #EEEEEE;
+    color: #888888;
+    font-size: 10px;
+    margin-bottom: 12px;
+    padding: 0 0 6px;
+    text-align: right;
+}
+.search-results .result-text {
+    color: #666666;
+    font-size: 12px;
+    line-height: 18px;
+}
+.search-results p {
+    color: #878787;
+    font-size: 11px;
+    margin: 0 0 10px 26px;
+}
+.search-results p span {
+    font-size: 11px;
+}
+#search-searchword {
+    width: 260px;
+}
+.hidelabeltxt {
+    display: none;
+}
+
+/* Misc  */
+ul#archive-items li {list-style:none; padding:0px; margin:0px; background-image:none;}
+
+#mailto-window h2 {color:#000000;}
+#mailto-window {background:#f5f5f5; padding:15px; border:solid 1px #ddd; position:relative}
+#mailto-window label{width:10em}
+.mailto-close{position:absolute; right:0; top:5px; background:none; }
+.mailto-close a {background:#f5f5f5 url(../images/close.png) no-repeat !important;min-width:25px; display:block;min-height:25px;overflow:visible}
+.mailto-close a  span{position:absolute; left:-3000px; top:-3000px; display:inline}
+#mailto-window  .inputbox{background:url("../images/content_bg.gif") repeat-x scroll 0 0 #FFFFFF; border:1px solid #ccc; padding:3px;}
+#mailto-window p{margin-top:20px}
+#mailto-window button{margin:0 5px 0 0}
+.clr{clear:both;}   
+
+body.contentpane {background: none repeat scroll 0 0 #FFFFFF;}
+body.contentpane {margin: 10px; text-align: left;width: auto;}
+
+/* Edit */
+form#adminForm {padding:15px;}
+legend {padding:3px 5px;}
+.edit form#adminForm legend {font-weight:bold}
+.edit form#adminForm fieldset{padding:20px 15px; margin:10px 0 15px 0; border:1px solid #aaa;}
+
+.formelm{margin:5px 0}
+.formelm label{width:13em; display:inline-block; vertical-align:top;}
+form#adminForm .formelm-area{padding:5px 0}
+form#adminForm .formelm-area label {vertical-align:top; display:inline-block; width:7.9em}
+form#adminForm{border:solid 0px #000}
+.formelm-buttons{text-align:right; margin-bottom:10px}
+form.editor fieldset{border:solid 1px #ccc;}
+
+a.modal-button, .button2-left .blank a, .button2-left a, .button2-left div.readmore a {background:#eee; padding:4px !important; margin:0 !important; line-height:1.2em; border:solid 1px #ddd; font-weight:bold; text-decoration:none; margin-top:10px !important}
+
+.contentpaneopen_edit img {border:0}
+#editor-xtd-buttons {padding: 0px;}
+.button2-left, .button2-right, .button2-left div, .button2-right div {float: left;}
+.button2-left a, .button2-right a, .button2-left span, .button2-right span {display: block; float: left; color: #666; cursor: pointer;}
+.button2-left span, .button2-right span {cursor: default; color: #999;}
+.button2-left .page a, .button2-right .page a, .button2-left .page span, .button2-right .page span {padding: 0 6px;}
+.button2-left a:hover,.button2-right a:hover {text-decoration: none; color: #0B55C4;}
+.button2-left a,.button2-left span {padding: 0 24px 0 6px;}
+.button2-right a, .button2-right span {padding: 0 6px 0 24px;}
+.button2-left, .button2-right {float: left; margin-left: 5px;}
+
+.button2-left .readmore a {color:#666666; margin-right:0px;}
+
+table.contentpaneopen, table.contentpane, table.blog {
+width:100%;
+}
+
+.archive h2, .archive h2 a, .items-leading h2, .contact-category h2 {margin:0px;}
+.items-row h2, .cols-2 h2, .row-0 h2, .row-0 h2, .item-page h2 {margin:0px;}
+
+table.contentpaneopen, table.contentpane, table.blog {
+width:100%;
+}
+
+.maincontent .search {width:auto; text-align:left !important;}
+
+.ordering-box .inputbox, .form-limit .inputbox {background-image:none !important; height:26px;}
+#ordering, #limit {background:#eee;}
+

@@ -1,0 +1,300 @@
+div.width-40, div.width-60 {width:50%;}
+
+
+
+.admin_head {
+    text-shadow:1px 1px 0 #F7F7F7;
+    background: url("../images/admin/head.png");
+    border:1px solid #e9e9e9;
+    color:#333;
+    font-weight:bold;
+    padding:6px;
+    margin:8px -14px 4px -5px;
+    text-transform:uppercase;
+    width:500px;
+}
+
+.j51_admin {
+    background:none repeat scroll 0 0 #F3F3F3;
+}
+td .paramlist_value div {background:#000;}
+
+fieldset.panelform label, fieldset.panelform div.paramrow label, fieldset.panelform span.faux-label {
+    max-width:100%; min-width:230px;
+}
+div.width-60 fieldset.adminform img, div.width-60 fieldset.adminform p {
+  padding:10px;
+}
+.templateinfo h4 {
+  
+    text-transform:uppercase;
+    color: #555;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 32px;
+    clear: both;
+    background: url("../images/admin/grad1.png");
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #d6d6d6;
+    margin: 5px;
+    padding-left:15px;
+    text-shadow:1px 1px #ccc;
+    display: block;
+    line-height: 30px;
+    position: relative;  
+    -moz-box-shadow:    1px 1px 1px #eee;
+    -webkit-box-shadow: 1px 1px 1px #eee;
+    box-shadow:         1px 1px 1px #eee;
+}
+a {color:#403d6a;}
+
+/* Fieldset Header */
+.form-validate .pane-sliders .panel h3 a {  
+  text-transform:uppercase;
+    color: #555;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 32px;
+    clear: both;
+    background: url("../images/admin/grad1.png");
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #d6d6d6;
+    margin: 5px;
+    padding: 0px;
+    text-shadow:1px 1px #ccc;
+    display: block;
+    height: 40px;
+    position: relative;  
+    -moz-box-shadow:    1px 1px 1px #eee;
+    -webkit-box-shadow: 1px 1px 1px #eee;
+    box-shadow:         1px 1px 1px #eee;
+}
+
+/* Fieldset Header Arrows */
+.pane-toggler-down span {
+    background: url("../images/admin/j_arrow_down.png") no-repeat scroll 5px 50% transparent;
+    padding-left: 20px;
+}
+.pane-toggler span {
+    background: url("../images/admin/j_arrow.png") no-repeat scroll 5px 50% transparent;
+    padding-left: 20px;
+}
+
+.form-validate .pane-sliders .panel h3 {
+    color: #929191;
+    cursor: pointer;
+    font-weight: normal;
+    line-height: 40px;
+    text-shadow: 1px 1px #FFFFFF;
+}
+
+.fltrt fieldset.panelform label{
+    color: #444;
+    display: block;
+    font-size: 12px;
+    font-style:italic;
+    font-weight: bold;
+    line-height: 36px;
+    margin: 0 10px 0 0;
+    padding: 0 10px 0 0;
+    text-align: right !important;
+    text-shadow: 1px 1px #FFFFFF !important;
+    border-bottom:1px dashed #dddddd;
+}
+
+.width-40 .pane-sliders .title {padding:3px; border: 0px solid #CCCCCC;}
+.width-40 .pane-sliders .panel {padding:0px; border: 0px solid #CCCCCC;}
+.width-40 .pane-sliders input:focus, .width-40 .pane-sliders select:focus {background: #fafafa}
+.width-40 .pane-sliders input, .width-40 .pane-sliders select {}
+
+/* Input */
+.width-40 .pane-slider fieldset li input {
+  border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    color: #424242;  
+    font-size: 13px;
+    outline: medium none;
+    padding:2px 7px; 
+    min-width:104px; 
+    margin-top:5px; 
+    height:22px;
+}
+
+/* Dropdown */
+.width-40 .pane-sliders select {padding: 2px; min-width:120px; margin-top:8px;
+font-size:13px;
+  -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 26px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #dedede;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.05) inset;
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fff 0%, #f5f5f5 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(99%,#e6e6e6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* W3C */
+}
+
+/* Info Box */
+.infoBox, .noticeBox {padding:6px; margin:10px 5px 5px 0px;}
+.infoBox .info {
+    color: #fff;
+    font-size: 14px;
+    clear: both;
+    line-height: 18px;
+    background: #50b5f9; /* Old browsers */
+    background: -moz-linear-gradient(top, #5bb2d8 0%, #2a7fb8 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#50b5f9), color-stop(99%,#147ec7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #50b5f9 0%,#147ec7 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #50b5f9 0%,#147ec7 99%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #50b5f9 0%,#147ec7 99%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#50b5f9', endColorstr='#147ec7',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #50b5f9 0%,#147ec7 99%); /* W3C */
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 10px 15px;
+    text-shadow:1px 1px #066da1;
+    display: block;
+    position: relative;  
+}
+
+.noticeBox .info{
+  color: #555;
+    font-size: 14px;
+    clear: both;
+    line-height: 18px;
+    background: url("../images/admin/notice.png") no-repeat scroll 5px center #eeeeee;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border:1px solid #d6d6d6;
+    padding: 12px 15px 12px 50px;
+    text-shadow:1px 1px #fff;
+    display: block;
+    position: relative;  
+}
+
+/* Title Box */
+.titleBox {clear: both; float:left; padding:6px; margin:5px 5px 5px 0px;}
+.titleBox .info {
+    color: #555;
+    font-size: 12px;
+    clear: both;
+    line-height: 18px;
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fefefe 0%, #e6e6e6 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(99%,#e6e6e6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #fefefe 0%,#e6e6e6 99%); /* W3C */
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #d6d6d6;
+    margin: 0px;
+    padding: 5px 10px;
+    text-shadow:1px 1px #fff;
+    display: block;
+    position: relative;  
+    min-width:200px;
+}
+
+/* Button */
+.button2-left {height:27px; cursor:pointer; overflow:hidden; float:left; margin-top:5px; }
+
+/* iButton */
+.width-40 .pane-sliders .iPhoneCheckContainer{ position:relative; width:85px; height:27px; cursor:pointer; overflow:hidden; float:left; margin-top:5px; }
+/* .width-40 .pane-sliders .iPhoneCheckContainer input{ position:absolute; top:5px; left:30px;  } */
+.width-40 .pane-sliders .iPhoneCheckHandle{ display:block; height:27px; width:39px; cursor:pointer; position:absolute; top:0; left:0;  }
+.width-40 .pane-sliders .iPhoneCheckHandle .iPhoneCheckHandleBG{ position:absolute; width:5px; height:100%; top:0; left:0; z-index:1;  }
+.width-40 .pane-sliders .iPhoneCheckHandle .iPhoneCheckHandleSlider{ position:absolute; top:0; left:0; height:27px; width:39px; background:url(../images/admin/iphone-slider.png) no-repeat; z-index:2;  }
+.width-40 .pane-sliders label.iPhoneCheckLabelOn,label.iPhoneCheckLabelOff{ 
+  font-size:17px !important; 
+  line-height:17px !important; 
+  font-weight:bold; 
+  font-family:Helvetica Neue,Arial,Helvetica,sans-serif; 
+  text-transform:uppercase; 
+  cursor:pointer; 
+  display:block; 
+  height:22px; 
+  position:absolute; 
+  margin:0 !important;
+  width:52px; 
+  top:0;  }
+.width-40 .pane-sliders label.iPhoneCheckLabelOn{
+  color:#fff; 
+  visibility: visible !important; 
+  background:url(../images/admin/iphone-on.png) no-repeat; 
+  text-shadow: 0px 0px 2px rgba(0,0,0,0.6) !important; 
+  left:0;
+  padding:5px 0 0 8px;
+  text-align: left !important;}
+.width-40 .pane-sliders label.iPhoneCheckLabelOff{ 
+  color:#777777; 
+  visibility: visible !important;
+  background:url(../images/admin/iphone-off.png) no-repeat right 0; 
+  text-shadow:0px 0px 2px rgba(255,255,255,0.6); 
+  text-align:right; 
+  right:0; 
+  padding:5px 8px 0 0;  }
+
+
+/* Module Width Field Styling */
+.width-40 .panel .pane-slider input.module_width {min-width:30px;}
+
+/* Text Box */
+fieldset.panelform li textarea {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) inset;
+    color: #424242;  
+    font-size: 13px;
+    outline: medium none;
+    padding: 6px;
+}
+
+/* -- TOOLTIP STYLES ----------------------------- */
+.tip {
+  float: left;
+  background: #ffc;
+  border: 1px solid #D4D5AA;
+  padding: 5px;
+  max-width: 400px;
+  z-index: 99999999;
+}
+
+.tip-title {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: -15px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  background: url(../images/selector-arrow.png) no-repeat;
+  z-index: 99999999;
+}
+
+.tip-text {
+  font-size: 1em;
+  margin: 0;
+  z-index: 99999999;
+}
+
+

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<install version="1.6" type="template" method="upgrade">
+	<name>J51_Oxygen</name>
+	<version>1.0</version>
+	<creationDate>April 2012</creationDate>
+	<author>Joomla51</author>
+	<authorEmail>info@joomla51.com</authorEmail>
+	<authorUrl>http://www.joomla51.com</authorUrl>
+	<copyright>Joomla51</copyright>      
+	<description><![CDATA[<link href="../templates/j51_oxygen/css/admin.css" rel="stylesheet" type="text/css" media="all" />
+                  <!--
+                  #wrap1 {padding:0px 0px 4px 0px;}
+                  h1 {clear:both;font-family: Arial Narrow,sans-serif;font-size:18px;margin:0px 0px 12px 0px;padding:0px 0px 1px 10px;color:#C64934; a:}
+                  .wrap2 {background:#fff;border:1px solid #8F8F8F;padding:10px; color:#403d6a;}
+                  -->
+                  </style><div class="templateinfo">
+<h4><strong>J51 - Oxygen</strong></h4>
+<img src="../templates/j51_oxygen/template_thumbnail.png" border="0" title="" alt=""/>
+<p>Introducing our Oxygen Joomla template, a bright and clean template solution for your website. Our popular free release has been giving a makeover and is now using the latest Joomla51 framework with a host of new features including 48 modules positions with complete width controls, 3 column layout with 6 possible layout options, font choosers with 14 web safe fonts and over 100 Google fonts to choose from and much much more.</p>
+<p>To remove the <i>"Joomla Templates by Joomla51.com"</i> a commercial verision of the template is available <b><a href="http://www.joomla51.com/joomla-templates/j51-oxygen" target="_blank" title="">HERE</a></b>.</p>
+  </div>
+  ]]></description>
+  
+  	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_j51_oxygen.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_j51_oxygen.sys.ini</language>
+	</languages>
+	
+
+	<files>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>css/</folder>
+		<folder>html/</folder>
+		<folder>images/</folder>
+		<folder>js/</folder>
+		<folder>language/</folder>
+		<folder>elements/</folder>
+		<folder>php/</folder>
+	</files>
+
+	<positions>		
+		<position>showcase</position>
+		<position>breadcrumb</position>
+		<position>top-1a</position>
+		<position>top-1b</position>
+		<position>top-1c</position>
+		<position>top-1d</position>
+		<position>top-1e</position>
+		<position>top-1f</position>
+	    <position>top-2a</position>
+		<position>top-2b</position>
+		<position>top-2c</position>
+		<position>top-2d</position>
+		<position>top-2e</position>
+		<position>top-2f</position>
+		<position>sidecol-a</position>
+		<position>sidecol-b</position>	
+		<position>contenttop-a</position>
+		<position>contenttop-b</position>
+		<position>contenttop-c</position>		
+		<position>contentbottom-a</position>	
+		<position>contentbottom-b</position>
+		<position>contentbottom-c</position>		
+		<position>bottom-1a</position>
+		<position>bottom-1b</position>
+		<position>bottom-1c</position>
+		<position>bottom-1d</position>
+		<position>bottom-1e</position>
+		<position>bottom-1f</position>
+		<position>bottom-2a</position>
+		<position>bottom-2b</position>
+		<position>bottom-2c</position>
+		<position>bottom-2d</position>
+		<position>bottom-2e</position>
+		<position>bottom-2f</position>	
+	    <position>base-1a</position>
+		<position>base-1b</position>
+		<position>base-1c</position>
+		<position>base-1d</position>
+		<position>base-1e</position>
+		<position>base-1f</position>
+		<position>base-2a</position>
+		<position>base-2b</position>
+		<position>base-2c</position>
+		<position>base-2d</position>
+		<position>base-2e</position>
+		<position>base-2f</position>	
+		<position>footer-1</position>
+		<position>footer-2</position>	
+	</positions>
+
+
+<config>
+<fields name="params" addfieldpath="/templates/j51_oxygen/elements">
+	<fieldset name="H3STYLES">	
+		<field label="STYLE_INFO" type="infobox" default="STYLE_INFO"/>
+		<field label="STYLESETTINGS_INFO" type="titleBox" default="STYLESETTINGS_INFO"/>
+		<field name="colorStyle" type="list" default="style1" label="Template Syle" description="Color Style">
+		<option value="style1">Style1 - Blue</option>
+		<option value="style2">Style2 - Green</option>
+		<option value="style3">Style3 - Bronze</option>
+		</field>
+		
+		<field label="FONTFACESETTINGS_INFO" type="titleBox" default="FONTFACESETTINGS_INFO"/>
+
+		<field name="body_fontsize" type="list" default="Medium" label="Body Font Size" description="Choose bodyfont size">
+		<option value="12px">Medium</option>
+		<option value="10px">Small</option>
+		<option value="14px">Large</option>
+		</field>
+		
+		<field name="body_fontstyle" type="GoogleFonts" default="Arial, Helvetica, sans-serif" label="Body font" description="Select Body font">
+		<option value="font1">font1</option>
+		</field>
+		
+		<field name="articlehead_fontstyle" type="GoogleFonts" default="Lato" label="Article Head font" description="Select article head font">
+		<option value="font1">font1</option>
+		</field>
+		
+		<field name="modulehead_fontstyle" type="GoogleFonts" default="Arial, Helvetica, sans-serif" label="Module Head font" description="Select module head font">
+		<option value="font1">font1</option>
+		</field>
+		
+		<field name="hornav_fontstyle" type="GoogleFonts" default="Arial, Helvetica, sans-serif" label="Hornav Menu font" description="Select hornav menu font">
+		<option value="font1">font1</option>
+		</field>
+		
+		<field label="FONTLINKCOLORSETTINGS_INFO" type="titleBox" default="FONTLINKCOLORSETTINGS_INFO"/>
+		
+		<field name="modulehead_font_color" type="jscolor" default="#403D6A" label="Module Head Text Color" description="Select the color for moduleshead text color" />		
+		<field name="articletitle_font_color" type="jscolor" default="#403D6A" label="Article Title Color" description="Select the color for Article Titles" />
+		<field name="content_link_color" type="jscolor" default="#403D6A" label="Content Link Color" description="Select the color for Article Titles" />		
+	</fieldset>
+	
+	<fieldset name="H3MENUS">
+	    <field label="MENUS_INFO" type="infobox" default="MENUS_INFO"/>	
+	    <field label="MENUS_NOTICE" type="noticebox" default="MENUS_NOTICE"/>		
+		<field label="HORNAVMENU_INFO" type="titlebox" default="HORNAVMENU_INFO"/>	
+		<field name="hornav_menu" type="menu" default="mainmenu" label="Select Hornav menu" description="Select Hornav Menu" />	
+		<field name="hornav_font_color" type="jscolor" default="#3A3A3A" label="Hornav Text Color" description="Hornav Text Color" />
+		<field name="hornav_ddbackground_color" type="jscolor" default="#EDEDED" label="Dropdown Background Color" description="Hornav Background Color" />		
+		<field label="FOOTERMENU_INFO" type="titlebox" default="FOOTERMENU_INFO"/>	
+		<field name="footermenu_onoff" type="checkbox" label="Show Footer Menu" description="Select if you want menu on/off" value="1" checked="checked" />
+		<field name="footer_menu" type="menu" default="mainmenu" label="Select Footer menu" description="Select Footer Menu" />							
+	</fieldset>
+	
+    <fieldset name="H3SEARCH">
+	    <field label="SEARCH_INFO" type="infobox" default="SEARCH_INFO"/>	
+		<field name="search_onoff" type="checkbox" label="Show Search" description="Select if you want search on/off" value="1" checked="checked" />										
+	</fieldset>
+	
+	<fieldset name="H3LOGO">
+		<field label="LOGO_INFO" type="infobox" default="LOGO_INFO"/>
+		<field name="logoimagefile" type="media" default="" label="Select Logo Image" description="select your logo image" directory="/" filter="" exclude="" stripext="" />
+		<field name="logoImage" type="checkbox" label="Logo Image" description="turn on for logo image and off if using text based logo"  value="1" checked="checked" />
+		<field name="logo_x" type="text" default="0" size="2" label="X Position" description="X Position for Logo" />
+		<field name="logo_y" type="text" default="0" size="2" label="Y Position" description="Y Position for Logo" />
+		<field name="logoText" type="text" default="oxygen" size="40" label="Logo text" description="Logo Text" />
+		<field name="logo_fontstyle" type="GoogleFonts" default="Palatino Linotype, Book Antiqua, Palatino, serif" label="Logo font" description="Select Logo font">
+		<option value="font1">font1</option>
+		</field>
+		<field name="logo_font_color" type="jscolor" default="#403D6A" label="Logo Text Color" description="Logo Text Color" />
+		<field name="sloganText" type="text" default="A JOOMLA51 TEMPLATE" size="40" label="Slogan text" description="Slogan Text" />
+		<field name="slogan_font_color" type="jscolor" default="#555555" label="Slogan Text Color" description="Slogan Text Color" />									
+	</fieldset>
+	
+	<fieldset name="H3LAYOUT">
+		<field label="LAYOUT_INFO" type="infobox" default="LAYOUT_INFO"/>
+		<field name="column_layout" type="list" default="SCOLA-COM-SCOLB" label="Side Column Layout" description="Side Column Layout">
+			<option value="SCOLA-SCOLB-COM">Side Column A + Side Column B + Component</option>
+			<option value="SCOLA-COM-SCOLB">Side Column A + Component + Side Column B</option>
+			<option value="COM-SCOLA-SCOLB">Component + Side Column A + Side Column B</option>
+		</field>				
+		<field name="sidecola_width" type="text" default="220" label="Side Column A Width" description="Enter the width of the Side Column A in pixels." />
+		<field name="sidecolb_width" type="text" default="220" label="Side Column B Width" description="Enter the width of the Side Column B pixels." />				
+	</fieldset>
+	
+	<fieldset name="H3MODULEWIDTHS">
+		<field label="MODULES_INFO" type="infobox" default="MODULES_INFO"/>	
+		<field label="MODULES_NOTICE" type="noticebox" default="MODULES_NOTICE"/>	
+		<field label="TOP1MODULES_INFO" type="titleBox" default="TOP1MODULES_INFO"/>		
+		<field name="top1_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="top_1a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="top_1b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_1c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_1d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_1e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_1f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="TOP2MODULES_INFO" type="titleBox" default="TOP2MODULES_INFO"/>
+		<field name="top2_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="top_2a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="top_2b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_2c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_2d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_2e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="top_2f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="CONTENTTOPMODULES_INFO" type="titleBox" default="CONTENTTOPMODULES_INFO"/>
+		<field name="contenttop_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="contenttop_a_manual" type="moduleslabel" default="33" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="contenttop_b_manual" type="modules" default="33" size="2" label="" description="Enter value for module width" />
+		<field name="contenttop_c_manual" type="modules" default="33" size="2" label="" description="Enter value for module width" />
+		
+		<field label="CONTENTBOTTOMMODULES_INFO" type="titleBox" default="CONTENTBOTTOMMODULES_INFO"/>
+		<field name="contentbottom_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="contentbottom_a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="contentbottom_b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="contentbottom_c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="BOTTOM1MODULES_INFO" type="titleBox" default="BOTTOM1MODULES_INFO"/>
+		<field name="bottom1_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="bottom_1a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="bottom_1b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_1c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_1d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_1e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_1f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="BOTTOM2MODULES_INFO" type="titleBox" default="BOTTOM2MODULES_INFO"/>
+		<field name="bottom2_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="bottom_2a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="bottom_2b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_2c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_2d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_2e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="bottom_2f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="BASE1MODULES_INFO" type="titleBox" default="BASE1MODULES_INFO"/>
+		<field name="base1_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="base_1a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="base_1b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_1c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_1d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_1e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_1f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		
+		<field label="BASE2MODULES_INFO" type="titleBox" default="BASE2MODULES_INFO"/>
+		<field name="base2_auto" type="checkbox" label="Enable Manual Widths" description="Select Yes for manual widths" value="1" checked="checked" />
+		<field name="base_2a_manual" type="moduleslabel" default="16.6" size="2" label="Manual Widths (%)" description="Enter value for module width" />
+		<field name="base_2b_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_2c_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_2d_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_2e_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />
+		<field name="base_2f_manual" type="modules" default="16.6" size="2" label="" description="Enter value for module width" />	
+	</fieldset>
+	<fieldset name="H3COPYRIGHT">		
+		<field label="COPYRIGHT_INFO" type="infobox" default="COPYRIGHT_INFO"/>
+		<field name="copyright" type="text" size="80" filter="raw" default="(c) 2012 Your Copyright Info" label="Copyright" description="Copyright Text" />
+	</fieldset>
+	<fieldset name="H3SOCIAL">
+	    <field label="SOCIAL_INFO" type="infobox" default="SOCIAL_INFO"/>	
+		<field name="nav_rssfeed_sw" type="checkbox" label="RSS Feed" description="RSS Feed" value="1" checked="checked" />
+		<field name="nav_rssfeed" type="text" size="40" default="http://www.joomla51.com/rss" label=" RSS Feed Url" description="RSS Feed URL" />
+
+		<field name="nav_twitter_sw" type="checkbox" label="Twitter" description="Twitter" value="1" checked="checked" />
+		<field name="nav_twitter" type="text" size="40" default="https://twitter.com/#!/Joomla51" label="Twitter Url" description="Twitter URL" />
+
+		<field name="nav_facebook_sw" type="checkbox" label="Facebook" description="Facebook" value="1" checked="checked" />
+		<field name="nav_facebook" type="text" size="40" default="http://www.facebook.com/joomla51" label="Facebook Url" description="Facebook URL" />
+
+		<field name="nav_myspace_sw" type="checkbox" label="MySpace" description="MySpace" value="1" checked="checked" />
+		<field name="nav_myspace" type="text" size="40" default="" label="MySpace Url" description="MySpace URL" />
+
+		<field name="nav_blogger_sw" type="checkbox" label="Blogger" description="Blogger" value="1" checked="checked" />
+		<field name="nav_blogger" type="text" size="40" default="" label="Blogger Url" description="Blogger URL" />
+
+		<field name="nav_stumble_sw" type="checkbox" label="Stumble" description="Stumble" value="1" checked="checked" />
+		<field name="nav_stumble" type="text" size="40" default="" label="Stumble Url" description="StumbleUpon URL" />
+
+		<field name="nav_google_sw" type="checkbox" label="Google" description="Google" value="1" checked="checked" />
+		<field name="nav_google" type="text" size="40" default="" label="Google Url" description="Google URL" />
+
+		<field name="nav_flickr_sw" type="checkbox" label="Flickr" description="Flickr" value="1" checked="checked" />
+		<field name="nav_flickr" type="text" size="40" default="" label="Flickr Url" description="Flickr URL" />
+
+		<field name="nav_linkedin_sw" type="checkbox" label="LinkedIn" description="LinkedIn" value="1" checked="checked" />
+		<field name="nav_linkedin" type="text" size="40" default="" label="LinkedIn Url" description="LinkedIn URL" />
+	</fieldset>
+	
+		<fieldset name="H3CUSTOMCSS">		
+		<field label="CUSTOMCSS_INFO" type="infobox" default="CUSTOMCSS_INFO"/>
+		<field name="custom_css" type="textarea" filter="raw" default="" label="Custom css" description="Add your custom css here." rows="10" cols="40" />
+	</fieldset>
+	
+	<fieldset name="H3CUSTOMCODE">		
+		<field label="CUSTOM_CODE" type="infobox" default="CUSTOM_CODE"/>
+		<field name="head_custom_code" type="textarea" filter="raw" default="" label="Head Custom Code" description="Code will be placed between the HEAD tags in your index.php" rows="10" cols="40" />
+		<field name="body_custom_code" type="textarea" filter="raw" default="" label="Body Custom Code" description="Code will be placed between the BODY tags in your index.php" rows="10" cols="40" />
+	</fieldset>
+	</fields></config>
+
+</install>

@@ -1,0 +1,310 @@
+@import url("menus.css");
+@import url("jstuff.css");
+
+body {
+width: 100%;
+}
+
+#content100 {float:left;}
+#header_items {width: 100%;}
+#header.block_holder, #slideshow.block_holder, #footermenu.block_holder {padding:0;}
+.module_margin, .maincontent, .side_margins {margin:5px;}
+
+.top-1, .top-2, .contenttop, .contentbottom, .bottom-1, .bottom-2, .base-1, .base-2  {float: left;}
+.block_holder {padding:0 5px;}
+
+/*--Framework Classes--*/
+.block_holder {
+}
+.container {
+  width:100%; 
+}
+.wrapper960 {
+  width:928px; 
+  margin:0 auto; 
+}
+
+.clear {
+  clear:both;
+}
+.menu{}
+#content_full {
+  float:left;
+}
+
+/*--Header Div--*/
+#header {
+  position:relative;
+}
+
+/* Search */
+#search {
+  height:20px;
+  position:absolute;
+  z-index:10;
+}
+#search form {
+  margin:0;
+}
+#search .inputbox {
+background:url("../images/searchBox.png") no-repeat scroll left top transparent;
+border:medium none;
+height:19px;
+margin:0;
+padding:4px 5px 7px 30px;
+width:165px;
+}
+#search form .search label {
+  display: none;
+}
+
+/*Language Divs*/
+#language {
+  position:absolute;
+}
+
+/*--Logo & Slogan Layout--*/
+#logo {
+  position:absolute;
+}
+.logo_container {
+  margin: 0px; 
+}
+.logo_container h1 {
+  padding:0px;
+  margin:0;
+  line-height:normal !important;
+}
+h1.logo {
+  margin:0; 
+  padding:0; 
+}
+h1.logo a {
+  display:block; 
+  position:relative; 
+  z-index:0; 
+  width:100%; 
+  background: url(../images/logo.png) no-repeat; z-index:1;
+}
+h1.logo-text {
+  margin:0; 
+  padding:0; 
+  text-align:left;
+}
+h1.logo-text a {
+  letter-spacing:-3px; 
+  white-space:nowrap; 
+  outline:none; 
+  position:relative; 
+  text-decoration:none; 
+  width:100%;
+}
+p.site-slogan {
+  padding:0; 
+  position:relative; 
+  white-space:nowrap;
+}
+
+/*Social Media Divs*/
+#socialmedia {
+  position:absolute;
+  z-index:4;
+  width:240px;
+  margin:0;
+}
+ul#navigation {
+  float:right;
+  margin: 0px;
+  padding: 0px;
+  top: 0px;
+  right: 0px;
+  list-style: none;
+  height:23px;
+}
+ul#navigation li {
+  background: none; 
+  float:left;
+  line-height: 23px; 
+  padding: 1px;
+}
+ul#navigation li a {
+  background-image: url("../images/sm_icons.png") !important;
+  background-repeat: no-repeat;
+  overflow:hidden;
+  margin-right:3px;
+  display: block;
+  width: 23px;
+  height: 23px;    
+}
+ul#navigation .nav_rssfeed a {background-position: 0 0;}
+ul#navigation .nav_rssfeed a:hover {background-position: 0 -25px;}
+ul#navigation .nav_twitter a {background-position: -27px 0px;}
+ul#navigation .nav_twitter a:hover {background-position: -27px -25px;}
+ul#navigation .nav_facebook a {background-position: -54px 0;}
+ul#navigation .nav_facebook a:hover {background-position: -54px -25px;}
+ul#navigation .nav_myspace a {background-position: -80px 0;}
+ul#navigation .nav_myspace a:hover {background-position: -80px -25px;}
+ul#navigation .nav_blogger a {background-position: -106px 0;}
+ul#navigation .nav_blogger a:hover {background-position: -106px -25px;}
+ul#navigation .nav_stumble a{background-position: -132px 0;}
+ul#navigation .nav_stumble a:hover{background-position: -132px -25px;}
+ul#navigation .nav_google a {background-position: -158px 0;}
+ul#navigation .nav_google a:hover {background-position: -158px -25px;}
+ul#navigation .nav_flickr a{background-position: -184px 0;}
+ul#navigation .nav_flickr a:hover{background-position: -184px -25px;}
+ul#navigation .nav_linkedin a{background-position: -210px 0;}
+ul#navigation .nav_linkedin a:hover{background-position: -210px -25px;}
+  
+/*--Breadcrumb Divs--*/  
+#breadcrumb .module_padding {
+  padding:0 10px;
+}
+
+/*--Main Content and Side Columns Divs--*/
+#main {
+}
+#sidecol_a, #sidecol_b {
+height:100%;
+} 
+
+/*--Bottom Modules Divs--*/
+#bottom_modules {
+ }
+
+/*--Base Modules and footer Divs --*/  
+
+ #copyright {
+   float:left;
+ }
+ #copyright a {
+ color:#bbb;
+ text-decoration:none;
+ }
+
+/* Module Styling */
+.module h3, .module_menu h3 {
+  padding:0; 
+  margin:0;
+}
+.module p, .module_menu p {
+  margin:0;
+}
+.module_padding {
+  height:100%;
+  padding:10px;
+}
+.module_content {
+  padding:5px 0;
+}
+#sidecol .module {
+  margin-bottom:10px;
+}
+
+/* Module Styling - Menus */
+.module ul, .module_menu ul {
+  list-style-type: none;
+}
+.module ul a, .module_menu ul a {
+  display:block;
+  text-decoration: none;
+}
+
+#breadcrumb-1, #footer-1, #footer-2, #footer-3 {
+  float: left; 
+  width:100%;
+}
+ 
+ 
+/** Hornav **/
+#hornav {float:left; }
+#hornav ul {margin:0;}
+#hornav a span {cursor:pointer; display:block;}
+#hornav li{list-style:none outside none; position:relative; text-indent:0; }
+#hornav li li a span, #hornav li li a:hover span {}
+#hornav a:hover {cursor:pointer; display:block; text-decoration:none;}
+#hornav a:hover span{cursor:pointer; display:block;}
+#hornav li ul li, #hornav li ul li ul li {margin-top: 0px;}
+
+/* Hornav - Parent Styling */ 
+#hornav ul a, #hornav ul ul a, #hornav .separator {white-space:nowrap; margin:0; margin-bottom:3px; cursor:pointer;}
+#hornav li:first-child a {border: none;}
+#hornav li, #hornav li li {float:left; z-index: 1;}
+#hornav ul a, #hornav .separator {display:block; padding: 0 14px; text-decoration: none; z-index: 9999; margin-bottom: 0px /*dropdown gap*/;}
+#hornav li:hover {}
+#hornav ul ul a {display:block; line-height:20px; padding: 1px 10px; text-decoration: none; z-index: 9999; border:none;}
+
+/* Hornav - Child Styling */
+#hornav li li a, #hornav li li.active a, #hornav li li.visited a {color:#555555 !important; text-transform: none;}
+#hornav li li a, #hornav li li a:hover, #hornav li li.active a, #hornav li.active ul li a {background:none !important;}
+
+/* Hornav - Child Block Styling */
+#hornav li li, #hornav li li li {clear:left; float:left; margin:0; padding: 2px 0px 4px !important; white-space: nowrap; z-index: 9999 !important;}
+#hornav li li:last-child, #hornav li li li:last-child {background:none !important;}
+
+/* Hornav - Dropdown Block Styling */
+#hornav ul li ul{  
+height:auto;  left:-999em;  margin:0;  padding:5px;  position:absolute; z-index:99999 !important;}
+
+/* Hornav - Image 16*16 Styling */
+#hornav ul li ul img {padding:3px 6px 3px 0px;}
+
+/* Hornav - Sub-Child Block Styling */
+#hornav li ul li ul {height:auto; left:-999em; margin:0; padding:5px; position:absolute; top:0;}
+
+/* Hornav - General */
+#hornav li:hover ul ul, #hornav li:hover ul ul ul, #hornav li:hover ul ul ul ul, #hornav li.iehover ul ul, #hornav li.iehover ul ul ul, #hornav li.iehover ul ul ul ul {left: -999em;}
+#hornav li:hover ul, #hornav li li:hover ul, #hornav li li li:hover ul, #hornav li li li li:hover ul, #hornav li.iehover ul, #hornav li li.iehover ul, #hornav li li li.iehover ul, #hornav li li li li.iehover ul {left:0; z-index:99999 !important;}
+#hornav li li, #hornav li li li {min-width: 180px;}
+#hornav li ul li ul {margin-left: 187px;}
+#hornav .menu li:first-child, .module .latestnews li:first-child {margin-top: 0 !important;}
+#menu li li.parent {cursor: pointer !important;}
+#hornav li:hover {left:0; z-index:5001 !important;}
+#hornav ul li ul {margin-top: 0px;}
+
+
+/* MenuMatic */
+/* Just sub menu links */
+#subMenusContainer a, #hornav li li a{text-align:left;}
+
+/* ----[ OLs ULs, LIs, and DIVs ]----*/
+
+/* Submenu Outer Wrapper - each submenu is inside a div with this class - javascript users only */
+.smOW{display:none; position: absolute; overflow:hidden; padding:0 2px; margin:0 0 0 -2px;}
+
+/* All ULs and OLs */
+#subMenusContainer ul, #subMenusContainer ol {padding: 0; margin: 0; list-style: none; line-height: 1em; min-width:170px;}
+
+/* All submenu OLs and ULs */
+#subMenusContainer ul, #subMenusContainer ol {-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius:4px; border:1px solid #ddd; left:0; padding-bottom:5px;}
+#subMenusContainer li {list-style: none; background: none;}
+#subMenusContainer{  display:block;   position:absolute;  top:7px;  left:0;  width:100%;  height:0;  overflow:visible;  z-index:1000000000;}
+
+/** Top Menu **/
+#topmenu {
+  position:absolute;
+  z-index:3;
+}
+#topmenu ul li{
+    float: left;
+    list-style:none;
+}
+#topmenu ul li a {
+  display:block;
+  text-decoration: none;
+}
+
+/** Footer Menu **/
+#footermenu {
+  float:right;
+}
+#footermenu ul li{
+    display: inline;
+    float: left;
+}
+#footermenu ul li a {
+    display: block;
+  text-decoration: none;
+}
+#footermenu ul li:last-child a {
+  border:none;
+}

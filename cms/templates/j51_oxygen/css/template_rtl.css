@@ -1,0 +1,68 @@
+body {
+  direction: rtl;
+  text-align:right;
+}
+
+/* List Items */
+.maincontent ul {
+    margin-right: 20px;
+}
+.maincontent li {
+  margin-right:20px;
+}
+ul.tick li, ul.plus li, ul.star li {
+  background-position: right center;
+}
+
+/* P Classes */
+p.down, p.clip, p.pin, p.note {
+  background-position: right center;
+    padding: 15px 50px 15px 20px;
+}
+
+p.note, p.pin, p.clip, p.down, pre, .code {
+    border-width: 1px 5px 1px 1px;
+}
+
+h1.logo-text, p.site-slogan, #subMenusContainer a, #hornav li li a {
+    text-align: right;
+}
+
+/* Menus */
+#hornav li, #hornav li li {
+    float: right;
+}
+
+/* Module Styling */
+.module ul li li a, .module_menu ul li li a {
+    padding-right: 25px;
+}
+
+/* Pagination */
+.maincontent .pagination li
+{
+  float:right;
+  text-align:right;
+}
+.maincontent .pagination {
+  float:left;
+  width:100%;
+  margin:0 auto;
+}
+
+/*Category Blog Layout*/
+
+/* 2 column layout */
+.cols-2 .column-1{float:right;}
+.cols-2 .column-2{float:left;}
+
+/* 3 column layout */
+.cols-3 .column-1{float:right;}
+.cols-3 .column-2{float:right; margin-right:2.2%;}
+.cols-3 .column-3{float:right; margin-right:2.2%;}
+
+/* 4 column layout */
+.cols-4 .column-1{float:right;}
+.cols-4 .column-2{margin-right:2.2%; float:right;}
+.cols-4 .column-3{margin-right:2.2%; float:right;}
+.cols-4 .column-4{margin-right:2.2%; float:right;}
