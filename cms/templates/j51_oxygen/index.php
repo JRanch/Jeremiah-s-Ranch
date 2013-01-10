@@ -20,7 +20,8 @@ require( nexus.DS."php/variables.php");
 <jdoc:include type="head" />
 <?php include (nexus.DS . "php/styles.php");?>
 <?php include (nexus.DS . "php/scripts.php");?>
-
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <?php echo ($head_tracker_code); ?>
 </head>
 
