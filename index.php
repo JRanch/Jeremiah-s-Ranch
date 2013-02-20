@@ -1,4 +1,4 @@
 <?php
 header("HTTP/1.1 301 Moved Permanently");
-header("Location: http://jeremiahsranch.org/cms/index.php");
+header("Location: http://www.jeremiahsranch.org/cms/index.php");
 ?>
