@@ -218,6 +218,7 @@ $tagReplace = array(
 	<param name=\"autoPlay\" value=\"{PLAYER_AUTOPLAY}\" />
 	<param name=\"minVersion\" value=\"1.0.0\" />
 	<param name=\"custommode\" value=\"none\" />
+        <param name=\"allowScriptAccess\" value=\"always\" />
 	<p>No video? Get the DivX browser plug-in for <a href=\"http://download.divx.com/player/DivXWebPlayerInstaller.exe\">Windows</a> or <a href=\"http://download.divx.com/player/DivXWebPlayer.dmg\">Mac</a></p>
 </object>
 ",
@@ -236,6 +237,7 @@ $tagReplace = array(
 	<param name=\"autoPlay\" value=\"{PLAYER_AUTOPLAY}\" />
 	<param name=\"minVersion\" value=\"1.0.0\" />
 	<param name=\"custommode\" value=\"none\" />
+        <param name=\"allowScriptAccess\" value=\"always\" />
 	<p>No video? Get the DivX browser plug-in for <a href=\"http://download.divx.com/player/DivXWebPlayerInstaller.exe\">Windows</a> or <a href=\"http://download.divx.com/player/DivXWebPlayer.dmg\">Mac</a></p>
 </object>
 ",
@@ -248,6 +250,7 @@ $tagReplace = array(
 	<param name=\"wmode\" value=\"{PLAYER_TRANSPARENCY}\" />
 	<param name=\"bgcolor\" value=\"{PLAYER_BACKGROUND}\" />
 	<param name=\"autoplay\" value=\"{PLAYER_AUTOPLAY}\" />
+        <param name=\"allowScriptAccess\" value=\"always\" />
 </object>
 ",
 
@@ -258,6 +261,7 @@ $tagReplace = array(
 	<param name=\"wmode\" value=\"{PLAYER_TRANSPARENCY}\" />
 	<param name=\"bgcolor\" value=\"{PLAYER_BACKGROUND}\" />
 	<param name=\"autoplay\" value=\"{PLAYER_AUTOPLAY}\" />
+        <param name=\"allowScriptAccess\" value=\"always\" />
 </object>
 ",
 
@@ -279,13 +283,13 @@ $tagReplace = array(
 ",
 
 // dailymotion.com - http://www.dailymotion.com/featured/video/x35714_cap-nord-projet-1_creation
-"dailymotion" => "<iframe src=\"http://www.dailymotion.com/embed/video/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" title=\"JoomlaWorks AllVideos Player\"></iframe>",
+"dailymotion" => "<iframe src=\"http://www.dailymotion.com/embed/video/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" title=\"JoomlaWorks AllVideos Player\" allowScriptAccess=\"always\"></iframe>",
 
 // youtube.com - http://www.youtube.com/watch?v=g5lGNkS5TE0
-"youtube" => "<iframe src=\"http://www.youtube.com/embed/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" allowfullscreen title=\"JoomlaWorks AllVideos Player\"></iframe>",
+"youtube" => "<iframe src=\"http://www.youtube.com/embed/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" allowfullscreen title=\"JoomlaWorks AllVideos Player\" allowScriptAccess=\"always\"></iframe>",
 
 // vimeo.com - http://www.vimeo.com/1319796
-"vimeo" => "<iframe src=\"http://player.vimeo.com/video/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" title=\"JoomlaWorks AllVideos Player\"></iframe>",
+"vimeo" => "<iframe src=\"http://player.vimeo.com/video/{SOURCE}\" width=\"{WIDTH}\" height=\"{HEIGHT}\" frameborder=\"0\" title=\"JoomlaWorks AllVideos Player\" allowScriptAccess=\"always\"></iframe>",
 
 
 
