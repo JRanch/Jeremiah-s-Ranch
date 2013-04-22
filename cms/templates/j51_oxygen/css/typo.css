@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Conv_Papyrus';
+  src: url('../fonts/papyrus.eot');
+  src: url('../fonts/papyrus.woff') format('woff'), url('fonts/papyrus.ttf') format('truetype'), url('fonts/papyrus.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+  font-family: 'Conv_Carla';
+  src: url('../fonts/Carla.eot');
+  src: url('../fonts/Carla.woff') format('woff'), url('fonts/Carla.ttf') format('truetype'), url('fonts/Carla.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  }
+     
 h1, h2, h3, h4, h5, h6, p, blockquote, form, label, ul, ol, dl, fieldset, address {
   margin:0.5em 0;
 }
