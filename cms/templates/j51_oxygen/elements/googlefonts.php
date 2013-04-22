@@ -91,6 +91,9 @@ class JFormFieldGoogleFonts extends JFormField
 
 		foreach ($this->element->children() as $googlefonts)
 		{
+        $googleFonts['Conv_Carla'] = '--------Local Fonts--------';
+        $googleFonts['Conv_Carla'] = 'Carla';
+	$googleFonts['Papyrus'] = 'Papyrus';
         $googleFonts['Arial, sans-serif'] = '--------Web Safe Fonts--------';
         $googleFonts['Arial, Helvetica, sans-serif'] = 'Arial';
 		$googleFonts['Courier, monospace'] = 'Courier';
