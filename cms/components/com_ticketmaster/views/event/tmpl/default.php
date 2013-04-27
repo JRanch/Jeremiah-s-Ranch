@@ -338,7 +338,7 @@ if ($this->extended->seat_chart != '') {
             </table> 
             
             <?php if ( $this->items->min_ordering != 0 || $this->items->max_ordering != 0 ) { ?>
-                  <div style="height:20px; font-size:80%; padding-left:15px; text-align:center;">
+                  <div style="height:40px; font-size:80%; padding-left:15px; text-align:center;">
                     ** <?php echo JText::_('COM_TICKETMASTER_MINIMUM_FOR_ORDER'); ?> <?php echo $this->items->min_ordering; ?> || 
                     <?php echo JText::_('COM_TICKETMASTER_MAXIMUM_FOR_ORDER'); ?> <?php echo $this->items->max_ordering; ?>
                 </div>  
