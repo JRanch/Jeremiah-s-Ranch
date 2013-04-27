@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_TICKETMASTER_SHOW_EVENT_LIST" option="COM_TICKETMASTER_SHOW_EVENT_LIST">
+		<help
+			key = "COM_TICKETMASTER_SHOW_EVENT_LIST"
+		/>
+		<message>
+			<![CDATA[COM_TICKETMASTER_SHOW_EVENT_LIST_HELP]]>
+		</message>
+	</layout>
+
+	<!-- Add fields to the request variables for the layout. -->
+	
+	<fields name="request">
+		<fieldset name="request"
+			addfieldpath="/administrator/components/com_ticketmaster/models/fields">
+				<field name="id"
+					type="modal_eventlists"
+					description="COM_TICKETMASTER_SELECT_EVENTLIST_DESC"
+					label="COM_TICKETMASTER_SELECT_EVENTLIST_LABEL"
+					required="true"
+				/>	
+	  </fieldset>
+	</fields>
+
+</metadata>
