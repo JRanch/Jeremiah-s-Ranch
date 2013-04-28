@@ -41,7 +41,7 @@ $document->addStyleSheet( 'components/com_ticketmaster/assets/css/component.css'
 $document->setTitle( JText::_( 'COM_TICKETMASTER_LOGIN_OR_CREATE_ACCOUNT' ) );
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/moovalid.js');
 
-$document->addScript('http://code.jquery.com/jquery-latest.js');
+$document->addScript('/jquery/jquery-1.9.0.min.js');
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/jquery.tabify.js');
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/jquery.tabify.source.js');
 
@@ -50,7 +50,7 @@ if($this->config->load_bootstrap == 1){
 	JHTML::_('behavior.modal');
 	## Include the tooltip behaviour.
 	JHTML::_('behavior.tooltip', '.hasTip');
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('/jquery/jquery-1.9.0.min.js');
 	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 	$button = 'btn btn-small';

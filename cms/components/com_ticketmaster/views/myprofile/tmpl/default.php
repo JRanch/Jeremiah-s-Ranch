@@ -45,7 +45,7 @@ if (file_exists($cssfile)) {
 $document->addStyleSheet( 'components/com_ticketmaster/assets/css/component.css' );
 $document->setTitle( JText::_( 'COM_TICKETMASTER_MY_PROFILE' ) );
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/moovalid.js');
-$document->addScript('http://code.jquery.com/jquery-latest.js');
+$document->addScript('/jquery/jquery-1.9.0.min.js');
 
 ?>
 <script language="javascript">
