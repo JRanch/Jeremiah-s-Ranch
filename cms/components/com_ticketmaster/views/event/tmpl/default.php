@@ -432,8 +432,8 @@ if ($this->ticket->total > 1) {
         <table class="table table-striped">
         	<tr><td><?php echo $this->items->venue; ?></strong></td></tr>
             <tr><td><?php echo $this->items->street; ?></td></tr>
-            <tr><td><?php echo $this->items->zipcode; ?></td></tr>
             <tr><td><?php echo $this->items->city; ?></td></tr>
+	    <tr><td><?php echo $this->items->zipcode; ?></td></tr>
             <tr><td><a href="<?php echo $this->items->website; ?>" target="_blank"><?php echo $this->items->website; ?></a></td></tr>
         </table>
         
