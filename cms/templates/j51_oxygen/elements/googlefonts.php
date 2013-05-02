@@ -91,20 +91,18 @@ class JFormFieldGoogleFonts extends JFormField
 
 		foreach ($this->element->children() as $googlefonts)
 		{
-        $googleFonts['Conv_Carla'] = '--------Local Fonts--------';
-        $googleFonts['Conv_Carla'] = 'Carla';
-	$googleFonts['Papyrus'] = 'Papyrus';
+
         $googleFonts['Arial, sans-serif'] = '--------Web Safe Fonts--------';
         $googleFonts['Arial, Helvetica, sans-serif'] = 'Arial';
 		$googleFonts['Courier, monospace'] = 'Courier';
-		$googleFonts['Garamond, serif'] = 'Garamond';
+		$googleFonts['Conv_Carla, Garamond, serif'] = 'Carla Garamond';
 		$googleFonts['Georgia, serif'] = 'Georgia';
 		$googleFonts['Impact, Charcoal, sans-serif'] = 'Impact';
 		$googleFonts['Lucida Console, Monaco, monospace'] = 'Lucida Console';
 		$googleFonts['Lucida Sans Unicode, Lucida Grande, sans-serif'] = 'Lucida Sans Unicode';
 		$googleFonts['MS Sans Serif, Geneva, sans-serif'] = 'MS Sans Serif';
 		$googleFonts['MS Serif, New York, sans-serif'] = 'MS Serif';
-		$googleFonts['Palatino Linotype, Book Antiqua, Palatino, serif'] = 'Palatino Linotype';
+		$googleFonts['Papyrus, Palatino Linotype, Book Antiqua, Palatino, serif'] = 'Papyrus Palatino Linotype';
 		$googleFonts['Tahoma, Geneva, sans-serif'] = 'Tahoma';
 		$googleFonts['Times New Roman, Times, serif'] = 'Times New Roman';
 		$googleFonts['Trebuchet MS, Helvetica, sans-serif'] = 'Trebuchet MS';
