@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD plugin 1.0//EN" "http://dev.joomla.org/xml/1.5/plugin-install.dtd">
+<extension version="1.5" type="plugin" group="content" method="upgrade">
+    <name>HD FLV Player</name>
+    <creationDate>May 2013</creationDate>
+    <author>Apptha</author>
+    <authorEmail>support@apptha.com</authorEmail>
+    <authorUrl>http://www.apptha.com</authorUrl>
+    <copyright>Copyright (C) 2011 Powered by Apptha</copyright>
+     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>2.1.0.1</version>
+    <description>
+        <![CDATA[ <p>Plugin Steps</p>
+<p>1. Install the joomla_hdflvplayer_plugin.<br />
+  2. In the plugin manager under extensions menu Hdflvplayer Plugin can be found.<br />
+  3. Just publish it.<br />
+  4. In any articles plugin can be used...<br />
+  5. The attributes includes </p>
+<p> * videoid<br />
+  * Height<br />
+  * Width<br />
+  * Autoplay<br />
+  * Playlist</p>
+<p>6. Any one of the above attributes can be included...Mandatory is videoid<br />
+  7. Below are the formats for plugin</p>
+<p> <br />
+  1.[hdplay videoid=1 height=300 width=400 autoplay=true playlist=summer]<br />
+  2.[hdplay videoid=1]<br />
+  3.[hdplay videoid=2 height=300] <br />
+  4.[hdplay videoid=4 width=700] <br />
+  5.[hdplay videoid=3 autoplay=true] <br />
+  6.[hdplay videoid=3 playlist=summer] </p>
+<p>Different combinations can be used as mentioned above<br />
+</p>]]>
+</description>
+  <scriptfile>install.hdflvplayer.php</scriptfile>
+    <files>
+        <filename plugin="hdflvplayer">hdflvplayer.php</filename>
+        <filename>readme.txt</filename>
+    </files>
+    <config>
+
+</config>
+</extension>
+

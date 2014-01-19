@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade" client="site">
+    <name>HD FLV Player</name>
+    <version>2.1.0.1</version>
+     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+     <copyright>Copyright (C) 2011 Powered by Apptha</copyright>
+     <description>A module for HD FLV Player</description>
+     <creationDate>May 2013</creationDate>
+    <author>Apptha</author>
+    <authorEmail>support@apptha.com</authorEmail>
+    <authorUrl>http://www.apptha.com</authorUrl>
+    
+    <files>
+        <filename module="mod_hdflvplayer">mod_hdflvplayer.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+        <folder>fields</folder>
+        <folder>js</folder>
+    </files>
+
+    <config>
+        <fields name="params">
+        	<!-- fieldset params for Joomla 1.6 or greater -->
+            <fieldset name="basic" addfieldpath="/modules/mod_hdflvplayer/fields">
+              	
+              	<!-- Field for Enable Related Videos within the player -->  
+                <field name="enablexml" type="radio" default="1" label="Enable Related Videos Within Player" description="Enable related videos">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+				
+				<!-- Field for Enable Related Videos outside the player -->
+                <field name="enablerelatedvideos" type="radio" default="0" label="Enable Related Videos Outside Player" description="Enable related videos outside player">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for No.of columns to display related videos -->
+                <field name="noofcolumns" type="text" default="" label="No of Columns" description="No of columns" >
+                </field>
+                
+                <!-- Field for No.of rows to display related videos -->
+                <field name="noofrows" type="text" default="" label="No of Rows" description="No of rows" >
+                </field>
+                
+                <!-- Field for Enable the autoplay option -->
+                <field name="autoplay" type="radio" default="1" label="Autoplay" description="AUTOPLAY">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for display whether the Playlist Always Open -->
+                <field name="playlist_open" type="radio" default="0" label="Playlist Always Open" description="PLAYLISTALWAYSOPEN">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                               
+				<!-- Field for select whether video or playlist -->
+                <field name="videocat" id="videocat" type="videocat" label="Video Type" description="Video Type" default="">
+                </field>
+				
+				<!-- Field to show video names -->
+                <field name="videoid"  id="videoid" default="" type="videonames"  label="Videos"  title="Videos Name" description="Videos Name" />
+				
+				<!-- Field to show playlist -->
+                <field name="playlistid" default="" id="playlistid" type="hdflvplayer" multiple="false" title="Playlist Name" label="Playlist Name" description="Playlist Name" />
+
+				<!-- Field to enable playlist autoplay -->
+                <field name="playlistauto" type="radio" default="1" label="Playlist Autoplay" description="Playlist Autoplay">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field to set buffer in secs -->
+                <field name="buffer" type="text" default="3" label="Buffer secs" description="Buffer secs" />
+                
+                <!-- Field to set height of player -->
+                <field name="height" type="text" default="230" label="Height px" description="Height px" />
+                
+                <!-- Field to set width of player -->
+                <field name="width" type="text" default="250" label="Width px" description="Width px" />
+                
+                <!-- Field for select Normal scren scale -->
+                <field name="normalscrenscale" type="list" default="0" label="Normal Screen Scale" description="Normal Screen Scale" >
+                    <option value="0" id="0">Aspect Ratio</option>
+                    <option value="1" id="1">Original Size</option>
+                    <option value="2" id="2">Fit to Screen</option>
+                </field>
+                
+                <!-- Field for select full screen scale -->
+                <field name="fullscrenscale" type="list" default="1" label="Full Screen Scale" description="Full Screen Scale">
+                    <option value="0" id="0">Aspect Ratio</option>
+                    <option value="1" id="1">Original Size</option>
+                    <option value="2" id="2">Fit to Screen</option>
+                </field>
+                
+                <!-- Field to set volume -->
+                <field name="volume" type="text" default="34" label="Volume %" description="volume" />
+                
+                <!-- Field to set skin auto hide enable or not -->
+                <field name="skinautohide" type="radio" default="0" label="Skin Auto Hide" description="Skin Auto Hide" >
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for set Stage Color -->
+                <field name="stagecolor" type="text" default="000000" label="Stage Color #" description="Stage Color" />
+                
+                <!-- Field for enable Full screen or not -->
+                <field name="fullscreen" type="radio" default="1" label="Fullscreen" description="Fullscreen">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable or disbale zoom option -->
+                <field name="zoom" type="radio" default="1" label="Zoom" description="Zoom">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable or disbale timer option  -->
+                <field name="timer" type="radio" default="1" label="Timer" description="Timer">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable/disable share Option -->
+                <field name="share" type="radio" default="1" label="Share Url" description="Share Url">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable/disable title abaove the player -->
+                <field name="titleabove" type="radio" default="1" label="Title Above the player" description="TITLE ABOVE THE PLAYER">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable/disable Description below the player -->
+                <field name="descripbelow" type="radio" default="1" label="Description below the player" description="DESCRIPTION">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field for enable/disable Viewed count -->
+                <field name="viwedenable" type="radio" default="1" label="Times Viewed" description="TIMES VIEWED">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                
+                <!-- Field to Class Suffix -->
+                <field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+            </fieldset>
+        </fields>
+    </config>
+    
+
+</extension>
