@@ -42,7 +42,7 @@ if(!$isJ30) {
 		JHTML::_('behavior.modal');
 		## Include the tooltip behaviour.
 		JHTML::_('behavior.tooltip', '.hasTip');
-		$document->addScript('/jquery/jquery-1.9.0.min.js');
+		$document->addScript('http://code.jquery.com/jquery-latest.js');
 		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 	}
@@ -52,7 +52,7 @@ if(!$isJ30) {
 
 <h2><?php echo JText::_('COM_TICKETMASTER_AVAILABLE_EVENTS'); ?></h2>
 
-<table class="table table-striped">
+<table class="table">
 
 <?php for ($ct=0, $i=0, $n = count( $this->items ); $i < $n; $i++) {
 	

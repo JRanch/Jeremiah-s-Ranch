@@ -1,8 +1,8 @@
 <?php 
 /**
- * @version		1.0.0 ticketmaster $
+ * @version		3.1.0
  * @package		ticketmaster
- * @copyright	Copyright © 2009 - All rights reserved.
+ * @copyright	Copyright ï¿½ 2009 - All rights reserved.
  * @license		GNU/GPL
  * @author		Robert Dam
  * @author mail	info@rd-media.org
@@ -17,10 +17,6 @@ $pathway =& $app->getPathway();
 $pathway->addItem(JText::_( 'COM_TICKETMASTER_EVENTS' ), 'index.php?option=com_ticketmaster');
 $pathway->addItem(JText::_( 'COM_TICKETMASTER_CART' ), 'index.php?option=com_ticketmaster&view=cart');
 $pathway->addItem(JText::_( 'COM_TICKETMASTER_PAYMENTPAGE' ));
-
-## Add the tooltip behaviour.
-JHTML::_('behavior.tooltip');
-JHTML::_( 'behavior.mootools' );
 
 ## Obtain user information.
 $user = & JFactory::getUser();
@@ -40,7 +36,13 @@ if (file_exists($cssfile)) {
 
 $document->setTitle( JText::_('COM_TICKETMASTER_PAYMENTPAGE') );
 ## Adding the lightbox functionality
-$document->addScript('/jquery/jquery-1.9.0.min.js');
+
+if ($this->config->load_jquery == 1) {
+	$document->addScript('http://code.jquery.com/jquery-latest.js');
+}elseif ($this->config->load_jquery == 2) {
+	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
+}
+
 ## Adding the mediabox functions.
 $document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
 $document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );
@@ -63,20 +65,34 @@ $discount = _getDiscount($ordercode);
 
 $count = count($this->items);
 
-if($this->config->load_bootstrap == 1){
-	## Adding mootools for J!2.5
-	JHTML::_('behavior.modal');
-	## Include the tooltip behaviour.
-	JHTML::_('behavior.tooltip', '.hasTip');
-	$document->addScript('/jquery/jquery-1.9.0.min.js');
-	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
-	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
-	$button = 'btn btn-small';
-}else{	
-	$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
-	$button = 'button_rdticketmaster';
+## Check if this is Joomla 2.5 or 3.0.+
+$isJ30 = version_compare(JVERSION, '3.0.0', 'ge');
+
+if(!$isJ30) {
+
+	JHTML::_( 'behavior.mootools' );
+
+	if($this->config->load_bootstrap == 1){
+		## Adding mootools for J!2.5
+		JHTML::_('behavior.modal');
+		## Include the tooltip behaviour.
+		JHTML::_('behavior.tooltip', '.hasTip');	
+		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
+		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
+		$button = 'btn';
+	}else{	
+		$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
+		$button = 'button_rdticketmaster';
+	}	
+}else{
+
+	## We are in J3, load the bootstrap!
+	jimport('joomla.html.html.bootstrap');
+	$button = 'btn';
+	
 }
 
+$document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/checkout-lightbox.js');
 ?>
 
 <script language="javascript">
@@ -107,11 +123,33 @@ JQ(document).ready(function(){
 
 </script>
 
-<?php if ($count == 0 ){ ?>
 
-    <h2><?php echo JText::_('COM_TICKETMASTER_YOUR_CART_EMPTY'); ?></h2>
+<?php if ($count == 0 && $this->waitlist->total == 0 ){ ?>
 
-<?php }else{  ?>    
+    <div class="alert alert-error">
+      <?php $overview = JRoute::_('index.php?option=com_ticketmaster&view=upcoming'); ?>
+      <h4><?php echo JText::_('COM_TICKETMASTER_YOUR_CART_EMPTY'); ?></h4>
+      <a href="<?php echo $overview; ?>" class="btn btn-small btn-danger pull-right"><?php echo JText::_('COM_TICKETMASTER_TO_OVERVIEW'); ?></a>
+      <p style="margin-top: 8px;"><?php echo JText::_('COM_TICKETMASTER_YOUR_CART_EMPTY_DESC'); ?></p>
+    </div> 
+
+<?php }else{  ?>  
+
+	<?php if($this->waitlist->total != 0) { ?> 
+        <?php if ($count != 0) { ?>
+       
+            <div class="alert">
+              <h4><?php echo JText::_('COM_TICKETMASTER_PLEASE_CONFIRM_WAITINGLIST_TIKETS'); ?></h4>
+              <p style="margin-top: 8px;"><?php echo JText::_('COM_TICKETMASTER_PLEASE_CONFIRM_WAITINGLIST_TIKETS_DESC'); ?></p>
+            </div>
+       
+	   <?php }else{ ?>
+        	
+            <h2><?php echo $this->msg->mailsubject; ?></h2>
+            <?php echo $this->msg->mailbody; ?>
+            
+        <?php } ?>  		
+	<?php } ?>
 
     <h2><?php echo JText::_('COM_TICKETMASTER_PAYMENT_ORDER'); ?></h2>
     
@@ -145,8 +183,10 @@ JQ(document).ready(function(){
                 <td>
 					<?php echo $row->eventname; ?></strong> - <?php echo $row->ticketname; ?>
                     <?php if($row->seat_sector != 0){ echo ' - '.JText::_( 'COM_TICKETMASTER_SEATNUMBER' ).': '.checkSeat($row->orderid, $this->coords); } ?>
-                    <br/><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?>: <?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?> - 
-                    <?php echo JText::_( 'COM_TICKETMASTER_START' ); ?>: <?php echo $row->starttime; ?><br/>                    
+                    <br/><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?>: <?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?>
+                    <?php if ( $row->show_end_date == 1 ){?>
+			             - <?php echo date ($this->config->dateformat, strtotime($row->end_date)); ?>
+			         <?php } ?>                  
                 </td>
                 <td><div align="center"><?php echo showprice($this->config->priceformat ,$row->ticketprice,$this->config->valuta); ?></div></td>                   
             </tr>
@@ -213,17 +253,28 @@ JQ(document).ready(function(){
     
 <?php } ?> 
 
-<div style="height: 25px; line-height:25px; width: 3%; float:left;">
-	<input name="checkme" type="checkbox" value="checkme" id="checkme" />
+<?php if(!$isJ30) { ?>
+
+    <div style="height: 25px; line-height:25px; width: 3%; float:left;">
+        <input name="checkme" type="checkbox" value="checkme" id="checkme" />
+    </div>
+
+    <div style="height: 25px; line-height:11px; width: 97%; float:left; font-size:95%;">
+        <?php echo JText::_('COM_TICKETMASTER_ACCEPT_YES_I_DO'); ?> 
+            <a href="javascript:void(0);" onclick="showTOS('test', 'test2')">
+                <?php echo JText::_('COM_TICKETMASTER_TOS_READ'); ?></a> 
+        <em><?php echo JText::_('COM_TICKETMASTER_ACCEPT_TOS_BEFORE_PROCEED'); ?></em>
 </div>
-
-<div style="height: 25px; line-height:11px; width: 97%; float:left; font-size:95%;">
-	<?php echo JText::_('COM_TICKETMASTER_ACCEPT_YES_I_DO'); ?> <a href="#mb_inline" rel="lightbox[inline 800 600]" title="">
-		<?php echo JText::_('COM_TICKETMASTER_TOS_READ'); ?></a> 
-	<em><?php echo JText::_('COM_TICKETMASTER_ACCEPT_TOS_BEFORE_PROCEED'); ?></em>
-</div>
-
-
+<?php }else{ ?>
+    <form class="form-inline">
+     <label class="checkbox">
+        <input type="checkbox" id="checkme" name="checkme"> 
+		<?php echo JText::_('COM_TICKETMASTER_ACCEPT_YES_I_DO'); ?> <a href="javascript:void(0);" onclick="showTOS('test', 'test2')">
+            <?php echo JText::_('COM_TICKETMASTER_TOS_READ'); ?></a> 
+        <em><?php echo JText::_('COM_TICKETMASTER_ACCEPT_TOS_BEFORE_PROCEED'); ?></em>
+      </label>
+    </form>
+<?php } ?>    
 
 <div style="padding-top:2px; clear:both"></div>
 
@@ -253,12 +304,32 @@ JQ(document).ready(function(){
     
 </div>
 
+<?php if($isJ30) { ?>
+    <div id="load_tos" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <h3 id="myModalLabel"><?php echo $this->tos->mailsubject; ?></h3>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:105%; padding:0px;">
+            <?php echo $this->tos->mailbody; ?>            
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+<?php } ?>
+
 <?php function checkSeat($value, $seat) {
 	
    for ($i = 0, $n = count($seat); $i < $n; $i++ ){
 
 		if ($value == $seat[$i]->orderid) {
-			$seat = $seat[$i]->seatid;
+			if($seat[$i]->row_name != ''){
+				$seat = $seat[$i]->row_name.$seat[$i]->seatid;
+			}else{
+				$seat = $seat[$i]->seatid;
+			}
 		}
 
 	}	

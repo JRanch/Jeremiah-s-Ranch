@@ -2,7 +2,7 @@
 /************************************************************
  * @version			ticketmaster 2.5.5
  * @package			com_ticketmaster
- * @copyright		Copyright © 2009 - All rights reserved.
+ * @copyright		Copyright ï¿½ 2009 - All rights reserved.
  * @license			GNU/GPL
  * @author			Robert Dam
  * @author mail		info@rd-media.org
@@ -18,7 +18,8 @@ $userid = $user->id;
 ## getting the Joomla API Platform
 $app     = JFactory::getApplication();
 ## Getting the global DB session
-$session =& JFactory::getSession();
+$session = JFactory::getSession();
+$document = JFactory::getDocument();
 
 $pathway = $app->getPathway();
 $pathway->addItem(JText::_( 'COM_TICKETMASTER_EVENT_OVERVIEW' ), 'index.php?option=com_ticketmaster');
@@ -27,27 +28,60 @@ $pathway->addItem(JText::_( 'COM_TICKETMASTER_YOUR_CART' ));
 ## Check if this is Joomla 2.5 or 3.0.+
 $isJ30 = version_compare(JVERSION, '3.0.0', 'ge');
 
+if ($this->config->load_jquery == 1) {
+	$document->addScript('http://code.jquery.com/jquery-latest.js');
+}elseif ($this->config->load_jquery == 2) {
+	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
+}
+
+
 if(!$isJ30) {
-	JHTML::_( 'behavior.mootools' );
+	
+	if($this->config->load_bootstrap == 1){
+		
+		JHTML::_( 'behavior.mootools' );
+		## Adding mootools for J!2.5
+		JHTML::_('behavior.modal');
+		## Include the tooltip behaviour.
+		JHTML::_('behavior.tooltip', '.hasTip');
+
+		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
+		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
+		
+		$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/jquery.colorbox.js');
+		$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/colorbox.js');
+		$document->addStyleSheet( JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/css/colorbox.css' );	
+		
+		$button = 'btn btn-small';
+		$btndanger = 'btn btn-small btn-danger';
+		
+	}else{	
+
+		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
+		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );
+	
+		$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
+		$button = 'button_rdticketmaster';
+	}	
+	
+}else{
+
+	## We are in J3, load the bootstrap!
+
+	JHtml::_('bootstrap.framework');
+	jimport('joomla.html.html.bootstrap');
+	
+	$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/jquery.colorbox.js');
+	$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/colorbox.js');
+	$document->addStyleSheet( JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/css/colorbox.css' );
+
+	$button = 'btn';
+	$btndanger = 'btn btn-small btn-danger';
+	
 }
 
 ## Get document type and add it.
-$document = JFactory::getDocument();
 $document->addStyleSheet( 'components/com_ticketmaster/assets/css/component.css' );
-
-if($this->config->load_bootstrap == 1){
-	## Adding mootools for J!2.5
-	JHTML::_('behavior.modal');
-	## Include the tooltip behaviour.
-	JHTML::_('behavior.tooltip', '.hasTip');
-	$document->addScript('/jquery/jquery-1.9.0.min.js');
-	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
-	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
-	$button = 'btn btn-small';
-}else{	
-	$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
-	$button = 'button_rdticketmaster';
-}
 
 $cssfile = 'components/com_ticketmaster/assets/css-overrides/cart.css';
 
@@ -57,10 +91,6 @@ if (file_exists($cssfile)) {
 } else {
     $document->addStyleSheet( 'components/com_ticketmaster/assets/css/cart.css' );
 }
-
-$document->addScript('/jquery/jquery-1.9.0.min.js');
-$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
-$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );
 
 ## Including required paths to calculator.
 $path_include = JPATH_SITE.DS.'components'.DS.'com_ticketmaster'.DS.'assets'.DS.'helpers'.DS.'get.amount.php';
@@ -86,14 +116,27 @@ $shop_on = JRoute::_('index.php?option=com_ticketmaster&view=upcoming');
 
 include_once( 'components/com_ticketmaster/assets/functions.php' );
 
-$count = count($this->items);
+$items = count($this->items);
+$waiters = count($this->waiters);
 $failds = count($this->failed);
+
 
 ?>
 
 <script language="javascript">
 
 var JQ = jQuery.noConflict();
+
+var max = 255;
+JQ(document).ready(function() {
+	JQ('#remarks').keyup(function() {
+		if(JQ(this).val().length > max) {
+			JQ(this).val(JQ(this).val().substr(0, max));
+		}
+		
+		JQ('#chars-remaining').html('<?php echo JText::_( 'COM_TICKETMASTER_REMAINING' ); ?> ' + (max - JQ(this).val().length));
+	});	
+});
 
 JQ(document).ready(function() {
   
@@ -126,22 +169,108 @@ JQ(document).ready(function() {
   
 });
 
+JQ(document).ready(function() {
+  
+  JQ('a.deletewaiting').click(function(e) {
+    e.preventDefault();
+    
+	var parent = JQ(this).parent();
+	var orderid = parent.attr('id').replace('tm-cart-waiting-','');
+	var container = parent.attr('id').replace('tm-cart-waiting-','tm-cart-container');
+	var data = 'cid=' + orderid;
+
+    JQ.ajax({
+      type: 'get',
+      url: 'index.php?option=com_ticketmaster&controller=order&task=removeWaiting&format=raw',
+      data: 'orderid=' + parent.attr('id').replace('tm-cart-waiting-',''),
+      beforeSend: function() {
+		JQ('#tm-loader').show();
+		JQ("#wait-"+orderid).addClass("error");
+      },
+      success: function(result) {
+			JQ("#wait-"+orderid).remove();
+			JQ("#tm-cart-total-price").html(result);
+			JQ('#tm-loader').hide();
+      }
+    });
+
+  });
+  
+});
+
+JQ(document).ready(function() {
+  
+  JQ('#checkout').click(function(e) {
+    e.preventDefault();
+    	
+		// getting the remarks if available.
+		var remarks = JQ( "#remarks" ).val();
+		
+		if(remarks == '') {
+			
+			// If remarks is empty, submit now.
+			document.location.href='<?php echo $link; ?>';
+		
+		}else{
+			
+			// Please do AJAX call with data. -- Get post data first. 
+			var data = 'content='+remarks+'&ordercode='+ <?php echo $session->get('ordercode'); ?> +'';
+
+			JQ.ajax({
+				//this is the php file that processes the data and send mail
+				url: "index.php?option=com_ticketmaster&controller=cart&task=saveRemark&format=raw", 
+				//POST method is used
+				type: "POST",
+				// data:
+				data: data,
+				// data type = json 
+				dataType: 'json',				
+				//Do not cache the page	
+				cache: false,
+				// Before sending the form
+				beforeSend: function() {
+					JQ( "#test" ).html(' <?php echo JText::_('COM_TICKETMASTER_PLEASE_WAIT'); ?>');
+					JQ('<img class="inline" style="margin-right:5px;" src="components/com_ticketmaster/assets/images/loading.gif" />').prependTo("#test");
+				},				
+				// On Success trigger						
+				success: function (html) {              
+
+					if(html.status == 666){
+						JQ( "#chars-remaining" ).html(html.msg);
+						JQ( "#inner" ).html(html.msg);
+					}else{
+						JQ( "#chars-remaining" ).html(html.msg);
+						JQ( "#chars-remaining" ).css('color', '#04B404');
+						
+						setTimeout(function() {
+							  document.location.href='<?php echo $link; ?>';
+						}, 1000);												
+					}
+
+				},
+			   error:function (xhr, ajaxOptions, thrownError){
+				 alert(xhr.status);
+			  } 			 		
+			});			  
+
+		}
+
+  });
+  
+});
+
 </script>
 
-<?php if ($count == 0 ){ ?>
+<?php if ($items == 0 && $waiters == 0 ){ ?>
 
-    <h2 class="contentheading">
-        <?php echo JText::_('COM_TICKETMASTER_YOUR_CART_EMPTY'); ?>
-    </h2>
-    
-    <div style="float:left;">
-    	
-		<br/><?php echo JText::_('COM_TICKETMASTER_GO_TO_UPCOMING'); ?><br/><br/><br/>
+    <div style="min-height:250px;">
+        <h2><?php echo JText::_('COM_TICKETMASTER_YOUR_CART_EMPTY'); ?></h2>
+            
+        <br/><?php echo JText::_('COM_TICKETMASTER_GO_TO_UPCOMING'); ?><br/><br/><br/>
         
-        <a class="button_rdticketmaster" style="float:left;" onclick="document.location.href='<?php echo $shop_on; ?>'">
+        <a class="<?php echo $button; ?>" style="float:left;" onclick="document.location.href='<?php echo $shop_on; ?>'">
             <span><?php echo JText::_('COM_TICKETMASTER_AVAILABLE_EVENTS'); ?></span>                      
         </a>
-        
     </div>
 
 <?php }else{  ?>        
@@ -168,14 +297,28 @@ JQ(document).ready(function() {
 		   $image = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmasterext'.DS.'assets'.DS.'seatcharts'.DS.$row->seat_chart;
 		   ## Get the image size
 		   list($width, $height, $type, $attr) = getimagesize($image);	
-		   $link_seat = 'index.php?option=com_ticketmasterext&&tmpl=component&cid[]='.$row->parent;	   
+		   
+		   if($row->parent != 0) {
+		   	  $link_seat = 'index.php?option=com_ticketmasterext&&tmpl=component&cid[]='.$row->parent;
+		   }else{
+			   $link_seat = 'index.php?option=com_ticketmasterext&&tmpl=component&cid[]='.$row->ticketid;
+		   }
 		   
 		?>
+        <?php if (!$isJ30) { ?>
         
-            <a class="button_rdticketmaster" id="seatselection" href="<?php echo $link_seat; ?>" 
+            <a class="<?php echo $btndanger; ?> " id="seatselection" href="<?php echo $link_seat; ?>" 
             	rel="lightbox[external <?php echo $width+300; ?> <?php echo $height+190; ?>]">
                 <span><?php echo JText::_('COM_TICKETMASTER_CHOOSE_SEAT_FOR'); ?> <?php echo $row->ticketname; ?></span>                      
-            </a>             
+            </a> 
+        
+        <?php }else{ ?>
+
+            <a class="iframe <?php echo $btndanger; ?>" id="seatselection" href="<?php echo $link_seat; ?>">
+                <span><?php echo JText::_('COM_TICKETMASTER_CHOOSE_SEAT_FOR'); ?> <?php echo $row->ticketname; ?></span>                      
+            </a>
+                      
+        <?php } ?>                
 		   
 		<?php  $k=1 - $k; } ?> 
      
@@ -193,15 +336,16 @@ JQ(document).ready(function() {
             </div>
         </div>    
         
-    
-        <table class="table table-striped" id="cart">               
+        <table class="table" id="cart">               
             
+            <?php if($items != 0) { ?>
             <thead>
                 <th width="10%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_ORDERID' ); ?></div></th>
                 <th width="60%"><?php echo JText::_( 'COM_TICKETMASTER_EVENT_INFORMATION' ); ?></th>
                 <th width="15%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_PRICE' ); ?></div></th>
                 <th width="15%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_REMOVE' ); ?></div></th>                    
-            </thead> 
+            </thead>
+            <?php } ?> 
             
             <?php 
                
@@ -221,8 +365,10 @@ JQ(document).ready(function() {
                 <td>
 					<?php echo $row->eventname; ?></strong> - <?php echo $row->ticketname; ?>
                     <?php if($row->seat_sector != 0){ echo ' - '.JText::_( 'COM_TICKETMASTER_SEATNUMBER' ).': '.checkSeat($row->orderid, $this->coords); } ?>
-                    <br/><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?>: <?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?> - 
-                    <?php echo JText::_( 'COM_TICKETMASTER_START' ); ?>: <?php echo $row->starttime; ?><br/>                    
+                    <br/><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?>: <?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?>
+		              <?php if ( $row->show_end_date == 1 ){?>
+		              - <?php echo date ($this->config->dateformat, strtotime($row->end_date)); ?>
+		              <?php } ?>                   
                 </td>
                 <td><div align="center"><?php echo showprice($this->config->priceformat ,$row->ticketprice,$this->config->valuta); ?></div></td>
                 <td><div align="center">
@@ -238,7 +384,54 @@ JQ(document).ready(function() {
             <?php
               $k=1 - $k;
               }
+            ?> 
+            
+			<?php if (count($this->waiters) != 0) { ?>
+                <tr>
+                    <td colspan="4"><div style="padding-left:10px; font-weight:bold;">
+						<?php echo JText::_( 'COM_TICKETMASTER_ITEMS_ON_WAITINGLIST' ); ?><br/>
+                        <?php echo JText::_( 'COM_TICKETMASTER_A PAYMENT_REQUEST_WILL BE_SENT' ); ?>
+                    </div></td>
+                </tr>
+			<?php } ?>  
+                      
+			<?php 
+               
+               $k = 0;
+               for ($i = 0, $n = count($this->waiters); $i < $n; $i++ ){
+                
+                ## Give give $row the this->item[$i]
+                $row        = &$this->waiters[$i];
+               
+        
+            ?>                 
+            
+            <tr id="wait-<?php echo $row->id; ?>">
+                <td><div align="center"><?php echo $i+1; ?></div></td>
+                <td>
+					<?php echo $row->eventname; ?></strong> - <?php echo $row->ticketname; ?>
+                    <?php if($row->seat_sector != 0){ echo ' - '.JText::_( 'COM_TICKETMASTER_SEATNUMBER' ).': '.checkSeat($row->orderid, $this->coords); } ?>
+                    <br/><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?>: <?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?> 
+                      <?php if ( $row->show_end_date == 1 ){?>
+		                - <?php echo date ($this->config->dateformat, strtotime($row->end_date)); ?>
+		              <?php } ?>                      
+                </td>
+                <td></td>
+                <td><div align="center">
+                        <div id = "tm-cart-waiting-<?php echo $row->id; ?>" class="tm-cart-price">
+                            <a href="#" class="deletewaiting">
+                                <img src="components/com_ticketmaster/assets/images/trash-icon-32x32.png" />
+                            </a>
+                        </div>                 
+                	</div>
+                </td>                    
+            </tr>
+            
+            <?php
+              $k=1 - $k;
+              }
             ?>                             
+                                        
             
         </table>     
 
@@ -252,18 +445,32 @@ JQ(document).ready(function() {
             </div>
                    
         </div>
-    
+    	<?php if($this->config->show_remark_field == 1) { ?>
+        <div style="clear:both;text-align:left; width:100%; float:right; margin:0 0 15px 0;">
+        	
+            <h2><?php echo JText::_('COM_TICKETMASTER_ENTER_REMARKS'); ?></h2>
+
+            <textarea rows="3" style="width:98%;" id="remarks" name="remarks" maxlength="255"></textarea>
+            <div id="chars-remaining" style="margin-top:-5px; width: 100%; text-align:right; height: 20px; font-size:90%; line-height:18px; font-weight:bold;">
+                <?php echo JText::_( 'COM_TICKETMASTER_REMAINING' ); ?> 255
+            </div>
+
+        </div>
+        <?php }else{ ?>
+       	 	<input type="hidden" name="remarks" id="remarks" value="" />
+        <?php } ?>
+        	
         
         <div style="clear:both;text-align:left; float:right; margin-left:20px;">
                      
-            <a class="button_rdticketmaster"  onclick="document.location.href='<?php echo $link; ?>'">
-                <span><?php echo JText::_('COM_TICKETMASTER_CHECKOUT_NOW'); ?></span>                      
+            <a class="<?php echo $button; ?>"  id="checkout">
+                <span id="test"><?php echo JText::_('COM_TICKETMASTER_CHECKOUT_NOW'); ?></span>                      
             </a>           
             
         </div>
         
         <div style="text-align:left;">
-            <a class="button_rdticketmaster" onclick="document.location.href='<?php echo $shop_on; ?>'">
+            <a class="<?php echo $button; ?>" onclick="document.location.href='<?php echo $shop_on; ?>'">
                 <span><?php echo JText::_('COM_TICKETMASTER_SHOP_ON'); ?></span>                      
             </a>              
         </div>    
@@ -280,12 +487,12 @@ JQ(document).ready(function() {
 
             <form action = "index.php" method="POST" name="adminForm" id="adminForm" class="form-inline">
          
-                <input name="couponcode" id="couponcode" type="text" size="25" maxlength="50" />
+                <input name="couponcode" id="couponcode" type="text" class="input-medium" size="25" maxlength="50" />
                 <input type="hidden" name="task" id="coupon" value="coupon" />
                 <input type="hidden" name="controller" id="cart" value="checkout" />
                 <input type="hidden" name="option" id="option" value="com_ticketmaster" /> 
                 
-                <input name="button" type="submit" value="<?php echo JText::_('COM_TICKETMASTER_COUPON_SUBMIT'); ?>" class="button_rdticketmaster"/>
+                <input name="button" type="submit" value="<?php echo JText::_('COM_TICKETMASTER_SUBMIT_COUPON'); ?>" class="<?php echo $button; ?>"/>
              
             </form>    
         
@@ -299,7 +506,11 @@ JQ(document).ready(function() {
    for ($i = 0, $n = count($seat); $i < $n; $i++ ){
 
 		if ($value == $seat[$i]->orderid) {
-			$seat = $seat[$i]->seatid;
+			if($seat[$i]->row_name != ''){
+				$seat = $seat[$i]->row_name.$seat[$i]->seatid;
+			}else{
+				$seat = $seat[$i]->seatid;
+			}
 		}
 
 	}	

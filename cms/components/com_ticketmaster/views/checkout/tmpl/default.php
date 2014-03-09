@@ -12,9 +12,6 @@
 ## Check if the file is included in the Joomla Framework
 defined('_JEXEC') or die ('No Acces to this file!');
 
-## Add the tooltip behaviour.
-JHTML::_('behavior.tooltip');
-
 ## Check if the user is logged in.
 $user =  JFactory::getUser();
 
@@ -41,23 +38,40 @@ $document->addStyleSheet( 'components/com_ticketmaster/assets/css/component.css'
 $document->setTitle( JText::_( 'COM_TICKETMASTER_LOGIN_OR_CREATE_ACCOUNT' ) );
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/moovalid.js');
 
-$document->addScript('/jquery/jquery-1.9.0.min.js');
-$document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/jquery.tabify.js');
-$document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/jquery.tabify.source.js');
-
-if($this->config->load_bootstrap == 1){
-	## Adding mootools for J!2.5
-	JHTML::_('behavior.modal');
-	## Include the tooltip behaviour.
-	JHTML::_('behavior.tooltip', '.hasTip');
-	$document->addScript('/jquery/jquery-1.9.0.min.js');
-	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
-	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
-	$button = 'btn btn-small';
-}else{	
-	$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
-	$button = 'button_rdticketmaster';
+if ($this->config->load_jquery == 1) {
+	$document->addScript('http://code.jquery.com/jquery-latest.js');
+}elseif ($this->config->load_jquery == 2) {
+	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
 }
+
+
+## Check if this is Joomla 2.5 or 3.0.+
+$isJ30 = version_compare(JVERSION, '3.0.0', 'ge');
+
+if(!$isJ30) {
+
+	JHTML::_( 'behavior.mootools' );
+
+	if($this->config->load_bootstrap == 1){
+		## Adding mootools for J!2.5
+		JHTML::_('behavior.modal');
+		## Include the tooltip behaviour.
+		JHTML::_('behavior.tooltip', '.hasTip');
+		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
+		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
+		$button = 'btn';
+	}else{	
+		$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
+		$button = 'button_rdticketmaster';
+	}	
+}else{
+
+	## We are in J3, load the bootstrap!
+	jimport('joomla.html.html.bootstrap');
+	$button = 'btn';
+	
+}
+
 
 ### Create a custom password:
 ## Generate a random character string for the password.
@@ -76,103 +90,283 @@ function password($length = 7, $chars = '1234567890abcdefghijklmnopqrstuvwABCDEF
 	## Return the string
 	return $string;
 }
+
+## link to show forgor username/password:
+
+$forgot_pass = JRoute::_( 'index.php?option=com_users&view=reset&tmpl=component');
+$forgot_user = JRoute::_( 'index.php?option=com_users&view=remind&tmpl=component');
 ?>
 
 <script language="javascript">
 
 	var JQ = jQuery.noConflict();
 
-	JQ(document).ready(function() {
-		//Set default open/close settings
-		//Hide/close all containers
-		JQ('.acc_container').hide(); 
-		//Add "active" class to first trigger, then show/open the immediate next container
-		JQ('.acc_trigger:first').addClass('active').next().show(); 
+	JQ(document).ready(function() {	
 		
-		//On Click
-		JQ('.acc_trigger').click(function(){
-			//If immediate next container is closed...
-			if( JQ(this).next().is(':hidden') ) { 
-				//Remove all "active" state and slide up the immediate next container
-				JQ('.acc_trigger').removeClass('active').next().slideUp(300); 
-				//Add "active" state to clicked trigger and slide down the immediate next container
-				JQ(this).toggleClass('active').next().slideDown(300); 
-			}
-			return false; //Prevent the browser jump to the link anchor
+		JQ( ".toggleTrigger" ).click(function(event) {
+			event.preventDefault();
+	  		JQ( ".toggleRegistration" ).toggle();
 		});
+
 	});
-
-	window.addEvent('domready', function() {
-		var fields = {
-				name:         		'Required [5-65]',
-				address:			'Required [3-65]',	
-				zipcode:			'Required [1-10]',
-				city:				'Required [1-65]',
-				phone:				'Required [5-15]',
-				username:			'Required [3-15]',
-				password:			'Required [5-15]',
-				password2:			'Required [5-15]',
-				email:				'Email',
-		};
-		var val = new validate('general', fields, { 
-			useAjaxSubmit:false,
-			AjaxSubmitOptions: {
-				evalScripts: true,
-
-				onComplete: function(response) { 
-						$('log').set('html',response);
-				}
-			}
-		});
-	});
-
+	
 </script>
 
-<h2><?php echo JText::_('COM_TICKETMASTER_LOGIN_OR_CREATE_ACCOUNT'); ?></h2>
+<div style = "margin-top:1px; margin-bottom: 70px;">
 
-<h3 class="acc_trigger"><a href="#"><?php echo JText::_('COM_TICKETMASTER_LOGIN_NOW'); ?></a></h3>
-<div class="acc_container">
-    <div class="block">
-    
-		<form action="<?php echo JRoute::_( 'index.php'); ?>" method="post" name="loginForm">
-        <?php echo JText::_('COM_TICKETMASTER_LOGIN_DESC'); ?>
+<h2><?php echo JText::_('COM_TICKETMASTER_CREATEACCOUNT_NOW'); ?></h2>
+
+<h3 class="acc_trigger"><a class="toggleTrigger" href="#"><?php echo JText::_('COM_TICKETMASTER_LOGIN'); ?></a></h3>
+<div class="toggleRegistration" style="margin-left:30px; margin-bottom:20px;">
+	
+	<p style="margin-bottom:15px;"><?php echo JText::_('COM_TICKETMASTER_LOGIN_DESC'); ?></p>
+	
+	<form action="<?php echo JRoute::_( 'index.php'); ?>" method="post" name="loginForm">
+	
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_USERNAME' ); ?></div>
+		  <div class="span8">
+	              <input type="text" name="username" size="24" alt="<?php echo JText::_( 'Username' ); ?>" 
+	                     value="<?php echo JText::_( 'Username' ); ?>" 
+	                     onblur="if(this.value=='') this.value='<?php echo JText::_( 'Username' ); ?>';" 
+	                     onfocus="if(this.value=='<?php echo JText::_( 'Username' ); ?>') this.value='';" class="inputbox" />  	  
+		  </div>
+		</div>
+		
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_PASSWORD' ); ?></div>
+		  <div class="span8">
+	                 <input type="password" name="password" size="24" alt="<?php echo JText::_( 'Password' ); ?>" 
+	                        value="<?php echo JText::_( 'Password' ); ?>" 
+	                        onblur="if(this.value=='') this.value='<?php echo JText::_( 'Password' ); ?>';" 
+	                        onfocus="if(this.value=='<?php echo JText::_( 'Password' ); ?>') this.value='';" class="inputbox" />    
+		  </div>
+		</div>
+		
+		<div class="row-fluid">
+		  <div class="span4"></div>
+		  <div class="span8"><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_LOGIN'); ?>" class="<?php echo $button; ?>"> </div>
+		</div>
+	
+    <input type="hidden" name="option" value="com_ticketmaster" />
+    <input type="hidden" name="controller" value="checkout" />
+    <input type="hidden" name="task" value="login" />
+	<?php echo JHTML::_( 'form.token' ); ?>
+	</form>   
+	
+	<div class="row-fluid">
+	  <div class="span4"></div>
+	  <div class="span8">
+			<a href="<?php echo $forgot_pass; ?>" onclick="window.open('<?php echo $forgot_pass; ?>','jevensternaam',
+			'width=800,height=400,scrollbars=no,toolbar=no,location=yes'); return false"><?php echo JText::_('COM_TICKETMASTER_FORGOT_PASS'); ?></a> || 
+			<a href="<?php echo $forgot_user; ?>" onclick="window.open('<?php echo $forgot_pass; ?>','jevensternaam',
+			'width=800,height=400,scrollbars=no,toolbar=no,location=yes'); return false"><?php echo JText::_('COM_TICKETMASTER_FORGOT_USERNAME'); ?></a>	  
+	  </div>
+	</div>	
+							
+	
+</div>
+
+<?php if ($useractivation ==1){ ?>
+
+<h3 class="acc_trigger"><a class="toggleTriggerActivation" href="#"><?php echo JText::_('COM_TICKETMASTER_CREATEACCOUNT_NOW'); ?></a></h3>
+	
+	<p><?php echo JText::_('COM_TICKETMASTER_ACTIVATION_DESC'); ?></p>
+	
+	<form action="<?php echo JRoute::_( 'index.php'); ?>" method="post" name="activateForm">
+
+		<div class="row-fluid">
+	  		<div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_ENTER_ACTIVATION_CODE' ); ?></div>
+	  		<div class="span8">
+                   <input type="text" name="token" size="24" alt="<?php echo JText::_( 'COM_TICKETMASTER_ACTIVATION_CODE' ); ?>" 
+                   value="<?php echo JText::_( 'COM_TICKETMASTER_ACTIVATION_CODE' ); ?>" 
+                   onblur="if(this.value=='') this.value='<?php echo JText::_( 'Password' ); ?>';" 
+                   onfocus="if(this.value=='<?php echo JText::_( 'COM_TICKETMASTER_ACTIVATION_CODE' ); ?>') this.value='';" class="inputbox" />      
+			</div>
+		</div>
+
+		<div class="row-fluid">
+	  		<div class="span4"></div>
+	  		<div class="span8"><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_ACTIVATE'); ?>" class="<?php echo $button; ?>"></div>
+		</div>
+
+    <input type="hidden" name="option" value="com_ticketmaster" />
+    <input type="hidden" name="controller" value="checkout" />
+    <input type="hidden" name="task" value="activate" />
+	<?php echo JHTML::_( 'form.token' ); ?>
+	</form> 
+
+<?php } ?>
+
+
+<h3 class="acc_trigger"><a class="toggleTrigger" href="#"><?php echo JText::_('COM_TICKETMASTER_CREATEACCOUNT_NOW'); ?></a></h3>
+<div class="toggleRegistration" style="margin-left:30px; display:none;">
+	
+	<p style="margin-bottom:15px;"><?php echo JText::_('COM_TICKETMASTER_FREE_ACCOUNT'); ?></p>
+	
+	<form id="general" action="index.php?option=com_ticketmaster&controller=checkout" method="post" name="general">
+	
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_GENDER' ); ?>*</div>
+	  <div class="span8"><?php echo $this->lists['gender']; ?></div>
+	</div>
+	
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_FIRSTNAME' ); ?>*</div>
+	  <div class="span8"><input name="firstname" type="text" id="firstname" class="inputbox" value="<?php echo $info[firstname]; ?>" size="25" /></div>
+	</div>	
+	
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_LASTNAME' ); ?>*</div>
+	  <div class="span8"><input name="name" type="text" id="name" class="inputbox" value="<?php echo $info[name]; ?>" size="25" /></div>
+	</div>			
+
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?>*</div>
+	  <div class="span8"><input name="address" type="text" id="address" class="inputbox" value="<?php echo $info[address]; ?>" size="25" /></div>
+	</div>		
+	
+	<?php if($this->config->show_secondaddress != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?>*</div>
+		  <div class="span8"><input name="address2" type="text" id="address2" class="inputbox" value="<?php echo $info[address2]; ?>" size="25" /></div>
+		</div>		
+	<?php } ?> 
+
+	<?php if($this->config->show_thirdaddress != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?>*</div>
+		  <div class="span8"><input name="address3" type="text" id="address3" class="inputbox" value="<?php echo $info[address3]; ?>" size="25" /></div>
+		</div>		
+	<?php } ?> 	
+
+	<?php if($this->config->show_zipcode != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ZIPCODE' ); ?>*</div>
+		  <div class="span8"><input name="zipcode" type="text" id="zipcode" class="inputbox" value="<?php echo $info[zipcode]; ?>" size="25" /></div>
+		</div>		
+	<?php } ?> 
+	
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_CITY' ); ?>*</div>
+	  <div class="span8"><input name="city" type="text" id="city" class="inputbox" value="<?php echo $info[city]; ?>" size="25" /></div>
+	</div>				
+
+	<?php if($this->config->show_country != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_COUNTRY' ); ?>*</div>
+		  <div class="span8"><?php echo $this->lists['country']; ?></div>
+		</div>		
+	<?php } ?> 	
+
+	<?php if($this->config->show_phone != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PHONE' ); ?>*</div>
+		  <div class="span8"><input name="phonenumber" type="text" id="phonenumber" class="inputbox" value="<?php echo $info[phonenumber]; ?>" size="25" /></div>
+		</div>		
+	<?php } ?> 	
+	
+	<?php if($this->config->show_birthday != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_BIRTHDAY' ); ?></div>
+		  <div class="span8"><?php echo $this->lists['day']; ?>&nbsp;<?php echo $this->lists['month']; ?>&nbsp;<?php echo $this->lists['year']; ?></div>
+		</div>		
+	<?php } ?> 			
+
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_EMAIL' ); ?>*</div>
+	  <div class="span8"><input name="emailaddress" type="text" id="emailaddress" class="inputbox" value="<?php echo $info[email]; ?>" size="25" /></div>
+	</div>		
+
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_RETYPE_EMAIL' ); ?>*</div>
+	  <div class="span8"><input name="email2" type="text" id="email2" class="inputbox" size="25" /></div>
+	</div>
+		
+	<?php if($this->config->show_mailchimps != 0 ){ ?>
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_NEWSLETTER_SIGNUP' ); ?></div>
+		  <div class="span8">
+                <input type="radio" name="emailUpdates" value="Yes" /> <?php echo JText::_( 'COM_TICKETMASTER_YES' ); ?>
+                <input type="radio" name="emailUpdates" value="No" checked="checked" /> <?php echo JText::_( 'COM_TICKETMASTER_NO' ); ?>		  
+		  </div>
+		</div>
+	<?php } ?>	
+	
+	<?php if($this->config->auto_username == 1 ){ ?>	
+		
+		<div class="row-fluid">
+		  <div class="span4"></div>
+		  <div class="span8"><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_REGISTER_NOW'); ?>" class="<?php echo $button; ?>"></div>
+		</div>	
+		
+	<?php } else {?>
+	
+		<h2><?php echo JText::_('COM_TICKETMASTER_REGISTER_USERINFO'); ?></h2> 
+
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_USERNAME' ); ?>*</div>
+		  <div class="span8"><input name="username" type="text" id="username"  class="inputbox" value="<?php echo $info[username]; ?>" size="25" /></div>
+		</div>			
+
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PASSWORD' ); ?>*</div>
+		  <div class="span8"><input name="password" type="password" id="password" class="inputbox" value="" size="25" /></div>
+		</div>
+		
+		<div class="row-fluid">
+		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PASSWORD_2' ); ?>*</div>
+		  <div class="span8"><input name="password2" type="password" id="password2" class="inputbox" value="" size="25" /></div>
+		</div>	
+		
+		<div class="row-fluid">
+		  <div class="span4"></div>
+		  <div class="span8"><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_REGISTER_NOW'); ?>" class="<?php echo $button; ?>"></div>
+		</div>									
+		
+	 <?php } ?>	
+	 
+        <div style="clear:both; margin-top:10px; padding-top:15px; margin-bottom:5px;">&nbsp;</div>
+ 
+		<?php 
+		$params = JComponentHelper::getParams('com_users');
+		
+		## Check what type of registration it is in config.
+		$useractivation = $params->get('useractivation');
+		?>
         
-        <div style="width:75%; margin-top:20px;">
-            <table class="table table-striped">               
-                    
-                <tr>
-                    <td width="40%" style="border:0px;"><?php echo JText::_( 'COM_TICKETMASTER_USERNAME' ); ?></td>
-                    <td width="60%">
-                        <input type="text" name="username" size="24" alt="<?php echo JText::_( 'Username' ); ?>" 
-                        value="<?php echo JText::_( 'Username' ); ?>" 
-                        onblur="if(this.value=='') this.value='<?php echo JText::_( 'Username' ); ?>';" 
-                        onfocus="if(this.value=='<?php echo JText::_( 'Username' ); ?>') this.value='';" class="inputbox" />                     
-                    </td>
-                </tr>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_PASSWORD' ); ?></td>
-                    <td>
-                        <input type="password" name="password" size="24" alt="<?php echo JText::_( 'Password' ); ?>" 
-                        value="<?php echo JText::_( 'Password' ); ?>" 
-                        onblur="if(this.value=='') this.value='<?php echo JText::_( 'Password' ); ?>';" 
-                        onfocus="if(this.value=='<?php echo JText::_( 'Password' ); ?>') this.value='';" class="inputbox" />                    
-                    </td>
-                </tr>   
-                <tr>
-                    <td>&nbsp;</td>
-                    <td><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_LOGIN'); ?>" class="button_rdticketmaster"></td>
-                </tr>                                           
-            
-            </table>
-        </div>
+        <?php if ($useractivation ==1){ ?>
+        	
+            <?php if(!$isJ30) { ?>
+                <div style="padding:5px; border:1px #FF0000 solid; margin-bottom: 15px; font-weight:bold; width:75%; color:#FF0000; text-align:center;">
+                    <?php echo JText::_('COM_TICKETMASTER_FREE_ACCOUNT_ACTIVATION_INFO'); ?>
+                </div>
+            <?php }else{ ?>
+                <div class="alert alert-block">
+                  <?php echo JText::_('COM_TICKETMASTER_FREE_ACCOUNT_ACTIVATION_INFO'); ?>
+                </div>            	
+            <?php } ?>
         
+		<?php } ?> 	 
+
+        <?php if($this->config->show_country == 0 ){ ?>
+        	<input type="hidden" id="country_id" name="country_id" value="1" />
+        <?php } ?> 
+        <?php if($this->config->show_birthday == 0 ){ ?>
+        	<input type="hidden" id="birthday" name="birthday" value="1910-01-01" />
+        <?php } ?>            
         <input type="hidden" name="option" value="com_ticketmaster" />
         <input type="hidden" name="controller" value="checkout" />
-        <input type="hidden" name="task" value="login" />
-		<?php echo JHTML::_( 'form.token' ); ?>
-		</form>           
-    </div>
+        <input type="hidden" name="task" value="save" />  
+        <?php echo JHTML::_( 'form.token' ); ?>     
+        
+        </form>		
+		
 </div>
+
+</div>
+
+
 
 <?php 
 $params = JComponentHelper::getParams('com_users');
@@ -191,7 +385,7 @@ if ($useractivation ==1){
         <?php echo JText::_('COM_TICKETMASTER_ACTIVATION_DESC'); ?>
 
         <div style="width:75%; margin-top:20px;">
-            <table class="table table-striped">               
+            <table class="table">               
                     
                 <tr>
                     <td width="40%"><?php echo JText::_( 'COM_TICKETMASTER_ENTER_ACTIVATION_CODE' ); ?></td>
@@ -204,7 +398,7 @@ if ($useractivation ==1){
                 </tr>  
                 <tr>
                     <td>&nbsp;</td>
-                    <td><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_ACTIVATE'); ?>" class="button_rdticketmaster"></td>
+                    <td><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_ACTIVATE'); ?>" class="<?php echo $button; ?>"></td>
                 </tr>                                           
             
             </table>
@@ -221,143 +415,4 @@ if ($useractivation ==1){
 
 <?php } ?>
 
-<h3 class="acc_trigger"><a href="#"><?php echo JText::_('COM_TICKETMASTER_CREATEACCOUNT_NOW'); ?></a></h3>
-<div class="acc_container">
-    <div class="block">
-    	
-        <?php echo JText::_('COM_TICKETMASTER_FREE_ACCOUNT'); ?><br/><br/>
-		
-        <form id="general" action="index.php?option=com_ticketmaster&controller=checkout" method="post" name="general">
-        
-        <div style="width:75%; margin-top:20px;">
-            <table class="table table-striped">               
-                    
-                <tr>
-                    <td width="40%"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_GENDER' ); ?>*</td>
-                    <td width="60%"><?php echo $this->lists['gender']; ?></td>
-                </tr>  
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_NAME' ); ?>*</td>
-                    <td><input name="name" type="text" id="name" class="inputbox" value="<?php echo $info[name]; ?>" size="25" /></td>
-                </tr> 
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?>*</td>
-                    <td><input name="address" type="text" id="address" class="inputbox" value="<?php echo $info[address]; ?>" size="25" /></td>
-                </tr>   
-                <?php if($this->config->show_secondaddress != 0 ){ ?>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?></td>
-                    <td><input name="address2" type="text" id="address2" class="inputbox" value="<?php echo $info[address2]; ?>" size="25" /></td>
-                </tr>
-                <?php } ?> 
-                <?php if($this->config->show_thirdaddress != 0 ){ ?>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ADDRESS' ); ?></td>
-                    <td><input name="address3" type="text" id="address3" class="inputbox" value="<?php echo $info[address3]; ?>" size="25" /></td>
-                </tr>
-                <?php } ?>  
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ZIPCODE' ); ?>*</td>
-                    <td><input name="zipcode" type="text" id="zipcode" class="inputbox" value="<?php echo $info[zipcode]; ?>" size="25" /></td>
-                </tr>  
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_CITY' ); ?>*</td>
-                    <td><input name="city" type="text" id="city" class="inputbox" value="<?php echo $info[city]; ?>" size="25" /></td>
-                </tr>
-                <?php if($this->config->show_country != 0 ){ ?>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_COUNTRY' ); ?></td>
-                    <td><?php echo $this->lists['country']; ?></td>
-                </tr>                
-                <?php } ?> 
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PHONE' ); ?></td>
-                    <td><input name="phonenumber" type="text" id="phonenumber" class="inputbox" value="<?php echo $info[phonenumber]; ?>" size="25" /></td>
-                </tr>
-                <?php if($this->config->show_birthday != 0 ){ ?>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_BIRTHDAY' ); ?></td>
-                    <td><?php echo $this->lists['day']; ?>&nbsp;<?php echo $this->lists['month']; ?>&nbsp;<?php echo $this->lists['year']; ?></td>
-                </tr>
-                <?php } ?>                
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_EMAIL' ); ?>*</td>
-                    <td><input name="emailaddress" type="text" id="emailaddress" class="inputbox" value="<?php echo $info[email]; ?>" size="25" /></td>
-                </tr>                
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_RETYPE_EMAIL' ); ?>*</td>
-                    <td><input name="email2" type="text" id="email2" class="inputbox" size="25" /></td>
-                </tr>
-                <?php if($this->config->show_mailchimp_signup != 0 ){ ?>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_NEWSLETTER_SIGNUP' ); ?></td>
-                    <td>
-                      <input type="radio" name="emailUpdates" value="Yes" /> <?php echo JText::_( 'COM_TICKETMASTER_YES' ); ?>
-                      <input type="radio" name="emailUpdates" value="No" checked="checked" /> <?php echo JText::_( 'COM_TICKETMASTER_NO' ); ?>
-                    </td>
-                </tr>
-				<?php } ?>
-            </table>
-            
-			<?php if($this->config->auto_username != 1 ){ ?>
-            
-            <h2><?php echo JText::_('COM_TICKETMASTER_REGISTER_USERINFO'); ?></h2>            
-            
-            <table class="table table-striped">  
-                
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_USERNAME' ); ?>*</td>
-                    <td><input name="username" type="text" id="username"  class="inputbox" value="<?php echo $info[username]; ?>" size="25" /></td>
-                </tr>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PASSWORD' ); ?>*</td>
-                    <td><input name="password" type="password" id="password" class="inputbox" value="" size="25" /></td>
-                </tr> 
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_YOUR_PASSWORD_2' ); ?>*</td>
-                    <td><input name="password2" type="password" id="password2" class="inputbox" value="" size="25" /></td>
-                </tr> 
-                <tr>
-                    <td></td>
-                    <td><img id="captcha" src="<?php echo JURI::root(); ?>components/com_ticketmaster/assets/captcha/securimage.php" alt="CAPTCHA Image" /></td>
-                </tr>
-                <tr>
-                    <td><?php echo JText::_( 'COM_TICKETMASTER_ENTER_SECURITY_CODE' ); ?>*</td>
-                    <td><input name="security_code" type="text" id="security_code" class="inputbox" value="" size="10" /></td>
-                </tr> 
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="<?php echo JText::_('COM_TICKETMASTER_REGISTER_NOW'); ?>" class="button_rdticketmaster"></td>
-                </tr>                                                                                    
-                
-            </table>            
-            
-            <?php } ?>
-        </div>                      
-        
-        <div style="clear:both; margin-top:15px; padding-top:15px; margin-bottom:10px;">&nbsp;</div>
-        
-        <?php if ($useractivation ==1){ ?>
-        
-        	<div style="padding:5px; border:1px #FF0000 solid; margin-bottom: 15px; font-weight:bold; width:75%; color:#FF0000; text-align:center;">
-				<?php echo JText::_('COM_TICKETMASTER_FREE_ACCOUNT_ACTIVATION_INFO'); ?>
-            </div>
-        
-		<?php } ?>         
-        
-        <?php if($this->config->show_country == 0 ){ ?>
-        	<input type="hidden" id="country_id" name="country_id" value="1" />
-        <?php } ?> 
-        <?php if($this->config->show_birthday == 0 ){ ?>
-        	<input type="hidden" id="birthday" name="birthday" value="1212-12-12" />
-        <?php } ?>            
-        <input type="hidden" name="option" value="com_ticketmaster" />
-        <input type="hidden" name="controller" value="checkout" />
-        <input type="hidden" name="task" value="save" />  
-        <?php echo JHTML::_( 'form.token' ); ?>     
-        
-        </form>
-
-    </div>
-</div>
 

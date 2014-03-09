@@ -14,12 +14,11 @@ defined('_JEXEC') or die ('No Acces to this file!');
 
 ## Let's check if the system has a payment_type
 $payment_type =  JRequest::getVar('payment_type');
-		
+
 ## Getting the URL
 JPluginHelper::importPlugin( 'rdmedia' );
-$dispatcher =& JDispatcher::getInstance();
+$dispatcher = JDispatcher::getInstance();
 $results = $dispatcher->trigger( $payment_type );
-
 
 		
 ?>	

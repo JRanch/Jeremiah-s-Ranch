@@ -12,10 +12,6 @@
 ## Check if the file is included in the Joomla Framework
 defined('_JEXEC') or die ('No Acces to this file!');
 
-## Add the tooltip behaviour.
-JHTML::_('behavior.tooltip');
-JHTML::_( 'behavior.mootools' );
-
 $app =& JFactory::getApplication();
 $pathway =& $app->getPathway();
 $pathway->addItem($this->tmpl->mailsubject);
@@ -46,14 +42,29 @@ if(!$isJ30) {
 		JHTML::_('behavior.modal');
 		## Include the tooltip behaviour.
 		JHTML::_('behavior.tooltip', '.hasTip');
-		$document->addScript('/jquery/jquery-1.9.0.min.js');
+		
+		## Add the tooltip behaviour.
+		JHTML::_('behavior.tooltip');
+		JHTML::_( 'behavior.mootools' );		
+		
+		$document->addScript('http://code.jquery.com/jquery-latest.js');
+		
 		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 		$button = 'btn btn-small';
+	
 	}else{	
+	
 		$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
 		$button = 'button_rdticketmaster';
+	
 	}
+}else{
+	
+	## We are in J3, load the bootstrap!
+	jimport('joomla.html.html.bootstrap');
+	$button = 'btn btn-small';
+	
 }
 
 ?>
@@ -85,6 +96,9 @@ if(!$isJ30) {
 	$month 		= date ( m, strtotime($row->ticketdate));
 	$year 		= date ( Y, strtotime($row->ticketdate));
 	
+	$tickets_sold = countavailables($row->ticketid, $this->sold);
+	$tickets_adds = countadded($row->ticketid, $this->added);	
+	
 	?>
 
     <tr>
@@ -105,3 +119,38 @@ if(!$isJ30) {
 
  
    <div align="center"><?php echo $this->pagination->getPagesLinks( ); ?></div>
+
+<?php 
+function countavailables($event, $sold) { 
+	
+	$availables = '';
+	
+    for($i = 0; $i < count($sold); $i++) { 
+       
+	   $counter  = $sold[$i];
+	   if ( $event == $counter->ticketid ) {
+	       $availables = $counter->soldtickets;
+       }
+	} 
+	
+    return $availables; 
+} 
+
+function countadded($event, $added) { 
+	
+	$adds = '';
+		
+    for($i = 0; $i < count($added); $i++) { 
+       
+	   $tel  = $added[$i];
+
+	   if ( $event == $tel->ticketid ) {
+	       $adds = $tel->totals;
+		   
+       }
+	   
+	} 
+	
+    return $adds; 
+} 
+?> 

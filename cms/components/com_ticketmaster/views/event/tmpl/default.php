@@ -12,10 +12,6 @@
 ## Check if the file is included in the Joomla Framework
 defined('_JEXEC') or die ('No Acces to this file!');
 
-## Add the tooltip behaviour.
-JHTML::_('behavior.tooltip');
-JHTML::_( 'behavior.mootools' );
-
 $app =& JFactory::getApplication();
 $pathway =& $app->getPathway();
 $pathway->addItem(JText::_( 'COM_TICKETMASTER_EVENT_OVERVIEW' ), 'index.php?option=com_ticketmaster');
@@ -42,9 +38,16 @@ if (file_exists($cssfile)) {
 }
 
 ## Adding the lightbox functionality
-$document->addScript('/jquery/jquery-1.9.0.min.js');
-$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
-$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );
+
+if ($this->config->load_jquery == 1) {
+	$document->addScript('http://code.jquery.com/jquery-latest.js');
+}elseif ($this->config->load_jquery == 2) {
+	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
+}
+
+$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/jquery.colorbox.js');
+$document->addScript(JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/js/colorbox.js');
+$document->addStyleSheet( JURI::root(true).'/components/com_ticketmaster/assets/j3-lightbox/css/colorbox.css' );
 
 include_once( 'components/com_ticketmaster/assets/functions.php' );
 
@@ -69,10 +72,9 @@ if(!$isJ30) {
 	
 	if($this->config->load_bootstrap == 1){
 		## Adding mootools for J!2.5
-		JHTML::_('behavior.modal');
+		JHTML::_( 'behavior.mootools' );		
 		## Include the tooltip behaviour.
 		JHTML::_('behavior.tooltip', '.hasTip');
-		$document->addScript('/jquery/jquery-1.9.0.min.js');
 		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 		$button = 'btn btn-small';
@@ -80,6 +82,12 @@ if(!$isJ30) {
 		$document->addStyleSheet( 'components/com_ticketmaster/assets/css/bootstrap.css' );
 		$button = 'button_rdticketmaster';
 	}
+}else{
+	
+	## We are in J3, load the bootstrap!
+	jimport('joomla.html.html.bootstrap');
+	$button = 'btn';
+	
 }
 
 ## Redirection link in JRoute:
@@ -92,6 +100,16 @@ if ($this->extended->seat_chart != '') {
 	list($width, $height, $type, $attr) = getimagesize($image);
 	
 }
+
+## Getting the parameters for this view:
+$params = JComponentHelper::getParams('com_ticketmaster');
+$gmaps_width = $params->get('gmaps_width', '200');
+$gmaps_heigth = $params->get('gmaps_heigth', '200');
+$show_venuebuttons = $params->get('show_venuebuttons', 1);
+$button_color = $params->get('button_color', 'btn');
+$show_venue_events = $params->get('show_venue_events', '1');
+$show_venuedetails = $params->get('show_venuedetails', '1');
+$button_color = $params->get('button_color', 'btn');
 
 ?>
 
@@ -124,68 +142,103 @@ if ($this->extended->seat_chart != '') {
 	
   }
   
-  function init(items,userId) {  
-    
-	// Getting the data we need for submission.
-	var JQ = jQuery.noConflict();
-    var inputdata = JQ("#qty_"+items).val();
-	
-	// Showing the loader image.	
-	JQ('#tm-loader').show();
-	
-	//organize the data properly
-	var data = 'amount=' + inputdata + '&ticketid=' + items +  '&ordercode='
-	+ <?php echo $ordercode; ?> + '&togo='  + <?php echo $this->items->totaltickets; ?> + '&eventid=' + <?php echo $this->items->eventid; ?> +'';	
+  function buytickets(items){
+	     
+		// Getting the data we need for submission.
+		var JQ = jQuery.noConflict();
+		var inputdata = JQ("#qty_"+items).val();
+		
+		//organize the data properly
+		var data = 'amount=' + inputdata + '&ticketid=' + items +  '&ordercode='
+		+ <?php echo $ordercode; ?> + '&togo='  + <?php echo $this->items->totaltickets; ?> + '&eventid=' + <?php echo $this->items->eventid; ?> +'';			 
 
-	JQ.ajax({
-		//this is the php file that processes the data and send mail
-		url: "index.php?option=com_ticketmaster&controller=order&task=addtocart&format=raw", 
-		//POST method is used
-		type: "POST",
-		//pass the data         
-		data: data,     
-		//Do not cache the page	
-		cache: false,
-		//success			
-		success: function (html) {              
+		JQ.ajax({
+			//this is the php file that processes the data and send mail
+			url: "index.php?option=com_ticketmaster&controller=order&task=buyticket&format=raw", 
+			//POST method is used
+			type: "POST",
+			//pass the data         
+			data: data,
+			// data type = json 
+			dataType: 'json',    
+			//Do not cache the page	
+			cache: false,
+			//success
+			beforeSend: function() {
+				JQ( "#tm-loader" ).show();
+			},						
+			success: function (html) {              
+				// We're done, show data
+				JQ( "#tm-loader" ).hide();
 
-			if (html==1) {                 
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide();
-				JQ('div.success').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val('1');	
-				updateCart();
-			} else if (html==2) {
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide('slow');
-				JQ('div.failed').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val(''); 
-			} else if (html==3) {
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide('slow');
-				JQ('div.soldout').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val(''); 
-			} else if (html==4) {
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide('slow');
-				JQ('div.lowamount').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val(''); 
-			}   else if (html==7) {
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide('slow');
-				JQ('div.maxorder').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val(''); 
-			}   else if (html==8) {
-				//if process.php returned 0/false (send mail failed)
-				JQ('#tm-loader').hide('slow');
-				JQ('div.minorder').slideToggle('slow').delay(2000).slideToggle(1000);
-				JQ("#qty_"+items).val(''); 
-			}    
-			    
-		} 		
-	});
-	
-};
+				if(html.status == 666) {
+					
+					JQ( '#message' ).html(html.msg);
+					updateCart();
+					
+				}else{
+					JQ( "#message" ).html(html.msg);
+					updateCart();
+					
+				}
+
+			},
+		   error:function (xhr, ajaxOptions, thrownError){
+			 alert(xhr.status);
+		  } 			 		
+		});	
+
+
+}
+
+function waitinglist(items){
+	     
+		// Getting the data we need for submission.
+		var JQ = jQuery.noConflict();
+		var inputdata = JQ("#qty_"+items).val();
+		
+		//organize the data properly
+		var data = 'amount=' + inputdata + '&ticketid=' + items +  '&ordercode='
+		+ <?php echo $ordercode; ?> + '&togo='  + <?php echo $this->items->totaltickets; ?> + '&eventid=' + <?php echo $this->items->eventid; ?> +'';			 
+
+		JQ.ajax({
+			//this is the php file that processes the data and send mail
+			url: "index.php?option=com_ticketmaster&controller=order&task=waitinglist&format=raw", 
+			//POST method is used
+			type: "POST",
+			//pass the data         
+			data: data,
+			// data type = json 
+			dataType: 'json',    
+			//Do not cache the page	
+			cache: false,
+			//success
+			beforeSend: function() {
+				JQ( "#tm-loader" ).show();
+			},						
+			success: function (html) {              
+				// We're done, show data
+				JQ( "#tm-loader" ).hide();
+
+				if(html.status == 666) {
+					
+					JQ( '#message' ).html(html.msg);
+					updateCart();
+					
+				}else{
+					JQ( "#message" ).html(html.msg);
+					updateCart();
+					
+				}
+
+			},
+		   error:function (xhr, ajaxOptions, thrownError){
+			 alert(xhr.status);
+		  } 			 		
+		});	
+
+
+}
 
 
 
@@ -193,8 +246,10 @@ if ($this->extended->seat_chart != '') {
 
 <?php if ($this->items->eventname != $this->items->ticketname) { ?>
 	<h2><?php echo $this->items->eventname; ?>  - <?php echo $this->items->ticketname; ?></h2>
+    <?php $ticketname = $this->items->eventname.' - '.$this->items->ticketname; ?>
 <?php }else{ ?>    
 	<h2><?php echo $this->items->eventname; ?></h2>
+    <?php $ticketname = $this->items->eventname; ?>
 <?php } ?>
 
 <div id="ticketmaster_left">
@@ -221,44 +276,32 @@ if ($this->extended->seat_chart != '') {
         </div>
     </div>
 
-    <div class="success" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_EVENT_ADDED_TO_CART'); ?>
-    </div>
+     <div id="message"><!-- Dont remove this container, it is used for ordering messages --></div>  
+     
+	<?php if ($this->items->show_seatplans != 1) { ?>
+		<h3><?php echo JText::_('COM_TICKETMASTER_ORDER_YOUR_TICKETS_NOW'); ?></h3>
+	<?php }else{ ?>
+		<h3><?php echo JText::_('COM_TICKETMASTER_TICKETPRICING'); ?></h3>
+	<?php } ?>           
     
-    <div class="failed" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_EVENT_FAILED_ADD_TO_CART'); ?>
-    </div>
- 
-     <div class="soldout" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_EVENT_SOLD_OUT'); ?>
-    </div>
-
-     <div class="lowamount" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_EVENT_NO_AMOUNT'); ?>
-    </div>
+    <?php if($this->items->counter_choice == 0){ ?>
     
-     <div class="maxorder" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_TO_MANY_ORDERED'); ?>
-    </div>  
+		<?php if ($this->config->show_quantity_eventlist == 1) { ?>
+	        <?php if ($this->items->totaltickets < 25 && $this->items->totaltickets != 0) { ?>
+	            <div id = "ticketmaster-order-warning">
+	                <strong>
+	                <?php echo JText::_('COM_TICKETMASTER_ONLY').' '.$this->items->totaltickets.' '. JText::_('COM_TICKETMASTER_LEFT_MSG').' '.			
+	                $this->items->eventname; ?>
+	                </strong>
+	            </div>
+	        <?php } ?>
+	    <?php } ?> 
     
-     <div class="minorder" style="display: none;">
-		<?php echo JText::_('COM_TICKETMASTER_TO_LESS_ORDERED'); ?>
-    </div>    
-    
-	<?php if ($this->config->show_quantity_eventlist == 1) { ?>
-        <?php if ($this->items->totaltickets < 25 && $this->items->totaltickets != 0) { ?>
-            <div id = "ticketmaster-order-warning">
-                <strong>
-                <?php echo JText::_('COM_TICKETMASTER_ONLY').' '.$this->items->totaltickets.' '. JText::_('COM_TICKETMASTER_LEFT_MSG').' '.			
-                $this->items->eventname; ?>
-                </strong>
-            </div>
-        <?php } ?>
     <?php } ?>            
     
     <?php if (count($this->childs) != 0) { ?>
 
-       <table class="table table-striped">               
+       <table class="table">               
     	
 		<?php 
         
@@ -267,28 +310,66 @@ if ($this->extended->seat_chart != '') {
         
         
         ## Give give $row the this->item[$i]
-        $row        = &$this->childs[$i];
-        $item->odd	= $k; 
+        $row        = $this->childs[$i];
+
+        ## For the ticket totals -- If parent:
+        if($row->counter_choice == 0){
+        	$total_tickets = $this->items->totaltickets;
+        }else{
+        	## using the child counter:
+        	$total_tickets = $row->totaltickets;
+        }
         
         ?>
         
         
             <tr>
-                <td><div style="padding-top: 3px;">
-                    <input id="qty_<?php echo $row->ticketid;?>" type="text" autocomplete="OFF" value="1"  style="text-align:center;" size="1" />
-                    &nbsp; <?php echo $row->ticketname; ?> - <?php echo showprice($this->config->priceformat ,$row->ticketprice,
-                                $this->config->valuta); ?>
+                <td><div style="line-height:5px;">
+                    
+                    <?php if ($this->items->show_seatplans != 1) { ?>
+                    
+	                    <div style="float:left;">
+	                        <input id="qty_<?php echo $row->ticketid;?>" type="text" class="input-mini" autocomplete="OFF" value="1"  
+	                            style="text-align:center; width:20px;" size="1" width="15px" />
+	                     </div>    
+	                    
+	                    <div style="float:left; height:10px; line-height:0px; padding:10px;"><?php echo $row->ticketname; ?> - <?php echo showprice($this->config->priceformat ,$row->ticketprice, $this->config->valuta); ?></div>
+					
+					<?php }else{ ?>
+					
+					 	<div style="float:left; height:10px; line-height:0px; padding:10px;"><?php echo $row->ticketname; ?></div>
+					 	
+					<?php } ?>
+										
                 </div>
                 </td>
-                <td><?php if ($row->totaltickets == 0){ ?>
-                       <div style="text-align:right; padding-top: 5px; padding-right: 2px;">
-                            <?php echo JText::_('COM_TICKETMASTER_SOLD_OUT'); ?>
-                       </div>
-                        <?php } else { ?>    	   
-                       <a class="button_rdticketmaster" onclick="init(<?php echo $row->ticketid;?>,2)" style="float:right;">
-                          <span><?php echo JText::_('COM_TICKETMASTER_ADD'); ?></span>                      
-                       </a>
-                       <?php } ?> 
+                <td><?php if ($total_tickets <= 0){ ?>
+						   <?php if ($this->config->show_waitinglist != 1) { ?>
+                           <div style="text-align:right; padding-top: 5px; padding-right: 2px;">
+                                <?php echo JText::_('COM_TICKETMASTER_SOLD_OUT'); ?>
+                           </div>
+                       <?php }else{ ?>
+                           <a class="<?php echo $button; ?>" onclick="waitinglist(<?php echo $row->ticketid;?>,2)" style="float:right;">
+                              <span><?php echo JText::_('COM_TICKETMASTER_WAITING_LIST'); ?></span>                      
+                           </a>                       
+                       <?php } ?>
+                    <?php } else { ?> 
+                       	   
+							<?php if ($this->items->show_seatplans != 1) { ?>
+				                
+				                <a class="<?php echo $button; ?>" onclick="buytickets(<?php echo $row->ticketid;?>,2)" style="float:right;">
+	                              <span><?php echo JText::_('COM_TICKETMASTER_ORDER'); ?></span>          
+	                           </a>  
+	                           
+	                        <?php }else{  ?>
+	                        
+	                        	<div align="right" style="margin-right:10px;">
+	                        		<?php echo showprice($this->config->priceformat ,$row->ticketprice, $this->config->valuta); ?>
+	                        	</div>
+	                        
+	                        <?php } ?> 
+	                            
+                    <?php } ?> 
                 </td>
             </tr> 
             
@@ -316,34 +397,71 @@ if ($this->extended->seat_chart != '') {
     
     <?php }else{ ?>
 
-            <table class="table table-striped">               
+             <table class="table table-striped">               
                 <tr>
                     <td><div style="padding-top: 3px;">
-                        <input id="qty_<?php echo $this->items->ticketid;?>" type="text" autocomplete="OFF" value="1"  style="text-align:center;" size="1" />
-                        &nbsp; <?php echo $this->items->ticketname; ?> - <?php echo showprice($this->config->priceformat ,$this->items->ticketprice,
-									$this->config->valuta); ?>
+                    <?php if ($this->items->show_seatplans != 1) { ?>
+                    
+	                    <div style="float:left;">
+	                        <input id="qty_<?php echo $this->items->ticketid;?>" type="text" class="input-mini" autocomplete="OFF" value="1"  
+	                            style="text-align:center; width:20px;" size="1" width="15px" />
+	                     </div>    
+	                    
+	                    <div style="float:left; height:10px; line-height:0px; padding:10px;"><?php echo $this->items->ticketname; ?> - <?php echo showprice($this->config->priceformat ,$this->items->ticketprice, $this->config->valuta); ?></div>
+					
+					<?php }else{ ?>
+					
+					 	<div style="float:left; height:10px; line-height:0px; padding:10px;"><?php echo $this->items->ticketname; ?></div>
+					 	
+					<?php } ?>
                     </div>
                     </td>
-                    <td><?php if ($this->items->totaltickets == 0){ ?>
-                           <div style="text-align:right; padding-top: 5px; padding-right: 2px;">
-                                <?php echo JText::_('COM_TICKETMASTER_SOLD_OUT'); ?>
-                           </div>
-                            <?php } else { ?>    	   
-                           <a class="button_rdticketmaster" onclick="init(<?php echo $this->items->ticketid;?>,2)" style="float:right;">
-                              <span><?php echo JText::_('COM_TICKETMASTER_ADD'); ?></span>                      
-                           </a>
-                           <?php } ?> 
+                    <td><?php if ($this->items->totaltickets <= 0){ ?>
+						   <?php if ($this->config->show_waitinglist != 1) { ?>
+                               <div style="text-align:right; padding-top: 5px; padding-right: 2px;">
+                                    <?php echo JText::_('COM_TICKETMASTER_SOLD_OUT'); ?>
+                               </div>
+						   <?php }else{ ?>
+                               <a class="<?php echo $button; ?>" onclick="waitinglist(<?php echo $this->items->ticketid;?>,2)" style="float:right;">
+                                  <span><?php echo JText::_('COM_TICKETMASTER_WAITING_LIST'); ?></span>                      
+                               </a>                       
+                           <?php } ?>
+                        <?php } else { ?>    	   
+							<?php if ($this->items->show_seatplans != 1) { ?>
+				                
+				                <a class="<?php echo $button; ?>" onclick="buytickets(<?php echo $this->items->ticketid;?>,2)" style="float:right;">
+	                              <span><?php echo JText::_('COM_TICKETMASTER_ORDER'); ?></span>          
+	                           </a>  
+	                           
+	                        <?php }else{  ?>
+	                        
+	                        	<div align="right" style="margin-right:10px;">
+	                        		<?php echo showprice($this->config->priceformat ,$this->items->ticketprice, $this->config->valuta); ?>
+	                        	</div>
+	                        
+	                        <?php } ?>                         
+                        <?php } ?> 
                     </td>
                 </tr>
-            </table> 
-            
+ 
+            </table>     
+
             <?php if ( $this->items->min_ordering != 0 || $this->items->max_ordering != 0 ) { ?>
-                  <div style="height:40px; font-size:80%; padding-left:15px; text-align:center;">
-                    ** <?php echo JText::_('COM_TICKETMASTER_MINIMUM_FOR_ORDER'); ?> <?php echo $this->items->min_ordering; ?> || 
-                    <?php echo JText::_('COM_TICKETMASTER_MAXIMUM_FOR_ORDER'); ?> <?php echo $this->items->max_ordering; ?>
-                </div>  
-            <?php } ?>       
-    
+            	
+            <?php 
+				$minimum = str_replace('%%TICKETNAME%%', $ticketname, JText::_('COM_TICKETMASTER_MINIMUM_FOR_ORDER'));
+				$maximum = str_replace('%%TICKETNAME%%', $ticketname, JText::_('COM_TICKETMASTER_MAXIMUM_FOR_ORDER'));
+			?><table> 
+                <tr>
+                   <td>
+                        <div style="font-size:85%; text-align:center; padding-bottom:5px;">
+                            * <?php echo $minimum; ?> <?php echo $this->items->min_ordering; ?> <br/> * <?php echo $maximum; ?> <?php echo $this->items->max_ordering; ?>
+                        </div>                    
+                   </td>
+                </tr>
+              </table>  
+            <?php } ?>   
+                
     <?php } ?>
 
 </div>
@@ -397,14 +515,13 @@ if ($this->ticket->total > 1) {
             
 			<?php if ($this->items->show_seatplans == 1) { ?>
                 
-                <a class="button_rdticketmaster" id="seatselection" href="<?php echo $link; ?>" 
-                	rel="lightbox[external <?php echo $width+300; ?> <?php echo $height+170; ?>]">
+                <a class="iframe <?php echo $button; ?> btn-block" id="seatselection" href="<?php echo $link; ?>">
                     <span><?php echo JText::_('COM_TICKETMASTER_CHOOSE_SEAT'); ?></span>                      
-                </a>             
+                </a>          
 			
 			<?php } ?>             
                
-            <a class="button_rdticketmaster" onClick="location.href='<?php echo $gotocart; ?>'">
+            <a class="<?php echo $button; ?>" onClick="location.href='<?php echo $gotocart; ?>'">
                 <span><?php echo JText::_('COM_TICKETMASTER_SHOW_CART'); ?></span>                      
             </a>        
         </div> 
@@ -429,21 +546,40 @@ if ($this->ticket->total > 1) {
     
     <div id="ticketmaster-venuedetails">
     	
-        <table class="table table-striped">
+        <table class="table">
         	<tr><td><?php echo $this->items->venue; ?></strong></td></tr>
             <tr><td><?php echo $this->items->street; ?></td></tr>
+            <tr><td><?php echo $this->items->zipcode; ?></td></tr>
             <tr><td><?php echo $this->items->city; ?></td></tr>
-	    <tr><td><?php echo $this->items->zipcode; ?></td></tr>
             <tr><td><a href="<?php echo $this->items->website; ?>" target="_blank"><?php echo $this->items->website; ?></a></td></tr>
         </table>
+        
+        <?php if ($show_venuebuttons == 1) { ?>
+        
+            <?php  $alias = JFilterOutput::stringURLSafe($this->items->venue); ?>
+            <?php  $link = JRoute::_('index.php?option=com_ticketmaster&view=venue&id='.$this->items->vid.':'.$alias);  ?>           		
+                                  
+			<?php if($show_venuedetails == 1) {?>
+                <table class="table">
+                    <tr>
+                        <td><a href="<?php echo $link; ?>" class="<?php echo $button; ?>">
+                                <?php echo JText::_('COM_TICKETMASTER_VENUE_DETAILS'); ?></a>
+                        </td>
+                   </tr>
+                </table> 
+             <?php } ?>
+            
+        <?php } ?>           
         
 		<?php if ($this->config->show_google_maps == 1) { ?>
         
         <div id = "ticketmaster-eventmap" align="center">
 			
-        	<span class="ticketmaster-maps-text">
-        <a href="http://maps.google.com/maps?q=<?php echo $this->items->googlemaps_longitude; ?>,<?php echo $this->items->googlemaps_latitude; ?>&ll=<?php echo $this->items->googlemaps_longitude; ?>,<?php echo $this->items->googlemaps_latitude; ?>&z=<?php echo $this->items->googlemaps_precision; ?>&amp;output=embed" 
-        	rel="lightbox[external 800 450]"><?php echo JText::_('COM_TICKETMASTER_VENUE_SHOWMAP'); ?></a>            
+        	<span class="iframe ticketmaster-maps-text">
+            <a href="http://maps.google.com/maps?q=<?php echo $this->items->googlemaps_latitude; ?>,<?php echo $this->items->googlemaps_longitude; ?>
+            		&ll=<?php echo $this->items->googlemaps_latitude; ?>,<?php echo $this->items->googlemaps_longitude; ?>
+            		&z=8&amp;output=embed" 
+        	><?php echo JText::_('COM_TICKETMASTER_VENUE_SHOWMAP'); ?></a>            
          
             </span>
             
@@ -455,6 +591,9 @@ if ($this->ticket->total > 1) {
 </div>
 
 <?php } ?>
+
+</div>
+
 
 <div style="clear:both;"></div>
 
