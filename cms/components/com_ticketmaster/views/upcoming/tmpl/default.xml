@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_TICKETMASTER_SHOW_UPCOMING" option="COM_TICKETMASTER_SHOW_UPCOMING">
+		<help
+			key = "COM_TICKETMASTER_SHOW_UPCOMING"
+		/>
+		<message>
+			<![CDATA[COM_TICKETMASTER_SHOW_UPCOMING_HELP]]>
+		</message>
+	</layout>
+</metadata>
