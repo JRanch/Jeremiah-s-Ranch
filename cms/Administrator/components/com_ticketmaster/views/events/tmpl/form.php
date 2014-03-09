@@ -95,7 +95,7 @@ if(!$isJ30) {
 <form action = "index.php" method="POST" name="adminForm" id="adminForm" enctype="multipart/form-data">
 
 <div class="row-fluid">
-  <div class="span7">
+  <div class="span6">
 
         <table class="table table-striped" width="100%">
             <tr>
@@ -109,18 +109,18 @@ if(!$isJ30) {
                 <td><?php echo JText::_( 'COM_TICKETMASTER_EVENTCODE' ); ?></td>
                 <td><input class="text_area" type="text" name="groupname" id="groupname" size="25" maxlength="5"
                 value="<?php echo $this->data->groupname; ?>" />
-                    <a href="#mb_inline_code" rel="lightbox[inline 560 180]" title="">
-                        <img src="../administrator/components/com_ticketmaster/assets/images/help16x16.png" width="13px" />
-                    </a>          
+                    <a href="#mb_inline_code" role="button" class="btn pull-right" data-toggle="modal">
+                        <img src="../administrator/components/com_ticketmaster/assets/images/help16x16.png" width="16px" />
+                    </a>                                
                 </td>
             </tr>
             <tr>
                 <td><?php echo JText::_( 'COM_TICKETMASTER_EVENTTICKETS' ); ?></td>
                 <td><input class="text_area" type="text" name="totaltickets" id="totaltickets" size="25" maxlength="25"
                 value="<?php echo $this->data->totaltickets; ?>" />
-                    <a href="#mb_totaltickets" rel="lightbox[inline 560 180]" title="">
-                        <img src="../administrator/components/com_ticketmaster/assets/images/help16x16.png" width="13px" />
-                    </a>           
+                    <a href="#mb_totaltickets" role="button" class="btn pull-right" data-toggle="modal">
+                        <img src="../administrator/components/com_ticketmaster/assets/images/help16x16.png" width="16px" />
+                    </a>                                 
                 </td>
             </tr>    
             <tr>
@@ -138,19 +138,19 @@ if(!$isJ30) {
                 <td><?php echo $this->lists['published']; ?></td>
             </tr>    
         </table>
-        
-        
-        <table width="100%" class="table table-striped">
-            <tr>
-                <td width="100%" colspan="3" valign="top">
-                <?php
-                ## parameters : areaname, content, width, height, cols, rows
-                echo $editor->display( 'eventdescription',  $this->data->eventdescription , '600px', '200', '100', '15' ) ; ?></td>
-            </tr>
-        </table>
   
   </div>
   <div class="span6">
+  
+    <table width="100%" class="table table-striped">
+        <tr>
+            <td width="100%" colspan="3" valign="top">
+            <?php
+            ## parameters : areaname, content, width, height, cols, rows
+            echo $editor->display( 'eventdescription',  $this->data->eventdescription , '100%', '200', '100', '15' ) ; ?></td>
+        </tr>
+    </table>  
+  
   </div>
 </div>  
 
@@ -160,16 +160,33 @@ if(!$isJ30) {
 <input type="hidden" name="controller" value="events" />
 </form>
 
-<div id="mb_inline_code" style="display: none;">
-    <span style="color: #FFF; text-align: center; font-size:97%; font-family:Arial, Helvetica, sans-serif;">
-        <strong><font color="#0066CC"><?php echo JText::_( 'COM_TICKETMASTER_CHOOSE_CODE' ); ?></font></strong><br/><br/>
-        <font color="#000"><?php echo JText::_( 'COM_TICKETMASTER_CODE_EXPLANATION' ); ?></font><br/>
-    </span>
-</div>  		
+<div id="mb_inline_code" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><?php echo JText::_( 'COM_TICKETMASTER_CHOOSE_CODE' ); ?></h3>
+  </div>
+  <div class="modal-body">
+    <p style="font-size:105%; padding:0px;">
+		<?php echo JText::_( 'COM_TICKETMASTER_CODE_EXPLANATION' ); ?>     
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
 
-<div id="mb_totaltickets" style="display: none;">
-    <span style="color: #FFF; text-align: center; font-size:97%; font-family:Arial, Helvetica, sans-serif;">
-        <strong><font color="#0066CC"><?php echo JText::_( 'COM_TICKETMASTER_TOTAL_TICKETS' ); ?></font></strong><br/><br/>
-        <font color="#000"><?php echo JText::_( 'COM_TICKETMASTER_TOTAL_TICKETS_EXPLANATION' ); ?></font><br/>
-    </span>
-</div>  		
+<div id="mb_totaltickets" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><?php echo JText::_( 'COM_TICKETMASTER_TOTAL_TICKETS' ); ?></h3>
+  </div>
+  <div class="modal-body">
+    <p style="font-size:105%; padding:0px;">
+		<?php echo JText::_( 'COM_TICKETMASTER_TOTAL_TICKETS_EXPLANATION' ); ?>     
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+ 		

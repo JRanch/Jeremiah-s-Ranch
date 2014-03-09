@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+
+	<name>COM_TICKETMASTER</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>21-02-2014</creationDate>
+	<author>Robert Dam</author>
+	<authorEmail>info@rd-media.org</authorEmail>
+	<authorUrl>http://www.rd-media.org</authorUrl>
+	<copyright>GPL/GNU</copyright>
+	<license>License Info</license>
+	<!--  The version string is recorded in the components table -->
+	<version>3.1.3</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>Welcome to the Joomla 2.5 and 3.0 version of RD-Ticketmaster!</description>
+	<scriptfile>script.php</scriptfile>
+
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	
+	<!-- Runs on update -->
+	<update> 
+		<schemas>
+			<schemapath type="mysql">sql/updates</schemapath>
+		</schemas>
+	</update>
+
+	<!-- Site Main File Copy Section -->
+	<!-- Note the folder attribute: This attribute describes the folder
+		to copy FROM in the package to install therefore files copied
+		in this section are copied from /site/ in the package -->
+	<files folder="site">
+		<filename>ticketmaster.php</filename>
+		<filename>controller.php</filename>
+		<filename>router.php</filename>
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>elements</folder>
+		<folder>models</folder>
+		<folder>views</folder>		
+	</files>
+
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB/en-GB.com_ticketmaster.ini</language>			
+	</languages>
+	
+	<media destination="com_ticketmaster" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</media>	
+
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu img="../media/com_ticketmaster/images/menu-ticket-icon-16x16.png">COM_TICKETMASTER_MENU</menu>
+		<!-- Administration Main File Copy Section -->
+		<!-- Note the folder attribute: This attribute describes the folder
+			to copy FROM in the package to install therefore files copied
+			in this section are copied from /admin/ in the package -->
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<filename>index.html</filename>
+			<filename>access.xml</filename>
+			<filename>ticketmaster.php</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<folder>assets</folder>
+			<folder>classes</folder>
+			<folder>controllers</folder>
+			<folder>elements</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>tickets</folder>
+			<folder>toolbar</folder>
+			<folder>views</folder>
+		</files>
+
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_ticketmaster.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_ticketmaster.sys.ini</language>
+		</languages>
+	</administration>
+
+</extension>
+

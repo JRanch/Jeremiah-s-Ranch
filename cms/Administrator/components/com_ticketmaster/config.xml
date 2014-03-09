@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Welcome to the Joomla! Twilight Zone.
+	
+	In Joomla! 1.6, Andrew decided to change the container elements of configuration options
+	from <params> - <param>	to <fieldset> - <field>, so as to support multiple groups. Why he did
+	change the tag names is still a mystery to me. Anyway, in order to make Akeeba Backup backward
+	and forward compatible, I had to duplicate ALL parameters using both formats.
+	
+	The funny think is that we were assured that only *minor* changes would need be done to our
+	extensions and that, generally, Joomla! 1.5 extensions would run on 1.6. Yeah, right. Whatever.
+-->
+<config>
+
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			filter="rules"
+			component="com_ticketmaster"
+			section="component" />
+	</fieldset>
+
+	<fieldset name="eventview" label="Eventlist Parameters" description="Change the eventlist Parameters.">
+		
+		<field name="eventlist_view" type="radio" default="0"
+			label="Eventlist View"
+			description="You have a list view and a information view. Please choose what you want to use here.">
+			<option value="0">List View</option>
+			<option value="1">Informational View</option>
+		</field>
+		
+		<field name="eventlist_showfilter" type="radio" default="0"
+			label="Show Filter Options"
+			description="Show a filter, so people can order by ticketname, price and date.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>		
+		
+		<field name="eventlist_showvenue" type="radio" default="0"
+			label="Show Venue"
+			description="Show a button directly to the venue of the event.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>		
+
+	</fieldset>
+	
+	<fieldset name="eventdetails" label="Event Details" description="Event Details Parameters">
+		
+		<field
+			name="gmaps_width"
+			type="text"
+			label="Google Maps Width"
+			description="Set the width of the Google Maps image"
+		/>
+		
+		<field
+			name="gmaps_heigth"
+			type="text"
+			label="Google Mpas Height"
+			description="Set the heigth of the Google Maps image"
+		/>			
+		
+		<field name="show_venuebuttons" type="radio" default="0"
+			label="Show Venue Buttons"
+			description="Do you want to show a button directly to the venue.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="show_venuedetails" type="radio" default="0"
+			label="Show Venue Details"
+			description="Show the venue details near the Google Mpas">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>								
+
+	</fieldset>	
+	
+	<fieldset name="frontend" label="Front Parameters" description="Frontend Parameters">
+		
+		<field name="button_color" type="radio" default="0" label="Button Color" description="Choose the colors of the buttons in Joomla 3">
+			<option value="btn">Grey</option>
+			<option value="btn btn-primary">Blue</option>
+			<option value="btn-info">Light Blue</option>
+			<option value="btn-success">Green</option>
+			<option value="btn-warning">Orange</option>
+			<option value="btn-danger">Red</option>	
+			<option value="btn-inverse">Black</option>
+		</field>		
+
+	</fieldset>
+	
+	
+</config>
