@@ -42,7 +42,7 @@ if(!$isJ30) {
 		JHTML::_('behavior.modal');
 		## Include the tooltip behaviour.
 		JHTML::_('behavior.tooltip', '.hasTip');
-		$document->addScript('http://code.jquery.com/jquery-latest.js');
+		$document->addScript('https://code.jquery.com/jquery-latest.js');
 		$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 		$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 	}

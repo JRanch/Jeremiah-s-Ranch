@@ -40,7 +40,7 @@ if (file_exists($cssfile)) {
 ## Adding the lightbox functionality
 
 if ($this->config->load_jquery == 1) {
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 }elseif ($this->config->load_jquery == 2) {
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
 }
@@ -50,7 +50,7 @@ if($isJ30) {
 	JHtml::_('bootstrap.framework');
 	jimport('joomla.html.html.bootstrap');
 }else{
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');	
 }

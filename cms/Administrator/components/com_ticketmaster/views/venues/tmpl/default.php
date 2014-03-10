@@ -112,7 +112,7 @@ jQuery.noConflict();
       <td><div align="left"><?php echo $row->website; ?></div></td>
       <td><div align="center">
    
-        <a class="iframe" href="http://maps.google.com/?q=<?php echo $row->googlemaps_latitude?>,<?php echo $row->googlemaps_longitude; ?>" 
+        <a class="iframe" href="https://maps.google.com/?q=<?php echo $row->googlemaps_latitude?>,<?php echo $row->googlemaps_longitude; ?>" 
         	rel="lightbox">
             	<img src="<?php echo JURI::base().'components/com_ticketmaster/assets/images/show-now.png'; ?>" border="0" alt="" /></a>              
                  

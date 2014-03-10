@@ -48,7 +48,7 @@ if(!$isJ30) {
 	JHTML::_('behavior.modal');
 	## Include the tooltip behaviour.
 	JHTML::_('behavior.tooltip', '.hasTip');
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 	## Add the fancy lightbox for information fields.
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
 	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );	
@@ -132,7 +132,7 @@ var JQ = jQuery.noConflict();
             <tr>
                 <td width="50%"><?php echo JText::_( 'COM_TICKETMASTER_SHOW_GOOGLEMAP' ); ?></td>
                 <td><?php echo $this->lists['map']; ?> 
-                <a class="iframe" href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<?php echo $this->data->city; ?>,+mi&amp;aq=&amp;sll=<?php echo $this->data->googlemaps_longitude; ?>,<?php echo $this->data->googlemaps_latitude; ?>&amp;sspn=0.026765,0.024848&amp;ie=UTF8&amp;hq=&amp;hnear=<?php echo $this->data->city; ?>+<?php echo $this->data->street; ?>&amp;z=15&amp;ll=<?php echo $this->data->googlemaps_longitude; ?>,<?php echo $this->data->googlemaps_latitude; ?>&amp;output=embed" rel="lightbox[external 640 360]" title="<?php echo $this->data->venue; ?>, <?php echo $this->data->street; ?>, <?php echo $this->data->city; ?>"><img src="<?php echo JURI::base().'components/com_ticketmaster/assets/images/show-now.png'; ?>"
+                <a class="iframe" href="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<?php echo $this->data->city; ?>,+mi&amp;aq=&amp;sll=<?php echo $this->data->googlemaps_longitude; ?>,<?php echo $this->data->googlemaps_latitude; ?>&amp;sspn=0.026765,0.024848&amp;ie=UTF8&amp;hq=&amp;hnear=<?php echo $this->data->city; ?>+<?php echo $this->data->street; ?>&amp;z=15&amp;ll=<?php echo $this->data->googlemaps_longitude; ?>,<?php echo $this->data->googlemaps_latitude; ?>&amp;output=embed" rel="lightbox[external 640 360]" title="<?php echo $this->data->venue; ?>, <?php echo $this->data->street; ?>, <?php echo $this->data->city; ?>"><img src="<?php echo JURI::base().'components/com_ticketmaster/assets/images/show-now.png'; ?>"
                     border="0" alt="" /></a>          
                 </td>
             </tr>

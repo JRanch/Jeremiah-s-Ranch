@@ -36,7 +36,7 @@ if($isJ30) {
 	## We are in J3, load the bootstrap!
 	jimport('joomla.html.html.bootstrap');
 }else{
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');	
 }
