@@ -39,7 +39,7 @@ $document->setTitle( JText::_( 'COM_TICKETMASTER_LOGIN_OR_CREATE_ACCOUNT' ) );
 $document->addScript( JURI::root(true).'/components/com_ticketmaster/assets/javascripts/moovalid.js');
 
 if ($this->config->load_jquery == 1) {
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 }elseif ($this->config->load_jquery == 2) {
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
 }

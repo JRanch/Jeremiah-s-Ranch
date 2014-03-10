@@ -29,7 +29,7 @@ $pathway->addItem(JText::_( 'COM_TICKETMASTER_YOUR_CART' ));
 $isJ30 = version_compare(JVERSION, '3.0.0', 'ge');
 
 if ($this->config->load_jquery == 1) {
-	$document->addScript('http://code.jquery.com/jquery-latest.js');
+	$document->addScript('https://code.jquery.com/jquery-latest.js');
 }elseif ($this->config->load_jquery == 2) {
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/jquery/jquery.js');
 }
