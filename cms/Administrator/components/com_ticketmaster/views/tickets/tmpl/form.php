@@ -31,7 +31,7 @@ JHTML::_('behavior.tooltip', '.hasTip');
 
 ## Get document type and add it.
 $document = JFactory::getDocument();
-$document->addScript('http://code.jquery.com/jquery-latest.js');
+$document->addScript('https://code.jquery.com/jquery-latest.js');
 ## Add the fancy lightbox for information fields.
 $document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.js');
 $document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/lightbox/mediabox.css' );
@@ -45,10 +45,10 @@ if(!$isJ30) {
 	## Include the tooltip behaviour.
 	JHTML::_('behavior.tooltip', '.hasTip');
 	$document->addStyleSheet( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/css/bootstrap.css' ); 
-	$document->addStyleSheet('http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');
+	$document->addStyleSheet('https://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');
 	$document->addScript( JURI::root(true).'/administrator/components/com_ticketmaster/assets/bootstrap/js/bootstrap.js');
 }else{
-	$document->addStyleSheet('http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');	
+	$document->addStyleSheet('https://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');	
 }
 
 ?>
@@ -60,7 +60,7 @@ if(!$isJ30) {
 
 <div class="alert alert-error" id="date-error" style="display: none;"></div>
 
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
 <script language="javascript">
 

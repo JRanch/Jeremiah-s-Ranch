@@ -50,8 +50,8 @@ if (file_exists($path)) {
 }
 
 $document = JFactory::getDocument();
-$document->addScript('http://code.jquery.com/jquery-latest.js');
-$document->addStyleSheet('http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');	
+$document->addScript('https://code.jquery.com/jquery-latest.js');
+$document->addStyleSheet('https://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');	
 
 ## Check if this is Joomla 2.5 or 3.0.+
 $isJ30 = version_compare(JVERSION, '3.0.0', 'ge');
@@ -69,7 +69,7 @@ if(!$isJ30) {
 	jimport('joomla.html.html.bootstrap');	
 }
 ?>
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <script language="javascript">
 
 var jQuery = jQuery.noConflict();
