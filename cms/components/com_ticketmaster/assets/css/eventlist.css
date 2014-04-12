@@ -1,0 +1,132 @@
+#ticketmaster-eventfilter{
+	width: 100%;
+	border:#CCCCCC 1px solid;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 10px;
+}
+
+#ticketmaster-event{
+	float: right;
+	padding-right:10px;
+}
+
+#ticketmaster_tablehead{
+	height: 30px;
+	background-color:#e6e7ea;
+	width: 100%;
+	border:#d3d3d6 1px solid;
+}
+
+#ticketmaster_tablerows{
+	height: 30px;
+	background-color:#fff;
+	width: 100%;
+	border:#d3d3d6 1px solid;
+	border-top:#d3d3d6 0px solid;
+}
+
+#ticketmaster_small{
+	width: 80px;
+	height: 30px;
+	text-align:center;
+	line-height:30px;
+	font-size: 110%;
+	font-weight:bold;
+	float:left;
+	border-left:#d3d3d6 1px solid;
+}	
+
+#ticketmaster_date{
+	width: 24px;
+	height: 30px;
+	text-align:center;
+	line-height:30px;
+	font-size: 110%;
+	font-weight:bold;
+	float:left;
+	border-left:#d3d3d6 1px solid;
+}
+
+#ticketmaster_transaction{
+	width: 365px;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	font-size: 110%;
+	font-weight:bold;
+	float:left;
+	padding-left:8px;
+	border-left:#d3d3d6 1px solid;
+}	
+
+
+#ticketmaster_smallrow{
+	width: 80px;
+	height: 30px;
+	text-align:center;
+	line-height:30px;
+	float:left;
+	border-left:#d3d3d6 1px solid;
+}	
+
+#ticketmaster_smallrow_button{
+	width: 80px;
+	height: 30px;
+	padding-left: 15px;
+	padding-top:2px;
+	float:left;
+	border-left:#d3d3d6 1px solid;
+}
+
+#ticketmaster_daterow{
+	width: 25px;
+	height: 20px;
+	text-align:center;
+	line-height:30px;
+	float:left;
+}
+
+#ticketmaster_eventrow{
+	width: 265px;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	font-size: 110%;
+	font-weight:bold;
+	float:left;
+	padding-left:8px;
+	border-left:#d3d3d6 1px solid;
+}	
+
+#ticketmaster_eventrow_small{
+	width: 265px;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	float:left;
+	padding-left:8px;
+	border-left:#d3d3d6 1px solid;
+}
+
+#ticketmaster_venuerow{
+	width: 180px;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	font-size: 110%;
+	font-weight:bold;
+	float:left;
+	padding-left:8px;
+	border-left:#d3d3d6 1px solid;
+}
+
+#ticketmaster_venuerow_small{
+	width: 180px;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	float:left;
+	padding-left:8px;
+	border-left:#d3d3d6 1px solid;
+}

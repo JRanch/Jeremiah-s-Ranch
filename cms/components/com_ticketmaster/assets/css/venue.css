@@ -1,0 +1,11 @@
+#ticketmaster_left_side{
+	width:48%;
+	float:left;
+	padding: 8px 4px 4px 4px;	
+}
+
+#ticketmaster_right_side{
+	width:48%;
+	float:right;
+	padding: 0px 4px 4px 4px;
+}
