@@ -332,7 +332,7 @@ class confirmation{
 				$db->setQuery($sql);
 				$seat = $db->loadObject();				  			
 				
-				$seatnumber = JText::_( 'COM_TICKETMASTER_SEAT_NR' ).': '.$seat->seatid;
+				$seatnumber = JText::_( 'COM_TICKETMASTER_SEAT_NR' ).': '.$seat->row_name.$seat->seatid;
 				
 				## Event information, second line
 				$pdf->SetXY(27, $height2);
@@ -682,7 +682,7 @@ class confirmation{
 			$price = showprice($configuration->priceformat ,$row->ticketprice , $configuration->valuta);
 			$ticketdate = date ($configuration->dateformat, strtotime($row->ticketdate));
 			
-			$customer = $row->name;
+			$customer = $row->firstname.' '.$row->name;
 			$recipient = $row->emailaddress;
 			
 			if($row->seatid == '') {
@@ -818,7 +818,7 @@ class confirmation{
 			$price = showprice($configuration->priceformat ,$row->ticketprice , $configuration->valuta);
 			$ticketdate = date ($configuration->dateformat, strtotime($row->ticketdate));
 			
-			$customer = $row->name;
+			$customer = $row->firstname.' '.$row->name;
 			$recipient = $row->emailaddress;
 			
 			$orders .= '<li>[ '.$row->orderid.' ] - [ '.$ticketdate.' ] - <strong>'.$row->ticketname.'</strong> [ '.$price.' ]</li>';	

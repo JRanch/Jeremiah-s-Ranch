@@ -1,0 +1,269 @@
+#ticketmaster-export-warning{
+	width: 600px;
+	height: 32px;
+	border:solid 1px #CCCCCC;
+	background-color:#FFFFFF;
+	padding-left: 80px;
+	background-image: url(../assets/images/button-warning-icon.png);
+	background-repeat: no-repeat;
+	overflow:hidden;
+}
+
+
+#ticketmaster-moneybox{
+	width: 600px;
+	height: 120px;
+	border:solid 1px #CCCCCC;
+	background-color:#FFFFFF;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	padding-left: 80px;
+	background-image: url(../assets/images/money-icon.png);
+	background-repeat: no-repeat;
+	overflow:hidden;
+}	
+
+#ticketmaster-paymentinfo{
+	width: 575px;
+	height: 15px;
+	line-height:10px;
+	border-bottom:solid 1px #CCCCCC;
+	background-color:#FFFFFF;
+	color:#7e7b7b;
+	font-size:115%;
+	font-weight: bold;
+	align:center;
+}
+
+#ticketmaster-paymentbox{
+	width: 430px;
+	background-color:#FFFFFF;
+	color:#7e7b7b;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+#ticketmaster-paidbox{
+	width: 100%;
+	color:#000000;
+	font-weight: bold;
+	background-image: url(money-icon-small.png);
+	background-repeat:no-repeat;
+
+}
+
+#ticketmaster-alert-notice{
+	height:30px;
+	line-height:31px;
+	border-top:solid 2px #ffa800;
+	border-bottom:solid 2px #ffa800;
+	background-color:#fdebc8;
+	background-image: url(../assets/images/notice-note.png);
+	background-repeat: no-repeat;
+	overflow:hidden;
+	margin-bottom:10px;
+	padding-left:35px;
+	font-size:110%;
+	font-weight:bold;
+}
+
+#ticketmaster-version-ok{
+	height:32px;
+	margin-top: 10px;
+	line-height:33px;
+	border-top:solid 2px #00a635;
+	border-bottom:solid 2px #00a635;
+	background-color:#FFF;
+	background-image: url(../assets/images/tick-32x32.png);
+	background-repeat: no-repeat;
+	overflow:hidden;
+	margin-bottom:10px;
+	padding-left:38px;
+	font-size:110%;
+	font-weight:bold;
+	color:#00a635;
+}	
+	
+#ticketmaster-new-version{
+	height:32px;
+	margin-top: 10px;
+	line-height:33px;
+	border-top:solid 2px #ffa800;
+	border-bottom:solid 2px #ffa800;
+	background-color:#FFF;
+	background-image: url(../assets/images/failed-32x32.png);
+	background-repeat: no-repeat;
+	overflow:hidden;
+	margin-bottom:10px;
+	padding-left:38px;
+	font-size:110%;
+	font-weight:bold;
+	color: #ffa800;
+}
+
+
+.styled-select{
+   background: transparent;
+   padding: 3px;
+   font-size: 11px;
+   border: 1px solid #CCC;
+   -moz-border-radius:1px;
+   -webkit-border-radius:1px;   
+   border-radius:3px;
+   margin-left:0px;
+   text-align:center;
+}
+
+.styled-select:hover{
+	background-color:#e8f6fe;
+}
+
+.button_rdsubs {
+	background-color:#FFF;
+	border: 1px solid #CCC;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	border-radius:3px;
+	display:inline-block;
+	color:#333;
+	padding:3px 8px 3px 8px;;
+	text-decoration:none;
+	margin:3px;
+}
+
+.button_rdsubs:hover {
+	background-color:#e8f6fe;
+	border: 1px solid #CCC;
+	color:#000000;
+	
+}.button_rdsubs:active {
+	position:relative;
+	top:1px;
+}
+
+.button_rdsubs_save {
+	background-color:#FFF;
+	border: 1px solid #CCC;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	background-image: url(images/save-icon.png);
+	background-repeat:no-repeat;
+	background-position:3px center;
+	border-radius:3px;
+	display:inline-block;
+	color:#333;
+	padding:3px 8px 3px 25px;;
+	text-decoration:none;
+	margin:3px;
+}
+
+.button_rdsubs_save:hover,.button_rdsubs_save:active {
+	background-color:#e8f6fe;
+	border: 1px solid #CCC;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	background-image: url(images/save-icon.png);
+	background-repeat:no-repeat;
+	background-position:3px center;
+	border-radius:3px;
+	display:inline-block;
+	color:#333;
+	padding:3px 8px 3px 25px;;
+	text-decoration:none;
+	margin:3px;
+}
+
+#success_msg {
+	background-color:#0C0;
+	border: 1px solid #CCC;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	background-image: url(images/tick.png);
+	background-repeat:no-repeat;
+	background-position:3px center;
+	border-radius:3px;
+	display:inline-block;
+	color:#FFF;
+	font-weight:bold;
+	padding:3px 8px 3px 25px;;
+	text-decoration:none;
+	margin:3px;
+}
+
+#failed_msg {
+	background-color:#F00;
+	border: 1px solid #CCC;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	background-image: url(images/delete-icon.png);
+	background-repeat:no-repeat;
+	background-position:3px center;
+	border-radius:3px;
+	display:inline-block;
+	color:#FFF;
+	font-weight:bold;
+	padding:3px 8px 3px 25px;;
+	text-decoration:none;
+	margin:3px;
+}
+
+.icon-32-notpaid 	{ background-image: url(../toolbar/icon-32-notpaid.png); }
+.icon-32-paid 		{ background-image: url(../toolbar/icon-32-paid.png); }
+.icon-32-pdf 		{ background-image: url(../toolbar/icon-32-pdf.png); }
+.icon-32-process	{ background-image: url(../toolbar/icon-32-process.png); }
+.icon-32-send		{ background-image: url(../toolbar/icon-32-send.png); }
+.icon-32-cleanup	{ background-image: url(../toolbar/icon-32-cleanup.png); }
+.icon-32-sync		{ background-image: url(../toolbar/icon-32-sync.png); }
+.icon-32-export		{ background-image: url(../toolbar/icon-32-export.png); }
+.icon-32-confirm	{ background-image: url(../toolbar/icon-32-confirm.png); }
+.icon-32-refund		{ background-image: url(../toolbar/icon-32-refund.png); }
+.icon-32-unlock		{ background-image: url(../toolbar/icon-32-unblock.png); }
+.icon-32-blocked	{ background-image: url(../toolbar/icon-32-blocked.png); }
+
+/* -- CONTROL PANEL STYLES ----------------------------- */
+div.icon {
+	text-align: center;
+	margin-right: 10px;
+	float: left;
+	margin-bottom: 15px;
+	font-size: 0.9em;
+}
+
+div.icon a {
+	padding: 15px 5px 5px;
+	font-size:12px;
+	background-color: white;
+	background-position: -30px;
+	display: block;
+	float: left;
+	height: 90px;
+	width: 100px;
+	color: #565656;
+	vertical-align: middle;
+	text-decoration: none;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	transition-property: none;
+	
+}
+
+div.icon a:hover,
+div.icon a:focus,
+div.icon a:active,
+div.icon a:hover,
+div.icon a:focus,
+div.icon a:active {
+	background-position: 0;
+	-webkit-border-bottom-left-radius: inherit;
+	-moz-border-radius-bottomleft: inherit;
+	border-bottom-left-radius: inherit;
+	position: relative;
+	z-index: 10;
+	color: #00C;
+}
+
+div.icon span,
+div.icon span {
+	display: block;
+	text-align: center;
+}

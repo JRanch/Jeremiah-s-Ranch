@@ -123,6 +123,8 @@ $failds = count($this->failed);
 
 ?>
 
+<script language="javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+
 <script language="javascript">
 
 var JQ = jQuery.noConflict();

@@ -63,6 +63,12 @@ jQuery.noConflict();
 	
 </script>
 
+<div class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4><?php echo JText::_( 'COM_TICKETMASTER_WARNING_MESSAGE' ); ?></h4>
+  <?php echo JText::_( 'COM_TICKETMASTER_PLEASE_LEAVE_ONE_COUNTRY' ); ?>
+</div>  
+
 <form action = "index.php" method="POST" name="adminForm" id="adminForm" >
   <table class="table table-striped" width="100%">
     <thead>
@@ -117,3 +123,4 @@ jQuery.noConflict();
   <input name = "limitstart" type="hidden" value="<?php echo $this->pagination->limitstart; ?>" />
 </form>
        
+     

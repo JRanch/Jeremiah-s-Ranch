@@ -2,7 +2,7 @@
 /************************************************************
  * @version			ticketmaster 2.5.5
  * @package			com_ticketmaster
- * @copyright		Copyright © 2009 - All rights reserved.
+ * @copyright		Copyright ï¿½ 2009 - All rights reserved.
  * @license			GNU/GPL
  * @author			Robert Dam
  * @author mail		info@rd-media.org
@@ -100,6 +100,9 @@ if ($this->extended->seat_chart != '') {
 }
 
 ?>
+
+<script type="text/javascript" src="components/com_ticketmaster/assets/j3-lightbox/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="components/com_ticketmaster/assets/j3-lightbox/js/colorbox.js"></script>
 
 <script type="text/javascript">
 	
@@ -369,7 +372,15 @@ if ($this->extended->seat_chart != '') {
                 <tr>
                    <td colspan="2">
                         <div style="font-size:85%; text-align:center;">
-                            <?php echo $minimum; ?> <?php echo $row->min_ordering; ?> || <?php echo $maximum; ?> <?php echo $row->max_ordering; ?>
+                            
+                            <?php if($row->max_ordering != 0 && $row->min_ordering != 0){ ?>
+                            	<?php echo $minimum; ?> <?php echo $row->min_ordering; ?> || <?php echo $maximum; ?> <?php echo $row->max_ordering; ?>
+                            <?php }else if($row->max_ordering != 0 && $row->min_ordering == 0){ ?>
+                            	<?php echo $maximum; ?> <?php echo $row->max_ordering; ?>
+                            <?php }else if($row->max_ordering == 0 && $row->min_ordering != 0){ ?>
+	                            <?php echo $minimum; ?> <?php echo $row->min_ordering; ?>
+	                        <?php } ?>
+                            
                         </div>                    
                    </td>
                 </tr>
@@ -447,7 +458,15 @@ if ($this->extended->seat_chart != '') {
                 <tr>
                    <td>
                         <div style="font-size:85%; text-align:center; padding-bottom:5px;">
-                            * <?php echo $minimum; ?> <?php echo $this->items->min_ordering; ?> <br/> * <?php echo $maximum; ?> <?php echo $this->items->max_ordering; ?>
+
+                            <?php if($this->items->max_ordering != 0 && $this->items->min_ordering != 0){ ?>
+                            	<?php echo $minimum; ?> <?php echo $this->items->min_ordering; ?> || <?php echo $maximum; ?> <?php echo $this->items->max_ordering; ?>
+                            <?php }else if($this->items->max_ordering != 0 && $this->items->min_ordering == 0){ ?>
+                            	<?php echo $maximum; ?> <?php echo $this->items->max_ordering; ?>
+                            <?php }else if($this->items->max_ordering == 0 && $this->items->min_ordering != 0){ ?>
+	                            <?php echo $minimum; ?> <?php echo $this->items->min_ordering; ?>
+	                        <?php } ?>
+
                         </div>                    
                    </td>
                 </tr>

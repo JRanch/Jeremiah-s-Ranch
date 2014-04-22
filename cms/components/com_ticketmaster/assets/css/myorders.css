@@ -1,0 +1,56 @@
+#cartheading{
+	width: 100%;
+	height: 30px;
+	background-color:#0eb8cb;
+	border: 1px #CCC solid;
+	margin-top: 20px;
+}
+
+#cartitems{
+	width: 100%;
+	height: 30px;
+	border-left: 1px #CCC solid;
+	border-bottom: 1px #CCC solid;
+	border-right: 1px #CCC solid;
+}
+
+#cart_invoiceid{
+	line-height: 30px;
+	width:13%;
+	float:left;
+	color:#FFFFFF;
+	text-align:center;
+	border-right: 1px #CCC solid;
+}
+
+#cartitems_invoiceid{
+	line-height:30px;
+	height: 30px;
+	width:13%;
+	float:left;
+	color:#000;
+	text-align:center;
+	border-right: 1px #CCC solid;
+}
+
+#cart_date{
+	line-height: 30px;
+	width:15%;
+	float:left;
+	color:#FFFFFF;
+	text-align:center;
+	border-right: 1px #CCC solid;
+}
+
+#cartitems_date{
+	line-height:30px;
+	height: 30px;
+	width:15%;
+	float:left;
+	color:#000;
+	text-align:center;
+	border-right: 1px #CCC solid;
+}
+
+
+

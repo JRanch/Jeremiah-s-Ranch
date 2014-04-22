@@ -77,7 +77,9 @@ if(!$isJ30) {
 <thead>
     <th width="15%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_DATE' ); ?></div></th>
     <th width="50%"><?php echo JText::_( 'COM_TICKETMASTER_TM_EVENTS' ); ?></th>
-    <th width="15%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_PRICE' ); ?></div></th>
+    <?php if($this->config->show_price_eventlist == 1) { ?>
+    	<th width="15%"><div align="center"><?php echo JText::_( 'COM_TICKETMASTER_PRICE' ); ?></div></th>
+    <?php } ?>	
     <th width="20%">&nbsp;</th>
 </thead> 
          
@@ -104,7 +106,9 @@ if(!$isJ30) {
     <tr>
     	<td><div align="center"><a href="<?php echo $link; ?>"><?php echo date ($this->config->dateformat, strtotime($row->ticketdate)); ?></a></div></td>
         <td><a href="<?php echo $link; ?>"><?php echo $row->upcomingeventname; ?></a></td>
-        <td><div align="center"><?php echo showprice($this->config->priceformat ,$row->ticketprice,$this->config->valuta); ?></div></td>
+        <?php if($this->config->show_price_eventlist == 1) { ?>
+        	<td><div align="center"><?php echo showprice($this->config->priceformat ,$row->ticketprice,$this->config->valuta); ?></div></td>
+        <?php } ?>
         <td><div align="center"><a class="<?php echo $button; ?>" href="<?php echo $link; ?>"><?php echo JText::_('COM_TICKETMASTER_SHOW_NOW'); ?></a></div></td>
     </tr>    
 

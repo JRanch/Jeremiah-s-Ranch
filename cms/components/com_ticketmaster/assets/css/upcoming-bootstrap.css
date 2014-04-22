@@ -1,0 +1,33 @@
+.ticktmaster_box_heading {
+    -webkit-border-radius: 7px 7px 0px 0px;
+    -moz-border-radius: 7px 7px 0px 0px;
+    -khtml-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    border: 1px solid #DBDEE1;
+    padding: 8px 10px 7px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+	height:14px;
+    color: #333;
+}
+
+.ticktmaster_box_heading_text {
+	float:right;
+	position:absolute;
+	position:fixed;
+	margin-left:80%;
+}
+
+.ticktmaster_box_content {
+    -webkit-border-radius: 0px 0px 7px 7px;
+    -moz-border-radius: 0px 0px 7px 7px;
+    -khtml-border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px 7px 7px;
+    border-left: 1px solid #DBDEE1;
+    border-right: 1px solid #DBDEE1;
+    border-bottom: 1px solid #DBDEE1;
+    padding: 10px;
+    margin: 0px 0px 15px 0px;
+}
+

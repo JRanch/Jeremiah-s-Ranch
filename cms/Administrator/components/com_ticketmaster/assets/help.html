@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PayPal Information</title>
+<style type="text/css">
+<!--
+.head {
+	font-family: Arial, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color:#3333CC;
+}
+
+.normal {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#000000;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<p><span class="head">PayPal Currencies you should use:</span><br />
+  <br>
+    <span class="normal">There are a few PayPal currencies, the following can be used in the currency form:</span><br />
+    <span class="normal">You can use the 3 didgit uppercase letters. If you do not define them well, PayPal will use USD.<br />
+    <br />
+    AUD - Australian Dollar<br>
+    CAD - Canadian Dollar<br>
+    CHF - Swiss Franc<br>
+    CZK - Czech Koruna<br>
+    DKK - Danish Krone<br>
+    EUR - Euro<br>
+    GBP - Pound Sterling<br>
+    HKD - Hong Kong Dollar<br>
+    HUF - Hungarian Forint<br>
+    JPY - Japanese Yen<br>
+    NOK - Norwegian Krone<br>
+    NZD - New Zealand Dollar<br>
+    PLN - Polish Zloty<br>
+    SEK - Swedish Krona<br>
+    SGD - Singapore Dollar<br>
+    USD - U.S. Dollar</span></p>
+<p class="normal"><span class="head"><br />
+  PayPal Sandbox - Test Environment</span><br />
+  <br />
+  The PayPal Sandbox is a testing environment that is a duplicate of the live   PayPal site, except that no real money changes hands. The Sandbox allows you to   test your entire integration before submitting transactions to the live PayPal   environment. Create and manage test accounts, and view emails and API   credentials for those test accounts. <br />
+    <br />
+If you turn on &quot;<strong>PayPal in Testmode?</strong>&quot;, your payments will go to the PayPal sandbox. <br />
+    You need 2 test accounts in the sandbox, they can be created easily in the Sandbox Environment. <br />
+    After you have created the sandbox accounts, you need to use these accounts in the RD-Ticketmaster Confuguration. (You need a seller account and a buyer account.)<br />
+  <br />
+    <br />
+  <span class="head">Setting Up Your PayPal account to use with RD-Ticketmaster.</span><br />
+    <br />
+1.    First login to your PayPal account, you will see the maintab, called: &quot;<strong>My Account</strong>&quot; the subtab contains an item called: &quot;<strong>Profile</strong>&quot;. Click on the profile button.<br />
+    <br />
+    <img src="images/pp-step-1.png" width="670" height="114" /><br />
+    <br />
+    2. Look for the link &quot;Website Payment Preferences&quot;<br />
+    <br />
+<img src="images/pp-step-2.png" width="593" height="256" /></p>
+<p class="normal">3 &amp; 4. Turning on some PayPal features that we're using to process money to you.<br />
+  <br />
+The return URL is always containing your own domainname, so it will be something like:<br />
+http://www.<strong>yoursite.com</strong>/index.php?option=com_ticketmaster&amp;controller=transaction&amp;task=process</p>
+<p class="normal"><img src="images/pp-step-3-4.png" width="670" height="244" /><br />
+    <br />
+  5. Turn On data Payment Transfers.<br />
+    <br />
+  Do<strong> NOT</strong> use our Identity Code, you will receive your once your account has been set up! Use this code to communicate with PayPal (PP)<br />
+    <br />
+    <img src="images/pp-step-5.png" width="611" height="175" /><br />
+    6. Let's click the save button and copy your Identity Code from PayPal to the RD-Ticketmaster Configuration screen.<br />
+     After clicking the save button your own Identity Code will appear in the next page. Otherwise you van go back to Website Payments Transfer page to copy it.<br />
+      <br />
+    You will now be able to receive money and money information from PayPal into your website.<br />
+</p>
+<br />
+<span class="head">Incoming Payments are becoming "UNCLAIMED", what to do?</span><br /><br />
+<span class="normal">The reason the payments are unclaimed is because you sent them in a currency you don't a balance in or in your preferences you chose not to accept currency in Euros.
+<br />
+<br />
+Go into your seller's account, click on profile, then click on  balances and add EUROs.</span>
+</body>
+</html>

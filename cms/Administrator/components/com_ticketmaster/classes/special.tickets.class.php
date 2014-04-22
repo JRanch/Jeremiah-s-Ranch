@@ -322,7 +322,8 @@ class special{
 				$price = showprice($config->priceformat ,$row->ticketprice , '');
 				$pdf->Write(0, utf8_decode(JText::_( 'COM_TICKETMASTER_ORDER' )).' '.$row->orderid.' :: '.utf8_decode(JText::_( 'COM_TICKETMASTER_PDF_PRICE' )).' '.chr(0x00A3).' '.$price.' :: '.JText::_( 'COM_TICKETMASTER_PDF_DATE' ).' '.$ticketdate);
 			}else{
-				$pdf->Write(0, utf8_decode(JText::_( 'COM_TICKETMASTER_ORDER' )).$row->orderid.' :: '.utf8_decode(JText::_( 'COM_TICKETMASTER_PDF_PRICE' )).' '.$row->ticketprice.' :: '.JText::_( 'COM_TICKETMASTER_PDF_DATE' ).' '.$ticketdate);
+			    $price = showprice($config->priceformat ,$row->ticketprice , $config->valuta);
+				$pdf->Write(0, utf8_decode(JText::_( 'COM_TICKETMASTER_ORDER' )).$row->orderid.' :: '.utf8_decode(JText::_( 'COM_TICKETMASTER_PDF_PRICE' )).' '.$price.' :: '.JText::_( 'COM_TICKETMASTER_PDF_DATE' ).' '.$ticketdate);
 			}	
 			
 			## Getting the heigth for the closing line -- will only show after the for loop has been completed:

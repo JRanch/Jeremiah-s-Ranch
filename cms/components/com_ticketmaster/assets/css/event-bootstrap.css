@@ -1,0 +1,170 @@
+#ticketmaster_left{
+	float: left;
+	width: 66%;
+}	
+
+#ticketmaster_right{
+	float: right;
+	width: 100%;
+	margin-bottom: 5px;
+}	
+
+.order-totals-cart{
+	text-align:center;
+}
+
+#cart-header{
+	text-align:center;
+	width:100%;
+	font-size:115%;
+}
+
+#ticketmaster_venue_header{
+	width: 100%;
+	height: 30px;
+	font-size:105%;
+	border-bottom:2px #CCC solid;
+	padding-bottom: 5px;
+	background-image:url(../images/star-icon-24x24.png);
+	background-repeat:no-repeat;
+}
+
+#ticketmaster_cart_header{
+	width: 100%;
+	height: 30px;
+	font-size:105%;
+	border-bottom:2px #CCC solid;
+	padding-bottom: 5px;
+	background-image:url(../images/cart-icon-24x24.png);
+	background-repeat:no-repeat;
+}
+
+#ticketmaster-cartdetails{
+	width: 100%;
+	margin: 8px 0px 0px 8px;
+	overflow:hidden;
+
+}
+
+#ticketmaster-venuedetails{
+	width: 100%;
+	margin: 8px 0px 8px 0px;
+	overflow:hidden;
+}
+
+#ticketmaster-eventdetails{
+	width: 97%;
+	margin: 8px;
+	overflow:hidden;
+}
+
+#ticketmaster-eventmap{
+	width: 97%;
+	height: 32px;
+	border: 1px #ccc solid;
+	overflow:hidden;
+	margin-top: 7px;
+}
+
+.ticketmaster-maps-text{
+	line-height: 32px;
+	font-size:100%;
+	color:#000099;
+	text-align:center;
+}
+
+.ticketmaster-header-text{
+	padding-left: 28px;
+	line-height: 32px;
+	font-size:110%;
+	color:#000099;
+}
+
+#ticketmaster-order{
+	margin: 8px;
+	border:#d3d3d6 1px solid;
+	height:30px;
+}
+
+#ticketmaster-order-min-max{
+	margin: 8px;
+	height:20px;
+	font-size:85%;	
+}
+
+#ticketmaster-order-warning{
+	margin: 8px;
+	padding-left: 27px;
+	line-height: 24px;
+	font-size: 90%;
+	height:24px;
+	background-image:url(../images/warning-icon.png);
+	background-repeat:no-repeat;
+	overflow:hidden;
+	border-top:2px solid #FF6600;
+	border-bottom:2px solid #FF6600;
+}
+
+.failed, .soldout, .lowamount, .maxorder, .minorder{
+	margin: 8px;
+	border-top:#d70500 2px solid;
+	border-bottom:#d70500 2px solid;
+	height:25px;
+	line-height:25px;
+	padding-left: 25px;
+	font-weight:bold;
+	background-image:url(../images/cross-icon.png);
+	background-repeat:no-repeat;	
+}
+
+.success{
+	margin: 8px;
+	border-top:#04c215 2px solid;
+	border-bottom:#04c215 2px solid;
+	height:25px;
+	line-height:25px;
+	padding-left: 25px;
+	font-weight:bold;
+	background-image:url(../images/tick-icon.png);
+	background-repeat:no-repeat;	
+}
+
+#ticketmaster-loading{
+	margin: 8px;
+	padding-left:20px;
+	height:19px;
+	font-weight:bold;
+}
+
+#ticketmaster-ticket{
+	width: 40%;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	font-size: 100%;
+	font-weight:bold;
+	float:left;
+	padding-left:8px;
+}
+
+#ticketmaster-ticket-price{
+	width: 20%;
+	height: 30px;
+	text-align:left;
+	line-height:30px;
+	font-size: 100%;
+	float:left;
+	border-left:#d3d3d6 1px solid;
+	padding-left: 5px;
+}
+
+#ticketmaster-ticket-add-to-cart{
+	width: 30%;
+	height: 30px;
+	text-align:left;
+	padding-top: 3px;
+	padding-right: 7px;
+	font-size: 100%;
+	font-weight:bold;
+	float: right; 
+}

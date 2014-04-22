@@ -87,7 +87,7 @@ class sendonpayment{
 		$db = JFactory::getDBO();
 
 		## Making the query for getting the orders
-		$sql='SELECT  a.*, c.name, c.emailaddress, e.eventname,  t.ticket_size, t.ticket_orientation, t.combine_multitickets
+		$sql='SELECT  a.*, c.name, c.emailaddress, c.firstname, e.eventname,  t.ticket_size, t.ticket_orientation, t.combine_multitickets
 			  FROM #__ticketmaster_orders AS a, #__ticketmaster_clients AS c, #__ticketmaster_events AS e, #__ticketmaster_tickets AS t 
 			  WHERE a.userid = c.userid
 			  AND a.eventid = e.eventid
@@ -203,6 +203,7 @@ class sendonpayment{
 			}else{
 				$customer = $row->name;
 			}	
+			
 			$recipient = $row->emailaddress;
 			$userid = $row->userid;
 			
@@ -227,7 +228,7 @@ class sendonpayment{
 		
 		$countattachments = count($attachment);
 		
-		$message  = str_replace('%%NAME%%', $name, $mail->mailbody);
+		$message  = str_replace('%%NAME%%', $customer, $mail->mailbody);		
 		$subject  = str_replace('%%EVENTNAME%%', $event, $mail->mailsubject);
 		$message = str_replace('%%ORDERCODE%%', $this->eid, $message);	
 		$message = str_replace('%%TICKETS%%', $total_tickets, $message);	
@@ -283,8 +284,6 @@ class sendonpayment{
 			
 			if($configuration->send_multi_ticket_admin == 1){ 
 
-				## Clearing the old fashion PDF:
-				unset($attachment);	
 				## Check if the multi ticket is there:
 				$attachment = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmaster'.DS.'tickets'.DS.'multi-'.(int)$this->eid.'.pdf';
 

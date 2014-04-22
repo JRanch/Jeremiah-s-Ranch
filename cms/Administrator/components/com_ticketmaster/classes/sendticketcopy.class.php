@@ -89,7 +89,7 @@ class resender{
 		$this->error = '';
 
 		## Making the query for getting the orders
-		$sql='SELECT  a.*, c.name, c.emailaddress, e.eventname,  t.ticket_size, t.ticket_orientation, t.combine_multitickets
+		$sql='SELECT  a.*, c.name, c.emailaddress, c.firstname, e.eventname,  t.ticket_size, t.ticket_orientation, t.combine_multitickets
 			  FROM #__ticketmaster_orders AS a, #__ticketmaster_clients AS c, #__ticketmaster_events AS e, #__ticketmaster_tickets AS t 
 			  WHERE a.userid = c.userid
 			  AND a.eventid = e.eventid
@@ -109,10 +109,9 @@ class resender{
 		
 		if($config->send_multi_ticket_only == 1){
 		
-			$attachment = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmaster'.DS.'tickets'.DS.'multi-'.$this->eid.'.pdf';
+			$attachment[] = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmaster'.DS.'tickets'.DS.'multi-'.$this->eid.'.pdf';
 
 			if (!file_exists($attachment)) {
-				
 				## Create the new multi ticket.
 				include_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmaster'.DS.'classes'.DS.'special.tickets.class.php');
 				
@@ -125,6 +124,7 @@ class resender{
 			} 
 		
 			$name		 = $row->name;
+			$firstname	 = $row->firstname;
 			$email		 = $row->emailaddress;	
 		
 		}else{
@@ -134,6 +134,7 @@ class resender{
 				$fname = $this->combinetickets($info);
 				$attachment[] = $fname;
 				$name		 = $row->name;
+				$firstname	 = $row->firstname;
 				$email		 = $row->emailaddress;
 				$event		 = $row->eventname;
 			
@@ -146,6 +147,7 @@ class resender{
 					## Create attachments the same as saved
 					$attachment[] = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_ticketmaster'.DS.'tickets'.DS.'eTicket-'.$row->orderid.'.pdf';
 					$name		 = $row->name;
+					$firstname	 = $row->firstname;
 					$email		 = $row->emailaddress;
 					$event		 = $row->eventname;
 					$k=1 - $k;
@@ -166,6 +168,8 @@ class resender{
 		$countattachments = count($attachment);
 		
 		$message  = str_replace('%%NAME%%', $name, $mail->mailbody);
+		$message  = str_replace('%%FIRSTNAME%%', $firstname, $message);
+		$message  = str_replace('%%EVENTNAME%%', $event, $message);
 		$subject  = str_replace('%%EVENTNAME%%', $event, $mail->mailsubject);
 		
 		if ($countattachments > 0){

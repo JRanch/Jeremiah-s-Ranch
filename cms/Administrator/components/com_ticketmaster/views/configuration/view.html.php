@@ -19,8 +19,12 @@ class TicketmasterViewConfiguration extends JViewLegacy {
 
 function display($tpl = null) {
 
-	global $mainframe, $option;
-	
+	## If we want the add/edit form..
+	if($this->getLayout() == 'dbcheck') {
+		$this->_dbcheck($tpl);
+		return;
+	}
+
 	## Model is defined in the controller
 	$model	=& $this->getModel();
 
@@ -202,25 +206,52 @@ function display($tpl = null) {
 	$this->assignRef('config', $config);
 	$this->assignRef('lists', $lists);
 	parent::display($tpl);
-}
- 
-	function _displayMails($tpl) {
-
-		global $mainframe, $option;
-		
-		$db    = JFactory::getDBO();	
-		
-		## Model is defined in the controller
-		$model	=& $this->getModel();
 	
-		$config	=& $this->get('data');
-
-		$this->assignRef('config', $config);	
-		$tpl = 'mails';
+	}
+ 
+	function _dbcheck($tpl = null) {
+		
+		$db  = JFactory::getDBO();
+		$app = JFactory::getApplication();
+		
+		$filter_table = $app->getUserStateFromRequest( 'table', 'table','ticketmaster_clients','cmd' );
+		
+		$table = '#__'.$filter_table;
+		
+		$sql = 'SHOW CREATE TABLE '.$table;
+		
+		$db->setQuery($sql);
+		$rows = $db->loadAssocList();
+		
+		### CREATE DROPDOWN NOW ###
+		
+		$tables = array(
+			'0' => array('value' => 'none', 'text' => JText::_( 'COM_TICKETMASTER_PLEASE_SELECT' )),
+			'1' => array('value' => 'ticketmaster_clients', 'text' => JText::_( 'COM_TICKETMASTER_CLIENT_TABLE' )),
+			'2' => array('value' => 'ticketmaster_config', 'text' => JText::_( 'COM_TICKETMASTER_CONFIG_TABLE' )),
+			'3' => array('value' => 'ticketmaster_country', 'text' => JText::_( 'COM_TICKETMASTER_COUNTRY_TABLE' )),
+			'4' => array('value' => 'ticketmaster_coupons', 'text' => JText::_( 'COM_TICKETMASTER_COUPON_TABLE' )),
+			'5' => array('value' => 'ticketmaster_emails', 'text' => JText::_( 'COM_TICKETMASTER_EMAILS_TABLE' )),
+			'6' => array('value' => 'ticketmaster_events', 'text' => JText::_( 'COM_TICKETMASTER_EVENTS_TABLE' )),
+			'7' => array('value' => 'ticketmaster_orders', 'text' => JText::_( 'COM_TICKETMASTER_ORDERS_TABLE' )),
+			'8' => array('value' => 'ticketmaster_remarks', 'text' => JText::_( 'COM_TICKETMASTER_REMARKS_TABLE' )),
+			'9' => array('value' => 'ticketmaster_scans', 'text' => JText::_( 'COM_TICKETMASTER_SCANS_TABLE' )),
+			'10' => array('value' => 'ticketmaster_tickets', 'text' => JText::_( 'COM_TICKETMASTER_TICKETS_TABLE' )),
+			'11' => array('value' => 'ticketmaster_transactions', 'text' => JText::_( 'COM_TICKETMASTER_TRANSACTIONS_TABLE' )),
+			'12' => array('value' => 'ticketmaster_transactions_temp', 'text' => JText::_( 'COM_TICKETMASTER_TEMPTRANSACTIONS_TABLE' )),
+			'13' => array('value' => 'ticketmaster_venues', 'text' => JText::_( 'COM_TICKETMASTER_VENUES_TABLE' )),
+			'14' => array('value' => 'ticketmaster_waitinglist', 'text' => JText::_( 'COM_TICKETMASTER_WAITINGLIST_TABLE' )),
+		);
+		$lists['tables'] = JHTML::_('select.genericList', $tables, 'table', 'class="input" '. '', 'value','text', $filter_table);		
+		
+		$remote_db["database"] = file_get_contents('http://rd-media.org/tablechecker/'.$filter_table.'.txt', true);		
+		
+		$this->assignRef('remote', $remote_db);
+		$this->assignRef('local', $rows);
+		$this->assignRef('lists', $lists);	
 		
 		parent::display($tpl);
-
-	} 
-    
+	}
+	
 }
 ?>

@@ -245,6 +245,14 @@ jQuery(function() {
 	  ?>
   </table>  
   
+  <table width="100%" align="center" class="adminlist">
+    <tfoot>
+        <tr>
+            <td colspan="7"><div align="center"><?php echo $this->pagination->getListFooter(); ?></div></td>
+        </tr>  
+    </tfoot>   
+    </table>    
+  
   <input name = "option" type="hidden" value="com_ticketmaster" />
   <input name = "task" id="task" type="hidden" value="" />
   <input name = "boxchecked" type="hidden" value="0"/>

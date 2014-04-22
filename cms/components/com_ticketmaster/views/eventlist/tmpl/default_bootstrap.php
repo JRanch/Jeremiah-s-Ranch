@@ -64,7 +64,7 @@ function tableOrdering( order, dir, task )
 
 <form id="adminForm" action="<?php echo $this->action ;?>" method="post" name="adminForm" class="form-inline">
 
-<h2><?php echo JText::_('COM_TICKETMASTER_INFORMATION').' '.$this->data->eventname; ?></h2>
+<h2><?php echo $this->data->eventname; ?></h2>
 
 <div id = "ticketmaster-categories" style="margin-bottom: 15px;">
     

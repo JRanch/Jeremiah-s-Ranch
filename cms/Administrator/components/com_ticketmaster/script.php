@@ -8,7 +8,7 @@ class com_ticketmasterInstallerScript
 	 * The release value would ideally be extracted from <version> in the manifest file,
 	 * but at preflight, the manifest file exists only in the uploaded temp folder.
 	 */
-	private $release = '3.1.3';
+	private $release = '3.1.5';
  
 	/*
 	 * $parent is the class calling this method.

@@ -80,22 +80,25 @@ $button = 'btn btn-small';
         <div class="ticktmaster_box_content_footer">
         
         <a href="<?php echo $link; ?>" class="<?php echo $button; ?> pull-right"><?php echo JText::_('COM_TICKETMASTER_SHOW_NOW'); ?></a>
-
-        <?php if ($row->start_price > 0 && $row->end_price > 0) { ?>
-            <span class="label label-info pull-right" style="padding: 5px; margin-right: 5px;">
-				<?php echo JText::_( 'COM_TICKETMASTER_PRICE_RANGE' ); ?> 
-					<?php echo showprice($this->config->priceformat ,$row->start_price,$this->config->valuta); ?> - 
-                    <?php echo showprice($this->config->priceformat ,$row->end_price,$this->config->valuta); ?>
-            </span>
-        <?php } ?>
-        
-        <?php if ($row->start_price > 0 && $row->end_price == 0) { ?>
-            <span class="label label-info pull-right" style="padding: 5px; margin-right: 5px;">
-				<?php echo JText::_( 'COM_TICKETMASTER_PRICE_STARTS_AT' ); ?> 
-					<?php echo showprice($this->config->priceformat ,$row->start_price,$this->config->valuta); ?>
-            </span>
-        <?php } ?>        
+		
+		<?php if($this->config->show_price_eventlist == 1) { ?>
+		
+	        <?php if ($row->start_price > 0 && $row->end_price > 0) { ?>
+	            <span class="label label-info pull-right" style="padding: 5px; margin-right: 5px;">
+					<?php echo JText::_( 'COM_TICKETMASTER_PRICE_RANGE' ); ?> 
+						<?php echo showprice($this->config->priceformat ,$row->start_price,$this->config->valuta); ?> - 
+	                    <?php echo showprice($this->config->priceformat ,$row->end_price,$this->config->valuta); ?>
+	            </span>
+	        <?php } ?>
+	        
+	        <?php if ($row->start_price > 0 && $row->end_price == 0) { ?>
+	            <span class="label label-info pull-right" style="padding: 5px; margin-right: 5px;">
+					<?php echo JText::_( 'COM_TICKETMASTER_PRICE_STARTS_AT' ); ?> 
+						<?php echo showprice($this->config->priceformat ,$row->start_price,$this->config->valuta); ?>
+	            </span>
+	        <?php } ?>        
          
+        <?php } ?> 
         
         <?php if ($this->config->show_quantity_eventlist == 1) { ?>
             <span class="label label-info pull-right" style="padding: 5px;  margin-right: 5px;">

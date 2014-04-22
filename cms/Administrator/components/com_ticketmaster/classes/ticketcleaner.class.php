@@ -352,7 +352,7 @@ class remover{
 			$item = $db->loadObject();
 					
 			## Check if the order has been paid:
-			$sql = 'SELECT c.name, c.emailaddress
+			$sql = 'SELECT c.name, c.emailaddress, c.firstname
 					FROM #__ticketmaster_clients AS c, #__ticketmaster_orders AS o
 					WHERE o.userid = c.userid
 					AND o.ordercode = '.(int)$row->ordercode.'';
@@ -402,6 +402,7 @@ class remover{
 	
 				$message 	 = str_replace('%%PRICE%%', $price, $mail->mailbody);
 				$message     = str_replace('%%NAME%%', $client->name, $message);
+				$message     = str_replace('%%FIRSTNAME%%', $client->firstname, $message);
 				$message     = str_replace('%%ORDERCODE%%', $row->ordercode, $message);
 				$message     = str_replace('%%ORDERLIST%%', $orders, $message);
 				$message     = str_replace('%%PAYMENTLINK%%', $paymentlink, $message);
