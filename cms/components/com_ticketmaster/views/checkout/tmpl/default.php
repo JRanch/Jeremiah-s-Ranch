@@ -240,6 +240,16 @@ $forgot_user = JRoute::_( 'index.php?option=com_users&view=remind&tmpl=component
 		</div>		
 	<?php } ?> 	
 
+	<div class="row-fluid">
+	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_CITY' ); ?>*</div>
+	  <div class="span8"><input name="city" type="text" id="city" class="inputbox" value="<?php echo $info[city]; ?>" size="25" /></div>
+	</div>				
+
+	<div class="row-fluid">
+	  <div class="span4">State *</div>
+	  <div class="span8">We are only selling tickets in California at this time.</div>
+	</div>				
+
 	<?php if($this->config->show_zipcode != 0 ){ ?>
 		<div class="row-fluid">
 		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_ZIPCODE' ); ?>*</div>
@@ -247,11 +257,6 @@ $forgot_user = JRoute::_( 'index.php?option=com_users&view=remind&tmpl=component
 		</div>		
 	<?php } ?> 
 	
-	<div class="row-fluid">
-	  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_CITY' ); ?>*</div>
-	  <div class="span8"><input name="city" type="text" id="city" class="inputbox" value="<?php echo $info[city]; ?>" size="25" /></div>
-	</div>				
-
 	<?php if($this->config->show_country != 0 ){ ?>
 		<div class="row-fluid">
 		  <div class="span4"><?php echo JText::_( 'COM_TICKETMASTER_YOUR_COUNTRY' ); ?>*</div>
